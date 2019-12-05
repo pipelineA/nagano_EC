@@ -5,6 +5,9 @@ class OrdersController < ApplicationController
   def confirm
   end
 
+  def create
+  end
+  
   def thanks
   end
 

@@ -1,41 +1,50 @@
 Rails.application.routes.draw do
+
+  root 'homes#top'
+  get '/about' => 'homes#about'
+  resources :users, only: [:show, :edit, :update]
+  get 'items/:id' => 'items#show'
+  resources :carts, only: [:index, :create, :update, :destroy]
+  resources :addresses, except: [:show, :new] #この２つを除外
+
+  get 'orders/new' => 'orders#new'
+  post 'orders/confirm' => 'orders#confirm'
+  post 'orders' => 'orders#create'
+  get 'orders/thanks' => 'orders#thanks'
+  get 'order_histories' => 'orders#index'
+  get 'order_histories/:id' => 'orders#show'
+
+
   namespace :admin do
-    get 'orders/index'
-    get 'orders/show'
+    root 'homes#top'
   end
+
   namespace :admin do
-    get 'users/index'
-    get 'users/show'
-    get 'users/edit'
+	resources :items, except: [:destroy]
   end
+
   namespace :admin do
-    get 'genres/index'
+    resources :genres, only: [:index, :create, :update]
   end
+
   namespace :admin do
-    get 'items/index'
-    get 'items/new'
-    get 'items/show'
-    get 'items/edit'
+    resources :users, only: [:index, :show, :edit, :update]
   end
+
   namespace :admin do
-    get 'homes/top'
+    resources :orders, only: [:index, :show, :update]
   end
-  get 'orders/new'
-  get 'orders/confirm'
-  get 'orders/thanks'
-  get 'orders/index'
-  get 'orders/show'
-  get 'addresses/index'
-  get 'addresses/edit'
-  get 'carts/index'
-  get 'items/show'
-  get 'users/show'
-  get 'users/edit'
-  get 'users/update'
-  get 'homes/top'
-  get 'homes/about'
-  devise_for :admins, controllers: {
+
+
+
+ 	devise_for :admins, controllers: {
   sessions:      'admins/sessions',
 }
+# 	devise_for :users, controllers: {
+#   sessions:      'users/sessions',
+#   passwords:     'users/passwords',
+#   registrations: 'users/registrations'
+# }
+
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
