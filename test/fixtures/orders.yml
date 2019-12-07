@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  customer_id: 1
+  fee: 1
+  payment_method: 1
+  tax_rate: 1.5
+  ordered_reveiver_name: MyString
+  ordered_address: MyString
+  billing_amount: 1
+
+two:
+  customer_id: 1
+  fee: 1
+  payment_method: 1
+  tax_rate: 1.5
+  ordered_reveiver_name: MyString
+  ordered_address: MyString
+  billing_amount: 1
