@@ -10,33 +10,6 @@
   </head>
 
   <body>
-    <header class="navbar navbar-inverse">
-       <diV class="container-fluid">
-         <h3 class=""><%= link_to"LOGO", root_path %></h3>
-       <ul class="nav navbar-nav navbar-right">
-        <% if user_signed_in? %>
-         <li><%= link_to "マイページ", user_path(current_user.id) %></li>
-         <li><%= link_to "about", about_path %></li>
-         <li><%= link_to "注文履歴一覧", order_histories_path %></li>
-         <li><%= link_to "ログアウト", destroy_user_session_path, method: :delete %></li>
-         <li><%= link_to "カート", carts_path %></li><br>
-
-        <% else %>
-         <li><%= link_to "新規登録", new_user_registration_path %></li>
-         <li><%= link_to "ログイン", new_user_session_path %></li>
-         <li><%= link_to "about", about_path %></li><br>
-        <% end %>
-         <div class="nav navbar-nav navbar-right">
-          <form action="#" method="post">
-          <input type="search" name="search" placeholder="Seach">
-          </form>
-         </div>
-       </ul>
-        
-
-       </diV>
-    </header>
-
     <%= yield %>
   </body>
 </html>
