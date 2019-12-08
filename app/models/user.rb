@@ -7,4 +7,6 @@ class User < ApplicationRecord
   has_many :cart_items
   has_many :addresses
   accepts_nested_attributes_for :addresses
+
+  enum is_unsubscribe: { 退会済: true, 有効: false }
 end
