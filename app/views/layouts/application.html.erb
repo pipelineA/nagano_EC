@@ -12,21 +12,27 @@
   <body>
     <header class="navbar navbar-inverse">
        <diV class="container-fluid">
-         <h3><%= link_to"LOGO", admin_root_path %></h3>
+         <h3 class=""><%= link_to"LOGO", root_path %></h3>
        <ul class="nav navbar-nav navbar-right">
-         
-         <li><%= link_to "ログイン", new_user_session_path %></li>
+        <% if user_signed_in? %>
+         <li><%= link_to "マイページ", user_path(current_user.id) %></li>
+         <li><%= link_to "about", about_path %></li>
+         <li><%= link_to "注文履歴一覧", order_histories_path %></li>
          <li><%= link_to "ログアウト", destroy_user_session_path, method: :delete %></li>
-         <li><%= link_to "商品一覧", admin_items_path %></li>
-         <li><%= link_to "会員一覧", admin_users_path %></li>
-         <li><%= link_to "注文一覧", admin_orders_path %></li>
-       </ul>
+         <li><%= link_to "カート", carts_path %></li><br>
 
-        <div class="nav navbar-nav navbar-right">
+        <% else %>
+         <li><%= link_to "新規登録", new_user_registration_path %></li>
+         <li><%= link_to "ログイン", new_user_session_path %></li>
+         <li><%= link_to "about", about_path %></li><br>
+        <% end %>
+         <div class="nav navbar-nav navbar-right">
           <form action="#" method="post">
           <input type="search" name="search" placeholder="Seach">
           </form>
-        </div>
+         </div>
+       </ul>
+        
 
        </diV>
     </header>
