@@ -307,7 +307,7 @@ DEPENDENCIES
   jquery-rails
   kaminari (~> 1.1.1)
   listen (>= 3.0.5, < 3.2)
-  puma (~> 3.12)
+  puma (~> 3.12.2)
   rails (~> 5.2.4)
   refile!
   refile-mini_magick
