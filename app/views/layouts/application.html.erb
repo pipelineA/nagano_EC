@@ -10,6 +10,27 @@
   </head>
 
   <body>
+    <header class="navbar navbar-inverse">
+       <diV class="container-fluid">
+         <h3><%= link_to"LOGO", admin_root_path %></h3>
+       <ul class="nav navbar-nav navbar-right">
+         
+         <li><%= link_to "ログイン", new_user_session_path %></li>
+         <li><%= link_to "ログアウト", destroy_user_session_path, method: :delete %></li>
+         <li><%= link_to "商品一覧", admin_items_path %></li>
+         <li><%= link_to "会員一覧", admin_users_path %></li>
+         <li><%= link_to "注文一覧", admin_orders_path %></li>
+       </ul>
+
+        <div class="nav navbar-nav navbar-right">
+          <form action="#" method="post">
+          <input type="search" name="search" placeholder="Seach">
+          </form>
+        </div>
+
+       </diV>
+    </header>
+
     <%= yield %>
   </body>
 </html>

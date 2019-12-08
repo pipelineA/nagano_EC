@@ -33,7 +33,7 @@
     <%= f.text_field :email, autofocus: true, autocomplete: "email" %>
   </div>
 
-  <%= f.fields_for :address do |af| %>
+  <%= f.fields_for :addresses, @user.addresses.build do |af| %>
     <div class="field">
       <label>郵便番号</label>
         <%= af.text_field :postal_code %>
