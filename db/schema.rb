@@ -10,14 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_12_07_094756) do
+ActiveRecord::Schema.define(version: 2019_12_08_104808) do
 
   create_table "addresses", force: :cascade do |t|
     t.integer "user_id", null: false
     t.string "postal_code", default: "", null: false
     t.string "address", default: "", null: false
     t.string "receiver_name", default: "", null: false
-    t.boolean "is_main_active", default: false, null: false
+    t.boolean "is_main_address", default: true, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
