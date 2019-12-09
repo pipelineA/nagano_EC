@@ -1,2 +1,19 @@
-<h1>Homes#top</h1>
-<p>Find me in app/views/homes/top.html.erb</p>
+<div class="container">
+	<div class="row">
+		<div class="col-md-4">
+			<h2>ジャンル検索</h2>
+			<% @genres.each do |genre| %>
+				<%= link_to root_path do |name| %><%= genre.name %><% end %><br>
+			<% end %>
+		</div>
+		<div class="col-md-8">
+			<h2>商品一覧</h2>
+			<% @items.each do |item| %>
+				<div>
+					<%= link_to item_path(item.id) do |itempicture| %><%= item.image_id %><% end %><br>
+					商品名：<%= item.name %><br>
+					価格：<%= item.price %>円<br>
+				</div>
+			<% end %>
+		</div>
+	</div>
