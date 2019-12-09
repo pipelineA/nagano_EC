@@ -1,2 +1,11 @@
-<h1>Admin::Items#edit</h1>
-<p>Find me in app/views/admin/items/edit.html.erb</p>
+<h3>商品新規登録画面</h3>
+<%= form_for(@user) do |f| %>
+<div><%=f.attachment_field :image %></div>
+<p>商品名<p>
+<%= f.text_field :name %>
+
+<p>商品説明</p>
+<%= f.text_area :introduction %>
+
+<%= f.submit "Update user" %>
+<% end %>
