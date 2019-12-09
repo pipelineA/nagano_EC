@@ -1,4 +1,5 @@
 <div class="container">
+	<div class="row">
 	<h2>登録情報編集</h2>
 		<%= form_for(@user) do |f| %>
 		<%= f.submit '退会する', name: "unsubsuribe", :class =>"btn btn-danger col-xs-3" %>
@@ -32,4 +33,5 @@
 		</table>
 			<%= f.submit '編集内容を保存する',:class =>"btn btn-primary col-xs-3" %>
 		<% end %>
+	</div>
 </div>
