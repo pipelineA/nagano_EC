@@ -1,10 +1,11 @@
 class AddressesController < ApplicationController
   def index
     @addresses = current_user.addresses
-    @address = current_user.addresses.build
+    @address = Address.new
   end
   def create
     @address = current_user.addresses.build(address_params)
+    @address.is_main_address = false
     @address.save
     redirect_to addresses_path
   end
