@@ -14,7 +14,7 @@ Rails.application.routes.draw do
   root 'homes#top'
   get '/about' => 'homes#about'
   resources :users, only: [:show, :edit, :update]
-  get 'items/:id' => 'items#show'
+  get 'items/:id' => 'items#show', as: 'item'
   resources :carts, only: [:index, :create, :update, :destroy]
   resources :addresses, except: [:show, :new] #この２つを除外
 
