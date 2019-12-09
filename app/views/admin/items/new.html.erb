@@ -1,2 +1,17 @@
-<h1>Admin::Items#new</h1>
-<p>Find me in app/views/admin/items/new.html.erb</p>
+<h3>商品新規登録画面</h3>
+<%= form_for @item, url: admin_items_path(@item) do |f| %>
+<div><%=f.attachment_field :image %></div>
+<%= f.label(:name, "商品名") %>
+<%= f.text_field :name %>
+
+<p>商品説明</p>
+<%= f.text_area :description %>
+
+<p>ジャンル</p>
+<%=  f.select :genre_id, [["ケーキ",1], ["クッキー",2 ],["プリン",3]]%>
+
+<P>税抜価格</P>
+<%= f.text_field :price %>
+
+<%= f.submit '新規登録' %>
+<% end %>
