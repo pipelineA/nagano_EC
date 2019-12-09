@@ -21,18 +21,34 @@ Item.create!([
   { genre_id: 1,
     name: 'ショートケーキ',
     description: 'ショートケーキです',
-    image_id: 'sweets_cake_far_breton.png',
+    image_id: '#{Rails.root}/assets/images/sweets_cake_far_breton.png',
     price: '400'},
   { genre_id: 1,
     name: 'チョコケーキ',
     description: 'チョコケーキです',
-    image_id: 'sweets_cake_far_breton.png',
+    image_id: '#{Rails.root}/assets/images/sweets_cake_far_breton.png',
     price: '500'},
   { genre_id: 2,
     name: 'クッキー',
     description: 'クッキーです',
-    image_id: 'thumbnail_sweets_chiffoncake.jpg',
+    image_id: '#{Rails.root}/assets/thumbnail_sweets_chiffoncake.jpg',
     price: '400'}
 
 ])
 
+50.times do |n|
+  user = User.create!(
+    family_name: '顧客',
+    first_name: n,
+    kana_family_name: 'ユーザー',
+    kana_first_name: n,
+    phone_number: "090-#{n}-000",
+    password: 'password',
+    password_confirmation: 'password',
+    email: "user#{n}@com"
+  )
+    user.addresses.create!(
+      postal_code: "000-#{n}#{n}",
+      address: 'somewhere'
+    )
+end
