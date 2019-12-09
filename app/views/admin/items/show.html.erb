@@ -1,2 +1,8 @@
-<h1>Admin::Items#show</h1>
-<p>Find me in app/views/admin/items/show.html.erb</p>
+<h3>商品詳細画面</h3>
+
+<%= attachment_image_tag @item.image %>
+<%= @item.name %>
+<%= @item.description %>
+<%= @item.genre_id %>
+<%= @item.price %>
+<%= @item.status %>

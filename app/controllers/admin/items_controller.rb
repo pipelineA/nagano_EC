@@ -14,14 +14,19 @@ class Admin::ItemsController < AdminController
   end
 
   def show
+    @item =Item.find(params[:id])
   end
 
   def edit
   end
 
-  def update
-
+    def update
+    @item = Itemfind(params[:id])
+    @item.update(item_params)
+    redirect_to   admin_items_path
   end
+
+
 
   private
   def item_params

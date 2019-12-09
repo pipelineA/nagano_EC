@@ -1,5 +1,5 @@
 <h3>商品新規登録画面</h3>
-<%= form_for(@user) do |f| %>
+<%= form_for(@item) do |f| %>
 <div><%=f.attachment_field :image %></div>
 <p>商品名<p>
 <%= f.text_field :name %>
@@ -7,5 +7,16 @@
 <p>商品説明</p>
 <%= f.text_area :introduction %>
 
-<%= f.submit "Update user" %>
+<P>ジャンル</P>
+<%= f.select :age, [""] %>
+
+<p>税抜価格</p>
+<%= f_text_field :praice %>
+
+<P>販売ステータス</P>
+<%= f.select :age, [""] %>
+
+<%= f.submit "新規登録" %>
 <% end %>
+
+
