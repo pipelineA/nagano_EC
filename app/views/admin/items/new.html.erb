@@ -1,17 +1,40 @@
 <h3>商品新規登録画面</h3>
+<div class="container">
+<div class="row">
+<div class="col-lg-4">
 <%= form_for @item, url: admin_items_path(@item) do |f| %>
-<div><%=f.attachment_field :image %></div>
+<div>
+	<%= attachment_image_tag @item, :image %>
+	<%=f.attachment_field :image %>
+</div>
+</div>
+<div class="col-lg-4">
+	
+<div>
 <%= f.label(:name, "商品名") %>
 <%= f.text_field :name %>
+</div>
 
-<p>商品説明</p>
+<div>
+<%= f.label(:description, "商品説明") %>
 <%= f.text_area :description %>
+</div> 
 
-<p>ジャンル</p>
+<div>
+<%= f.label(:genre, "ジャンル")%>
 <%=  f.select :genre_id, [["ケーキ",1], ["クッキー",2 ],["プリン",3]]%>
+</div>
 
-<P>税抜価格</P>
+<div>
+<%= f.label(:price, "価格") %>
 <%= f.text_field :price %>
+</div>
 
+</div>
+
+<div class="col-lg-4">
 <%= f.submit '新規登録' %>
+</div>
 <% end %>
+</div>
+</div>
