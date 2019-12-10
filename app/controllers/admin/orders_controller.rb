@@ -1,7 +1,7 @@
 class Admin::OrdersController < AdminController
   def index 
-    if params[:user_id]
-    @orders = User.find(params[:user_id]).orders
+    if params[:today]
+    @orders = User.find(1).orders
     else
     @orders = Order.all
   end

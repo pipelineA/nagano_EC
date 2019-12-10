@@ -1,5 +1,6 @@
 class Admin::HomesController < AdminController
   def top
-    Order.where(:created_at.to_date => Date.today)
+    @new_orders = Order.where('created_at >= ?', Date.today)
+    @new_users = User.where('created_at >= ?', Date.today)
   end
 end
