@@ -1,11 +1,45 @@
-<h3>商品新規登録画面</h3>
-<%= form_for(@user) do |f| %>
-<div><%=f.attachment_field :image %></div>
-<p>商品名<p>
-<%= f.text_field :name %>
+<h3>商品編集画面</h3>
+<div class="container">
+	<%= form_for(@item) do |f| %>
+	<div class="row">
+		<div class="col-lg-4">
+			<div>
+				<%= attachment_image_tag @item, :image, :fill, 300,300 %>
+				<%=f.attachment_field :image %>
+			</div>
+		</div>
 
-<p>商品説明</p>
-<%= f.text_area :introduction %>
+		<div class="col-lg-4">
+			<div>
+				<%= f.label(:name, "商品名") %>
+				<%= f.text_field :name %>
+			</div>
 
-<%= f.submit "Update user" %>
-<% end %>
+			<div>
+				<%= f.label(:description, "商品説明") %>
+				<%= f.text_area :description %>
+			</div>
+
+			<div>
+				<%= f.label(:genre, "ジャンル") %>
+				<%=  f.select :genre_id, [["ケーキ",1], ["クッキー",2 ],["プリン",3]]%>
+			</div>
+
+			<div>
+				<%= f.label(:price, "税抜き価格") %>
+				<%= f.text_field :price %>
+			</div>
+
+			<div>
+				<%= f.label(:genre, "ジャンル") %>
+				<%= f.select :item_status,[["販売中",0],["売り切れ",1]] %>
+			</div>
+		</div>
+
+		<div class="col-lg-4">
+			<%= f.submit '変更を保存' %>
+		</div>
+	</div>
+	<% end %>
+</div>
+
