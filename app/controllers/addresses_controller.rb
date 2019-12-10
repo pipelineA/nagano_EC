@@ -1,6 +1,6 @@
 class AddressesController < ApplicationController
   def index
-    @addresses = current_user.addresses
+    @addresses = current_user.addresses.where(is_main_address: false)
     @address = Address.new
   end
   def create
