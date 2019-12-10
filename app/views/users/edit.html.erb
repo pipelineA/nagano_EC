@@ -2,7 +2,7 @@
 	<div class="row">
 	<h2>登録情報編集</h2>
 		<%= form_for(@user) do |f| %>
-		<%= f.submit '退会する', name: "unsubsuribe", :class =>"btn btn-danger col-xs-3" %>
+		<%= f.submit '退会する', name: "unsubsuribe", class:"btn btn-danger" %>
 		<table class="table">
 			<tbody>
 				<th>氏名</th>
@@ -31,7 +31,7 @@
 				<th><%= f.email_field :email %></th>
 			</tbody>
 		</table>
-			<%= f.submit '編集内容を保存する',:class =>"btn btn-primary col-xs-3" %>
+			<%= f.submit '編集内容を保存する',:class =>"btn btn-primary" %>
 		<% end %>
 	</div>
 </div>

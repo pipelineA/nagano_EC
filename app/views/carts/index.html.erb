@@ -1,2 +1,36 @@
-<h1>Carts#index</h1>
-<p>Find me in app/views/carts/index.html.erb</p>
+<div class="container">
+	<div class="row">
+		<table class="table">
+			<%= link_to "カートを空にする", destroy_all_path, method: :post, class:"btn btn-danger pull-right"%>
+			<tbody>
+				<tr>
+					<th class="active">商品名</th>
+					<th class="active">単価(税込)</th>
+					<th class="active">数量</th>
+					<th class="active">小計</th>
+					<th class="active"></th>
+				</tr>
+			</tbody>
+			<% total = 0 %>
+			<% @cart_items.each do |cartitem| %>
+			<tbody>
+				<tr>
+					<td><%= link_to item_path(cartitem.item_id) do %><%= attachment_image_tag cartitem.item,:image, size: "50x50" %><% end %>　
+						<%= link_to cartitem.item.name, item_path(cartitem.item_id) %></td>
+					<td><%= cartitem.item.tax_include_price %></td>
+					<td><%= form_for cartitem, url: carts_path do |f| %>
+							<%= f.number_field :item_count ,min:0,max:100 %>
+						<% end %>
+					</td>
+					<td><%= sub_total = cartitem.item.tax_include_price*cartitem.item_count %></td>
+					<td><%= total += sub_total %></td>
+					<td><%= link_to "削除する", cart_path(cartitem), method: :delete, class:"btn btn-danger pull-right" %></td>
+				</tr>
+			</tbody>
+			<% end %>
+			合計金額<%= total.to_s %>
+		</table>
+		<%= link_to "合計金額再計算", cart_path(@cart_items), class:"btn btn-primary pull-right" %>
+	</div>
+	<%= link_to "　　情報入力に進む　　", cart_path(@cart_items), class:"btn btn-primary btn-lg" %>
+</div>

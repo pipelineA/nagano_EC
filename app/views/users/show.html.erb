@@ -1,48 +1,53 @@
 <div class="container">
 	<div class="row">
-		<h2>登録情報</h2>
-		<%= link_to "編集する", edit_user_path(@user.id) %>
-		<!-- パスワード編集機能はdevice使用 -->
-		<%= link_to "パスワードを変更する", edit_user_password_path %>
+		<div class="col-xs-6">
+		<h3>登録情報　
+			<%= link_to "編集する", edit_user_path(@user.id), class:"btn btn-primary" %>
+			<!-- パスワード編集機能はdevice使用 -->
+			<%= link_to "パスワードを変更する", edit_user_password_path, class:"btn btn-primary" %>　
+		</h3>
 		<div>
-			<table class="table table-hover table-inverse">
+			<table class="table table-responsive">
 				<tbody>
-					<th>氏名</th>
+					<th class="active">氏名</th>
 					<th><%= @user.family_name %><%= @user.first_name %></th>
 				</tbody>
 				<tbody>
-					<th>かな</th>
+					<th class="active">かな</th>
 					<th><%= @user.kana_family_name %><%= @user.kana_first_name %></th>
 				</tbody>
 				<!-- .firstを使っているのでまだ最初に入力した住所を表示するのみの仮の状態です。後ほどメイン住所フラグつきの住所のみをコントローラーで引っ張ってきて表示する形式にします。 -->
 				<tbody>
-					<th>郵便番号</th>
+					<th class="active">郵便番号</th>
 					<th><%= @user.addresses.first.postal_code %></th>
 				</tbody>
 				<tbody>
-					<th>住所</th>
+					<th class="active">住所</th>
 					<th><%= @user.addresses.first.address %></th>
 				</tbody>
 				<tbody>
-					<th>電話番号</th>
+					<th class="active">電話番号</th>
 					<th><%= @user.phone_number %></th>
 				</tbody>
 				<tbody>
-					<th>メールアドレス</th>
+					<th class="active">メールアドレス</th>
 					<th><%= @user.email %></th>
 				</tbody>
 				<tbody>
-					<th>unsubscribe</th>
+					<th class="active">unsubscribe</th>
 					<th><%= @user.is_unsubscribe %></th>
 				</tbody>
 			</table>
 		</div>
 
 		<div>
-			<h2>配送先</h2>
-				<%= link_to "一覧を見る", addresses_path %>
-			<h2>注文履歴</h2>
-				<%= link_to "一覧を見る", order_histories_path %>
+			<h3>配送先　
+				<%= link_to "一覧を見る", addresses_path, class:"btn btn-primary" %>
+			</h3>
+			<h3>注文履歴　
+				<%= link_to "一覧を見る", order_histories_path, class:"btn btn-primary" %>
+			</h3>
 		</div>
+	</div>
 	</div>
 </div>
