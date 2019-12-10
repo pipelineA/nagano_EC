@@ -5,4 +5,5 @@ class ApplicationController < ActionController::Base
     	devise_parameter_sanitizer.permit(:sign_up, keys: [:family_name, :first_name, :kana_family_name, :kana_first_name, :phone_number, 
     		                                              addresses_attributes: [:postal_code, :address]])
     end
+
 end
