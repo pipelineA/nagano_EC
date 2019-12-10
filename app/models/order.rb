@@ -12,4 +12,13 @@ class Order < ApplicationRecord
     end
     sum.floor
   end
+
+  def count
+    sum = 0
+    self.order_items.each do |order_item|
+    sum +=  order_item.item_count
+  end
+  sum
+  end
+
 end
