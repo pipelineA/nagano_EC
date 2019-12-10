@@ -38,7 +38,6 @@ Item.create!([
     description: 'いちごプリンです',
     image_id: '2c439c31159354b06a2e0b561580a9d7522362ef032bca0a9d4398e72b49',
     price: 300},
-
 ])
 
 50.times do |n|
@@ -65,6 +64,7 @@ Item.create!([
     ordered_address: "渋谷区神南#{n}#{n}",
     billing_amount: ((n % 4 + 1) * 400 + (n % 4 + 1) * 300)
   )
+
   order.order_items.create!([
     {
       item_id: 1,
@@ -81,3 +81,12 @@ Item.create!([
   ])
 
 end
+
+CartItem.create!([
+  { user_id: 1,
+    item_id: 1,
+    item_count: 3},
+  { user_id: 1,
+    item_id: 2,
+    item_count: 5}
+])

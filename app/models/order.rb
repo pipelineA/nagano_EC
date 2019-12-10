@@ -13,4 +13,5 @@ class Order < ApplicationRecord
     end
     sum.floor
   end
+
 end
