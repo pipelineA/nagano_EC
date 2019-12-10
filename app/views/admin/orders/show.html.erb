@@ -1,2 +1,76 @@
-<h1>Admin::Orders#show</h1>
-<p>Find me in app/views/admin/orders/show.html.erb</p>
+<h1>会員詳細画面</h1>
+<table class="table">
+  <tbody>
+    <tr>
+      <th>購入者</th>
+      <td><%= link_to "#{@order.user.family_name} #{@order.user.first_name}", admin_user_path(@order.user) %></td>
+    </tr>
+    <tr>
+      <th>配送先</th>
+      <td>
+        <%= "〒#{@order.ordered_postal_code.insert(3, "-")} #{@order.ordered_address}" %><br>
+        <%= @order.ordered_receiver_name %>
+      </td>
+    </tr>
+    <tr>
+      <th>支払方法</th>
+      <td><%= @order.payment_method %></td>
+    </tr>
+    <tr>
+      <th>注文ステータス</th>
+      <td>
+        <%= form_for @order, url: admin_order_path do |f| %>
+          <%= f.select :order_status, [["入金待ち", "入金待ち"], ["発送待ち", "発送待ち"],["発送済み", "発送済み"]] %>
+          <%= f.submit "更新" %>
+        <% end %>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>商品名</th>
+      <th>単価（税込）</th>
+      <th>数量</th>
+      <th>小計</th>
+      <th>制作ステータス</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @order_items.each do |order_item| %>
+      <tr>
+        <td><%= order_item.item.name %></td>
+        <td><%= (order_item.item.price * (1 + @order.tax_rate)).floor.to_s(:delimited) %></td>
+        <td><%= order_item.item_count %></td>
+        <td><%= (order_item.item_count * (order_item.item.price * (1 + @order.tax_rate))).floor.to_s(:delimited) %></td>
+        <td>
+          <%= form_for @order, url: admin_order_path do |f| %>
+            <%= f.fields_for :order_items, order_item do |of| %>
+              <%= of.select :making_status, [["製作待ち", "製作待ち"], ["製作中", "製作中"],["製作完了", "製作完了"]] %>
+            <% end %>
+            <%= f.submit "更新" %>
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<table class="table">
+  <tbody>
+    <tr>
+      <th>商品合計</th>
+      <td><%= @order.amount.to_s(:delimited) + '円' %></td>
+    </tr>
+    <tr>
+      <th>送料</th>
+      <td><%= @order.fee.to_s(:delimited) + '円' %></td>
+    </tr>
+    <tr>
+      <th>商品合計</th>
+      <td><%= (@order.amount + @order.fee).to_s(:delimited) + '円' %></td>
+    </tr>
+  </tbody>
+</table>
