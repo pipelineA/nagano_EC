@@ -1,3 +1,4 @@
+
 # find_or_create_byメソッド　例(email: 'admin@admin')をキーとして、同じemailを持つadminがデータベースに存在するか調べて、
 # いない場合は作成する。うしろのdo〜endで、キー以外に持たせたいカラムを指定する。
 # !をつけると、rails db:seedを実行した時に、not nullなどで正常に作成出来なかった場合にエラーが出て、知ることができる。
@@ -30,7 +31,6 @@ genre3.items.find_or_create_by!(name: 'いちごプリン') do |item|
   item.image_id = '2c439c31159354b06a2e0b561580a9d7522362ef032bca0a9d4398e72b49'
   item.price = 300
 end
-
 
 # ユーザーを50人作成し、それぞれが1つの注文を持つ
 # rails db:seed　を実行する度に1人につき1つの注文が作成される
@@ -71,3 +71,12 @@ end
     item_count: n % 4 + 1
   )
 }
+
+CartItem.create!([
+  { user_id: 1,
+    item_id: 1,
+    item_count: 3},
+  { user_id: 1,
+    item_id: 2,
+    item_count: 5}
+])
