@@ -18,6 +18,8 @@ class Admin::ItemsController < AdminController
   end
 
   def edit
+    @item = Item.find(params[:id])
+    
   end
 
     def update

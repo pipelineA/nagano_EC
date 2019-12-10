@@ -1,8 +1,46 @@
 <h3>商品詳細画面</h3>
+<div class="container">
+	<div class="row">
+		<div class="col-lg-4">
+			<%= attachment_image_tag @item, :image, :fill, 300, 300 %>
+		</div>
 
-<%= attachment_image_tag @item.image %>
-<%= @item.name %>
-<%= @item.description %>
-<%= @item.genre_id %>
-<%= @item.price %>
-<%= @item.status %>
+		<div class="col-lg-4">
+			<div>
+				<%=  "商品名" %>
+				<%= @item.name %>
+			</div>
+
+			<div>
+				<%= "商品説明" %>
+				<%= @item.description %>
+			</div>
+
+			<div>
+				<%= "ジャンル"%>
+				<%= @item.genre_id %>
+			</div>
+
+			<div>
+				<%= "価格(税抜き価格)" %>
+				<%= @item.price %>
+			</div>
+		</div>
+
+		<div class="col-lg-4">
+			<%= link_to "編集画面", edit_admin_item_path(@item) %>
+		</div>
+		
+	</div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
