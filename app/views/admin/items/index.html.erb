@@ -13,7 +13,7 @@
 	<% @items.each do|item| %>
 		<tr>
 			<td><%= item.id %></td>
-			<td><%= item.name %></td>
+			<td><%= link_to (item.name), admin_item_path(item.id) %></td>
 			<td><%= item.price %></td>
 			<td><%= item.genre.name %></td>
 			<td><%= item.item_status %></td>
