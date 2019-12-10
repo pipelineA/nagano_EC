@@ -18,7 +18,7 @@ class UsersController < ApplicationController
   		else
   			@user.is_unsubscribe = false
   			@user.update(user_params)
-    	    redirect_to user_path(@user.id)
+    	  redirect_to user_path(@user.id)
     	end
   end
 

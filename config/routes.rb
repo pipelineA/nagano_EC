@@ -18,6 +18,8 @@ Rails.application.routes.draw do
   resources :carts, only: [:index, :create, :update, :destroy]
   resources :addresses, except: [:show, :new] #この２つを除外
 
+  post 'carts/destroy_all' => 'carts#destroy_all', as: 'destroy_all'
+
   get 'orders/new' => 'orders#new'
   post 'orders/confirm' => 'orders#confirm'
   post 'orders' => 'orders#create'
