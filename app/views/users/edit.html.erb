@@ -2,7 +2,7 @@
 	<div class="row">
 	<h2>登録情報編集</h2>
 		<%= form_for(@user) do |f| %>
-		<%= f.submit '退会する', name: "unsubsuribe", class:"btn btn-danger" %>
+		<%= f.submit '退会する', name: "unsubsuribe", class:"btn btn-danger", "data-confirm" => "本当に退会しますか？" %>
 		<table class="table">
 			<tbody>
 				<th>氏名</th>
@@ -12,7 +12,7 @@
 				<th>ふりがな</th>
 				<th><%= f.text_field :kana_family_name, size:10 %><%= f.text_field :kana_first_name, size:10 %></th>
 			</tbody>
-				<%= f.fields_for :addresses, @user.addresses.first do |af| %>
+				<%= f.fields_for :addresses, @main_address do |af| %>
 					<tbody>
 						<th>郵便番号</th>
 						<th><%= af.text_field :postal_code, size:10 %></th>

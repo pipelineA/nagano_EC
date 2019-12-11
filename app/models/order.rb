@@ -23,4 +23,8 @@ class Order < ApplicationRecord
   sum
   end
 
+  def tax_include_billing_amount
+    (billing_amount * (1 + tax_rate)).round()
+  end
+
 end
