@@ -14,6 +14,8 @@ class Order < ApplicationRecord
     sum.floor
   end
 
+  attr_accessor :address_id
+
 
   def count
     sum = 0
