@@ -7,6 +7,7 @@ class Order < ApplicationRecord
   enum order_status: { 入金待ち: 0, 発送待ち: 1, 発送済み: 2 }
   accepts_nested_attributes_for :order_items
 
+
   def amount
     sum = 0
     order_items.each do |order_item|
@@ -14,8 +15,6 @@ class Order < ApplicationRecord
     end
     sum.floor
   end
-
-  attr_accessor :address_id
 
 
   def count
