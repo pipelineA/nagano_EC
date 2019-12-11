@@ -16,3 +16,9 @@
 //= require_tree .
 //= require jquery
 //= require bootstrap-sprockets
+
+$(document).ready(function () {
+	$('.jquery').on('click', function(){
+		$(this).css('color','red');
+	});
+});

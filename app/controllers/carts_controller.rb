@@ -16,9 +16,17 @@ class CartsController < ApplicationController
 
   def update
   @cart_item = CartItem.find(params[:id])
-  @cart_item.item_count += params[:cart_item][:item_count].to_i
-  @cart_item.save
-  redirect_to carts_path
+    if params[:cartupdate]
+      @cart_item.item_count += params[:cart_item][:item_count].to_i
+      @cart_item.save
+      redirect_to carts_path
+    else
+      @cart_item.update(cart_item_params)
+      if @cart_item.item_count == 0
+         @cart_item.destroy
+      end
+      redirect_to carts_path
+    end
   end
 
   def destroy_all

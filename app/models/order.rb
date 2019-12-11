@@ -5,6 +5,8 @@ class Order < ApplicationRecord
   accepts_nested_attributes_for :order_items
   enum payment_method: { クレジットカード: 0, 銀行振込: 1 }
   enum order_status: { 入金待ち: 0, 発送待ち: 1, 発送済み: 2 }
+  accepts_nested_attributes_for :order_items
+
 
   def amount
     sum = 0
@@ -21,6 +23,10 @@ class Order < ApplicationRecord
     sum +=  order_item.item_count
   end
   sum
+  end
+
+  def tax_include_billing_amount
+    (billing_amount * (1 + tax_rate)).round()
   end
 
 end
