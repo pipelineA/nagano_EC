@@ -13,6 +13,20 @@ class Order < ApplicationRecord
     end
     sum.floor
   end
+
   attr_accessor :address_id
-  
+
+
+  def count
+    sum = 0
+    self.order_items.each do |order_item|
+    sum +=  order_item.item_count
+  end
+  sum
+  end
+
+  def tax_include_billing_amount
+    (billing_amount * (1 + tax_rate)).round()
+  end
+
 end

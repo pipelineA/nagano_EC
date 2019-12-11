@@ -25,7 +25,7 @@ Rails.application.routes.draw do
   post 'orders' => 'orders#create'
   get 'orders/thanks' => 'orders#thanks'
   get 'order_histories' => 'orders#index'
-  get 'order_histories/:id' => 'orders#show'
+  get 'order_histories/:id' => 'orders#show', as:'order_histories_show'
 
 
   namespace :admin do

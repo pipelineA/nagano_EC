@@ -1,2 +1,22 @@
-<h1>Admin::Orders#index</h1>
-<p>Find me in app/views/admin/orders/index.html.erb</p>
+<h3>注文一覧画面</h3>
+<table>
+	<thead>
+		<tr>
+			<th>購入日時</th>
+			<th>購入者</th>
+			<th>注文個数</th>
+			<th>注文ステータス</th>
+		</tr>
+	</thead>
+
+	<% @orders.each do |order| %>
+	<tbody>
+		<tr>
+			<td><%= order.created_at.strftime("%Y-%m-%d %H:%M:%S") %></td>
+			<td><%= "#{order.user.family_name} #{order.user.first_name}" %></td>
+			<td><%= order.count %></td>
+			<td><%= order.order_status %></td>
+		</tr>
+	</tbody>
+	<% end %>
+</table>
