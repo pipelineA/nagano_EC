@@ -14,7 +14,7 @@
 		<%= form_for [@cart_item], url: @url do |cart| %>
 			<%= cart.select :item_count, (1..10), :placeholder => "個数選択" %>
 			<%= cart.hidden_field :item_id, :value => @item.id %>　
-			<%= cart.submit 'カート に追加する', class:"btn btn-primary" %>
+			<%= cart.submit 'カート に追加する',name:"cartupdate", class:"btn btn-primary" %>
 		<% end %>
 		</div>
 	</div>

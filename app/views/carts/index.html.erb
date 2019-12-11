@@ -1,5 +1,3 @@
-<h1 class="jquery">Hello jQuery!</h1>
-
 <div class="container">
 	<div class="row">
 		<table class="table">
@@ -12,7 +10,6 @@
 					<th class="active">数量</th>
 					<th class="active">小計</th>
 					<th class="active"></th>
-					<th class="active"></th>
 				</tr>
 			</tbody>
 			<% total = 0 %>
@@ -23,12 +20,11 @@
 						<%= link_to cartitem.item.name, item_path(cartitem.item_id) %></td>
 					<td><%= cartitem.item.tax_include_price %></td>
 					<td><%= form_for cartitem, url: cart_path(cartitem) do |f| %>
-							<%= f.number_field :item_count ,min:0,max:100, class:"count" %>
+							<%= f.number_field :item_count ,min:0,max:100, class:"count", onchange:"submit(this.form)" %>
 					</td>
 					<td><%= sub_total = cartitem.item.tax_include_price*cartitem.item_count %></td>
 					<% total += sub_total %>
 					<td><%= link_to "削除する", cart_path(cartitem), method: :delete, class:"btn btn-danger pull-right" %></td>
-					<td><%= f.submit "更新する", name:"cartupdate", class:"btn btn-info pull-right" %></td>
 					<% end %>
 				</tr>
 			</tbody>
@@ -44,10 +40,9 @@
 				</tbody>
 			</table>
 		</div>
-		<%= link_to "合計金額再計算", cart_path(@cart_items), class:"btn btn-primary pull-right" %>
 	</div>
 
 	<br>
-	<%= link_to "情報入力に進む", cart_path(@cart_items), class:"btn btn-primary btn-lg center-block" %>
+	<%= link_to "情報入力に進む", orders_new_path, class:"btn btn-primary btn-lg center-block" %>
 
 </div>

@@ -10,21 +10,25 @@ class OrdersController < ApplicationController
 
   def confirm
     @order = Order.new(order_params)
-    if params[:address1]
-      main_address = current_user.addresses.find_by(is_main_address: true)
-      @order.ordered_address = main_address.ordered_address
-      @order.ordered_postal_code = main_address.ordered_postal_code
-      @order.ordered_receiver_name = main_address.ordered_receiver_name
-    elsif
-      params[:address2]
-    else
-      params[:address3]
-    end
+      if params[:address1]
+        main_address = current_user.addresses.find_by(is_main_address: true)
+        @order.ordered_address = main_address.ordered_address
+        @order.ordered_postal_code = main_address.ordered_postal_code
+        @order.ordered_receiver_name = main_address.ordered_receiver_name
+      elsif
+        params[:address2]
+      else
+        params[:address3]
+      end
     @cart_items = current_user.cart_items
     @main_address = current_user.addresses.find_by(is_main_address: true)
   end
 
   def create
+    order = current_user.order.build(order_params)
+    order.user_id = current_user.id
+    order.save
+    redirect_to orders_thanks_path
   end
 
   def thanks
@@ -41,8 +45,9 @@ class OrdersController < ApplicationController
   private
   def order_params
     params.require(:order).permit(:user_id, :fee, :payment_method, :tax_rate,
-                                  :oreder_status, :ordered_receiver_name, :ordered_postal_code,
-                                  :ordered_address, :billing_amount)
+                                  :order_status, :ordered_receiver_name, :ordered_postal_code,
+                                  :ordered_address, :billing_amount, order_items_attributes: [:id, :item_id, :order_id, :item_count, :ordered_price, :ordered_item_name])
+  end)
 
   end
 end

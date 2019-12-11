@@ -46,10 +46,8 @@
 			</table>
 		</div>
 	    <strong>支払方法</strong>
-	     <%= form_for @order do |f| %>
 	       <%= @order.payment_method %><br>
-	      
-         
+
 	    <strong>お届け先</strong>
 	      <%= @main_address.postal_code %><br>
           <%= @main_address.address %><br>
@@ -60,7 +58,9 @@
           <%= @order.ordered_postal_code %>
           <%= @order.ordered_address %>
           <%= @order.ordered_receiver_name %>
-	     <% end %>
-	<!-- ここに購入者情報を入力 -->
+
+		<%= form_for @order do |f| %>
+        <%= f.submit "購入を確定する" ,class:"btn btn-primary btn-xl" %>
+	    <% end %>
 	</div>
 </div>

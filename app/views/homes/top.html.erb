@@ -1,15 +1,15 @@
 <div class="container">
 	<div class="row">
-		<div class="col-md-4">
+		<div class="col-md-3">
 			<h2>ジャンル検索</h2>
 			<% @genres.each do |genre| %>
 				<%= link_to root_path do |name| %><%= genre.name %><% end %><br>
 			<% end %>
 		</div>
-		<div class="col-md-8">
+		<div class="col-md-9">
 			<h2>商品一覧</h2>
 			<% @items.each do |item| %>
-				<div>
+				<div class="col-xs-4">
 					<%= link_to item_path(item.id) do |i| %>
 						<%= attachment_image_tag item,:image, size: "200x200" %>
 					<% end %>
