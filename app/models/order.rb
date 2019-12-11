@@ -13,5 +13,6 @@ class Order < ApplicationRecord
     end
     sum.floor
   end
-
+  attr_accessor :address_id
+  
 end

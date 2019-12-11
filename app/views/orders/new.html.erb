@@ -10,64 +10,59 @@
 
 
   <strong>お届け先</strong><br>
-
     <label>
-      <input type="radio" id="address0" name="address" onClick="addressflg0(this.checked);"/> ご自身の住所
+      <input name="address" type="radio" id="address1" onClick="addressflg1(this.checked);"/> ご自身の住所
     </label><br>
+     <%= @main_address.postal_code %><br>
      <%= @main_address.address %><br>
      <%= @main_address.receiver_name %><br>
 
     <label>
-      <input type="radio" id="address1" name="address" onClick="addressflg1(this.checked);"/> 登録済住所から選択
+      <input name="address" type="radio" id="address2" onClick="addressflg2(this.checked);"/> 登録済住所から選択
     </label><br>
 
-    <select name="addresses">
-      <%= @addresses.each do |a| %>
-        <option value="1"><%= a.address %></option>
-      <% end %>
-    </select><br>
+      <%= f.collection_select :address_id, @addresses, :id, :address_select %><br>
 
     <label>
-      <input type="radio" id="address2" name="address" onClick="addressflg2(this.checked);"/> 新しいお届け先
+      <input name="address" type="radio" id="address3" onClick="addressflg3(this.checked);"/> 新しいお届け先
     </label><br>
-    <fieldset type="text" id="hospitalization" value="" disabled="disabled"> 
+    <fieldset type="text" id="addressization" value="" disabled="disabled"> 
 
-      
        <p>
  	      郵便番号 <%= f.text_field :ordered_postal_code %>
        </p>
        <p>
  	      住所 <%= f.text_field :ordered_address %>
        </p>
-       <p>宛名 
+       <p>宛名
  	      <%= f.text_field :ordered_receiver_name %>
        </p>
+
     </fieldset>
           <%= f.submit "確認画面に進む", class: "btn btn-primary w-25" %>
-      
-    <% end %>
+<% end %>
 
 
 <script>
-  function addressflg0(ischecked){
+  function addressflg1(ischecked){
     if(ischecked == true){
       document.getElementById("addressization").disabled = true;
     }
   }
 
-  function addressflg1(ischecked){
+  function addressflg2(ischecked){
     if(ischecked == true){
-      document.getElementById("hospitalization").disabled = true;
+      document.getElementById("addressization").disabled = true;
     } else {
-      document.getElementById("hospitalization").disabled = false;
+      document.getElementById("addressization").disabled = false;
     }
   }
 
-  function addressflg2(ischecked){
+  function addressflg3(ischecked){
     if(ischecked == true){
-      document.getElementById("hospitalization").disabled = false;
+      document.getElementById("addressization").disabled = false;
     } else {
-      document.getElementById("hospitalization").disabled = true;
+      document.getElementById("addressization").disabled = true;
     }
   }
  </script>
