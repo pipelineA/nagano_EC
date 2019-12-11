@@ -9,12 +9,12 @@ class OrdersController < ApplicationController
   end
 
   def confirm
-
+    @cart_items = current_user.cart_items
   end
 
   def create
   end
-  
+
   def thanks
   end
 
@@ -28,9 +28,9 @@ class OrdersController < ApplicationController
 
   private
   def order_params
-    params.require(:order).permit(:user_id, :fee, :payment_method, :tax_rate, 
+    params.require(:order).permit(:user_id, :fee, :payment_method, :tax_rate,
                                   :oreder_status, :ordered_reveiver_name, :ordered_postal_code,
                                   :ordered_address, :billing_amount)
-    
+
   end
 end

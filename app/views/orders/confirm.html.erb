@@ -1,2 +1,50 @@
-<h1>Orders#confirm</h1>
-<p>Find me in app/views/orders/confirm.html.erb</p>
+<div class="container">
+	<div class="row">
+		<div class="col-xs-9">
+			<table class="table col-xs-9">
+				<tbody>
+					<tr>
+						<th class="active">商品名</th>
+						<th class="active">単価(税込)</th>
+						<th class="active">数量</th>
+						<th class="active">小計</th>
+					</tr>
+				</tbody>
+				<% total = 0 %>
+				<% @cart_items.each do |cartitem| %>
+				<tbody>
+					<tr>
+						<td><%= link_to item_path(cartitem.item_id) do %><%= attachment_image_tag cartitem.item,:image, size: "50x50" %><% end %>　
+							<%= link_to cartitem.item.name, item_path(cartitem.item_id) %></td>
+						<td><%= cartitem.item.tax_include_price %></td>
+						<td><%= cartitem.item_count %></td>
+						<td><%= sub_total = cartitem.item.tax_include_price*cartitem.item_count %></td>
+						<% total += sub_total %>
+					</tr>
+				</tbody>
+				<% end %>
+			</table>
+		</div>
+		<div class="col-xs-3">
+			<table class="table">
+				<tbody>
+					<tr>
+						<th class="active">商品合計</th>
+						<td><%= total.to_s %></td>
+					</tr>
+					<tr>
+						<th class="active">送料</th>
+						<td><%= 800 %></td>
+						<!-- 仮です -->
+					</tr>
+					<tr>
+						<th class="active">合計金額</th>
+						<td><%= total + 800 %></td>
+						<!-- 仮です -->
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	<!-- ここに購入者情報を入力 -->
+	</div>
+</div>
