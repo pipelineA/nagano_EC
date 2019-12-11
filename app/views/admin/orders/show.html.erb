@@ -20,8 +20,7 @@
       <th>注文ステータス</th>
       <td>
         <%= form_for @order, url: admin_order_path do |f| %>
-          <%= f.select :order_status, [["入金待ち", "入金待ち"], ["発送待ち", "発送待ち"],["発送済み", "発送済み"]] %>
-          <%= f.submit "更新" %>
+          <%= f.select :order_status, [["入金待ち", "入金待ち"], ["発送待ち", "発送待ち"],["発送済み", "発送済み"]], {}, {onchange: "submit(this.form)"} %>
         <% end %>
       </td>
     </tr>
@@ -48,9 +47,8 @@
         <td>
           <%= form_for @order, url: admin_order_path do |f| %>
             <%= f.fields_for :order_items, order_item do |of| %>
-              <%= of.select :making_status, [["製作待ち", "製作待ち"], ["製作中", "製作中"],["製作完了", "製作完了"]] %>
+              <%= of.select :making_status, [["製作待ち", "製作待ち"], ["製作中", "製作中"],["製作完了", "製作完了"]], {}, {onchange: "submit(this.form)"} %>
             <% end %>
-            <%= f.submit "更新" %>
           <% end %>
         </td>
       </tr>
@@ -74,3 +72,14 @@
     </tr>
   </tbody>
 </table>
+<%= form_with model: @order, url: admin_order_path do |e| %>
+  <% a_hash = {first: "A", second: "B", third: "C"} %>
+
+  <%
+    a_array = []
+    a_hash.each do |key, value|
+      a_array << [key, value]
+    end
+  %>
+  <%= e.select :order_number, a_array %>
+<% end %>
