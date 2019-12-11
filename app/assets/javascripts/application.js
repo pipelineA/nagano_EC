@@ -17,6 +17,7 @@
 //= require jquery
 //= require bootstrap-sprockets
 
+
 $(function(){
 	$('.edit-button').on('click',function(){
 		let $parent = $(this).parent().parent();
@@ -25,5 +26,6 @@ $(function(){
 		$parent.find('.genre-text').addClass('none-active');
 		$parent.find('.genre-form').removeClass('none-active');
 		 return false;
+
 	});
 });

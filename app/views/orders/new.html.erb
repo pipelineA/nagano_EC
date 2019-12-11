@@ -1,73 +1,70 @@
+<div class="container">
+	<div class="row">
+		<div class="col-xs-9">
+			<h3>購入情報</h3>
 
-<h3>購入情報</h3>
+			<strong>支払い方法</strong>
+			<%= form_with(model: @order, local: true, url: orders_confirm_path) do |f| %>
+			  <%= f.radio_button :payment_method, :クレジットカード %>
+			  <%= f.label :payment_method, "クレジットカード" %><br>
+			  <%= f.radio_button :payment_method, :銀行振込 %>
+			  <%= f.label :payment_method, "銀行振込" %><br>
 
-<strong>支払い方法</strong>
-<%= form_for (@order), url: orders_confirm_path do |f| %>
-  <%= f.radio_button :payment_method, :クレジットカード %>
-  <%= "クレジットカード" %><br>
-  <%= f.radio_button :payment_method, :銀行振込 %>
-  <%= "銀行振込" %><br>
+			  <strong>お届け先</strong><br>
 
+			      <%= f.radio_button :address_type, :address1 %>
+			      <%= f.label :address_type, "ご自身の住所" %><br>
 
-  <strong>お届け先</strong><br>
+			     <%= @main_address.postal_code %><br>
+			     <%= @main_address.address %><br>
+			     <%= @main_address.receiver_name %><br>
 
-    <label>
-      <input type="radio" id="address0" name="address" onClick="addressflg0(this.checked);"/> ご自身の住所
-    </label><br>
-     <%= @main_address.address %><br>
-     <%= @main_address.receiver_name %><br>
+			      <%= f.radio_button :address_type, :address2 %>
+			      <%= f.label :address_type, "登録済住所から選択" %><br>
 
-    <label>
-      <input type="radio" id="address1" name="address" onClick="addressflg1(this.checked);"/> 登録済住所から選択
-    </label><br>
+			      <%= f.collection_select :address_id, @addresses, :id, :address_select %><br>
 
-    <select name="addresses">
-      <%= @addresses.each do |a| %>
-        <option value="1"><%= a.address %></option>
-      <% end %>
-    </select><br>
+			      <%= f.radio_button :address_type, :address3 %>
+			      <%= f.label :address_type, "新しいお届け先" %><br>
 
-    <label>
-      <input type="radio" id="address2" name="address" onClick="addressflg2(this.checked);"/> 新しいお届け先
-    </label><br>
-    <fieldset type="text" id="hospitalization" value="" disabled="disabled"> 
+			       <p>
+			 	      郵便番号 <%= f.text_field :ordered_postal_code %>
+			       </p>
+			       <p>
+			 	      住所 <%= f.text_field :ordered_address %>
+			       </p>
+			       <p>宛名
+			 	      <%= f.text_field :ordered_receiver_name %>
+			       </p>
 
-      
-       <p>
- 	      郵便番号 <%= f.text_field :ordered_postal_code %>
-       </p>
-       <p>
- 	      住所 <%= f.text_field :ordered_address %>
-       </p>
-       <p>宛名 
- 	      <%= f.text_field :ordered_reveiver_name %>
-       </p>
-    </fieldset>
-          <%= f.submit "確認画面に進む", class: "btn btn-primary w-25" %>
-      
-    <% end %>
+			    </fieldset>
+			          <%= f.submit "確認画面に進む", class: "btn btn-primary w-25" %>
+			<% end %>
 
 
-<script>
-  function addressflg0(ischecked){
-    if(ischecked == true){
-      document.getElementById("addressization").disabled = true;
-    }
-  }
+			<script>
+			  function addressflg1(ischecked){
+			    if(ischecked == true){
+			      document.getElementById("addressization").disabled = true;
+			    }
+			  }
 
-  function addressflg1(ischecked){
-    if(ischecked == true){
-      document.getElementById("hospitalization").disabled = true;
-    } else {
-      document.getElementById("hospitalization").disabled = false;
-    }
-  }
+			  function addressflg2(ischecked){
+			    if(ischecked == true){
+			      document.getElementById("addressization").disabled = true;
+			    } else {
+			      document.getElementById("addressization").disabled = false;
+			    }
+			  }
 
-  function addressflg2(ischecked){
-    if(ischecked == true){
-      document.getElementById("hospitalization").disabled = false;
-    } else {
-      document.getElementById("hospitalization").disabled = true;
-    }
-  }
- </script>
+			  function addressflg3(ischecked){
+			    if(ischecked == true){
+			      document.getElementById("addressization").disabled = false;
+			    } else {
+			      document.getElementById("addressization").disabled = true;
+			    }
+			  }
+			 </script>
+		</div>
+  	</div>
+</div>

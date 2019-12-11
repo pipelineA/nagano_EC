@@ -4,6 +4,6 @@ class Item < ApplicationRecord
 	belongs_to :genre
 	attachment :image
 	def tax_include_price
-		(price * 1.1).floor()
+		(price * (1 + 0.1)).round()
 	end
 end
