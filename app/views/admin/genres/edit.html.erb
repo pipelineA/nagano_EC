@@ -1,0 +1,7 @@
+<h3>ジャンル編集画面</h3>
+<%= form_for(@genre) do |f| %>
+<p>ジャンル名<p>
+<%= f.text_field :name, placeholder:"名前" %>
+
+<%= f.submit "Update user" %>
+<% end %>
