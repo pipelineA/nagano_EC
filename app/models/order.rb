@@ -6,6 +6,7 @@ class Order < ApplicationRecord
   enum payment_method: { クレジットカード: 0, 銀行振込: 1 }
   enum order_status: { 入金待ち: 0, 発送待ち: 1, 発送済み: 2 }
 
+
   def amount
     sum = 0
     order_items.each do |order_item|
@@ -13,8 +14,6 @@ class Order < ApplicationRecord
     end
     sum.floor
   end
-
-  attr_accessor :address_id
 
 
   def count
