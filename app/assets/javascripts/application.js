@@ -17,8 +17,15 @@
 //= require jquery
 //= require bootstrap-sprockets
 
-$(document).ready(function () {
-	$('.jquery').on('click', function(){
-		$(this).css('color','red');
+
+$(function(){
+	$('.edit-button').on('click',function(){
+		let $parent = $(this).parent().parent();
+		$(this).addClass('none-active');
+		$parent.find('.submit-button').removeClass('none-active');
+		$parent.find('.genre-text').addClass('none-active');
+		$parent.find('.genre-form').removeClass('none-active');
+		 return false;
+
 	});
 });

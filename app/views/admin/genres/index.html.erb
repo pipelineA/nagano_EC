@@ -1,2 +1,39 @@
-<h1>Admin::Genres#index</h1>
-<p>Find me in app/views/admin/genres/index.html.erb</p>
+<h3>ジャンル管理</h3>
+<%= form_for (@genre), url:  admin_genres_path(@genre) do |f| %>
+<div>
+	<%= f.label(:name, "ジャンル") %>
+	<%= f.text_field :name %>
+</div>
+<% end %>
+<table class="table">
+	<thead>
+		<tr>
+			<th>ジャンル</th>
+			<th></th>
+			<th></th>
+		</tr>
+	</thead>
+	<% @genres.each do |genre| %>
+	<tbody>
+		<%= form_for (genre),url: admin_genre_path(genre) do |f|  %>
+		<tr>
+			<td>
+				<span class="genre-text"><%= genre.name %></span>
+				<%= f.text_field :name, class: "genre-form none-active" %>
+			</td>
+			<td>
+				<% if genre.is_active == true %>
+					<%= f.submit "無効にする", name: "invalidate" %>
+				<% else %>
+					<%= f.submit "有効にする", name: "validate" %>
+				<% end %>
+			</td>
+			<td>
+				<button class="edit-button">編集する</button>
+					<%= f.submit "変更を保存", name: "update_name", class: "submit-button none-active" %>
+			</td>
+		</tr>
+		<% end %>
+	</tbody>
+	<% end %>
+</table>
