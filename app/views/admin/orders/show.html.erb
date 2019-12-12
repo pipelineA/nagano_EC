@@ -72,14 +72,3 @@
     </tr>
   </tbody>
 </table>
-<%= form_with model: @order, url: admin_order_path do |e| %>
-  <% a_hash = {first: "A", second: "B", third: "C"} %>
-
-  <%
-    a_array = []
-    a_hash.each do |key, value|
-      a_array << [key, value]
-    end
-  %>
-  <%= e.select :order_number, a_array %>
-<% end %>
