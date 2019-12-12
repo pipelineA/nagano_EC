@@ -6,7 +6,7 @@
 Admin.find_or_create_by!(email: 'admin@admin') do |admin|
   admin.password = 'password'
 end
-
+ 
 genre1 = Genre.find_or_create_by!(name: 'ケーキ')
 genre2 = Genre.find_or_create_by!(name: 'クッキー')
 genre3 = Genre.find_or_create_by!(name: 'プリン')
