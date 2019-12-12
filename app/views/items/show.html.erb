@@ -3,7 +3,7 @@
 		<div class="col-md-4">
 			<h2>ジャンル検索</h2>
 			<% @genres.each do |genre| %>
-				<%= link_to root_path do |name| %><%= genre.name %><% end %><br>
+				<%= link_to root_path(genre_id: genre.id) do |name| %><%= genre.name %><% end %><br>
 			<% end %>
 		</div>
 		<div class="col-md-8">
