@@ -17,12 +17,15 @@ class UsersController < ApplicationController
   		   redirect_to about_path
   		else
   			@user.update(user_params)
-    	  redirect_to user_path(@user.id)
+        address = current_user.addresses.find_by(is_main_address: true)
+        address.receiver_name = current_user.family_name + " " +current_user.first_name
+        address.save
+        redirect_to user_path(@user.id)
     	end
   end
 
   private
   def user_params
-  	params.require(:user).permit(:family_name, :first_name, :kana_family_name, :kana_first_name, :phone_number, :email, :is_unsubscribe, addresses_attributes: [:id, :postal_code, :address])
+  	params.require(:user).permit(:family_name, :first_name, :kana_family_name, :kana_first_name, :phone_number, :email, :is_unsubscribe, addresses_attributes: [:id, :postal_code, :address, :receiver_name])
   end
 end
