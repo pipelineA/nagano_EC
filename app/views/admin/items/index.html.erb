@@ -1,24 +1,25 @@
-<h3>商品一覧画面</h3>
-<table class="table">
-	<thead>
-		<tr>
-			<th>商品ID</th>
-			<th>商品名</th>
-			<th>税抜価格</th>
-			<th>ジャンル</th>
-			<th>ステータス</th>
-		</tr>
-	</thead>
-	<tbody>
-	<% @items.each do|item| %>
-		<tr>
-			<td><%= item.id %></td>
-			<td><%= link_to (item.name), admin_item_path(item.id) %></td>
-			<td><%= item.price %></td>
-			<td><%= item.genre.name %></td>
-			<td><%= item.item_status %></td>
-			<
-		</tr>
-	<% end %>
-	</tbody>
-</table>
+<div class="container">
+	<div class="row">
+		<div class="col-md-10 col-md-offset-1">
+			<h3>商品一覧画面</h3>
+			<button type="button" class="btn btn-outline-secondary pull-right">
+				<%= link_to"新規登録", new_admin_item_path %>
+			</button>
+			<table class="table">
+				<thead>
+				</thead>
+				<tbody>
+				<% @items.each do|item| %>
+					<tr>
+						<td><%= item.id %></td>
+						<td><%= link_to (item.name), admin_item_path(item.id) %></td>
+						<td><%= item.price %></td>
+						<td><%= item.genre.name %></td>
+						<td><%= item.item_status %></td>
+					</tr>
+				<% end %>
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>
