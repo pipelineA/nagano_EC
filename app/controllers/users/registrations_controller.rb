@@ -12,9 +12,12 @@ class Users::RegistrationsController < Devise::RegistrationsController
   end
 
   # POST /resource
-  # def create
-  #   super
-  # end
+   def create
+     super
+     addresses = current_user.addresses.find_by(is_main_address: true)
+     addresses.receiver_name = current_user.family_name + " " +current_user.first_name
+     addresses.save
+   end
 
   # GET /resource/edit
   # def edit
