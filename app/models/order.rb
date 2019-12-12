@@ -11,7 +11,7 @@ class Order < ApplicationRecord
   def amount
     sum = 0
     self.order_items.each do |order_item|
-      sum += self.order_item.item.price * (1 + self.tax_rate) * self.order_item.item_count
+      sum += order_item.item.price * (1 + self.tax_rate) * order_item.item_count
     end
     sum.floor
   end
