@@ -1,4 +1,4 @@
-<div class="container","text-center">
+<div class="container text-center">
 	<div class="row">
 		<h3>商品新規登録画面</h3>
 			<%= form_for @item, url: admin_items_path(@item) do |f| %>
@@ -16,11 +16,11 @@
 				<div>
 					<%= f.label(:description, "商品説明") %>
 					<%= f.text_area :description %>
-				</div> 
+				</div>
 
 				<div>
 					<%= f.label(:genre, "ジャンル")%>
-					<%=  f.select :genre_id, [["ケーキ",1], ["クッキー",2 ],["プリン",3]]%>
+					<%=  f.collection_select :genre_id, @genres, :id, :name %>
 				</div>
 
 				<div>

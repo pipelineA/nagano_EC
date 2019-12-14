@@ -2,6 +2,13 @@
 <div class="container">
   <div class="row">
     <div class="col-md-10 col-md-offset-1">
+      <% if @search %>
+        <p>「<%= @search %>」の検索結果</p>
+      <% end %>
+      <%= form_tag(admin_users_path, method: :get, enforce_utf8: false) do %>
+        <%= text_field_tag :search %>
+        <%= submit_tag '会員を検索', :name => nil %>
+      <% end %>
       <table  class="table table-hover">
         <thead>
           <tr>
@@ -23,6 +30,7 @@
         </tbody>
       </table>
       <%= paginate @users %>
+      <%= page_entries_info @users, entry_name: "会員" %>
     </div>
   </div>
 </div>
