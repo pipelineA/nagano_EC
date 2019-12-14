@@ -29,7 +29,11 @@
 
         </diV>
     </header>
-    <p><%= flash[:info] %></p>
+    <% flash.each do |message_type, message| %>
+      <div class="alert alert-<%= message_type %>">
+        <%= message %>
+      </div>
+    <% end %>
     <%= yield %>
   </body>
 </html>

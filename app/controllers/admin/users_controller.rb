@@ -23,6 +23,7 @@ class Admin::UsersController < AdminController
           redirect_to admin_user_path(@user.id)
           flash[:info] = "ユーザー情報を編集しました"
         else
+          @user_address = @user.addresses.find_by(is_main_address: true)
           render :edit
         end
       end
