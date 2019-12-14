@@ -7,8 +7,8 @@ class Item < ApplicationRecord
 
   validates :name, presence: true, uniqueness: true, length: { maximum: 15 }
   validates :description, presence: true, length: { maximum: 400 }
-  validates :image_id, presence: true
-  validates :price, presence: true
+  validates :image, presence: true
+  validates :price, presence: true, numericality: true
 
 	def tax_include_price
 		(price * (1 + 0.1)).round()
