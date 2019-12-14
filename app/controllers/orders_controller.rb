@@ -1,10 +1,14 @@
 class OrdersController < ApplicationController
   def new
+    @cart_items = current_user.cart_items
+    unless @cart_items.any?
+       flash[:danger] = 'カートは空です'
+       render 'carts/index'
+    end
     @order = Order.new
     @user = User.all
     @main_address = current_user.addresses.find_by(is_main_address: true)
     @addresses = current_user.addresses.where(is_main_address: false)
-
   end
 
   def confirm
