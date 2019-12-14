@@ -2,11 +2,16 @@
 	<div class="row">
 		<div class="col-md-10 col-md-offset-1">
 			<h3>ジャンル管理</h3>
-			<%= form_for (@genre), url:  admin_genres_path(@genre) do |f| %>
-			<div>
-				<%= f.label(:name, "ジャンル") %>
-				<%= f.text_field :name %>
-			</div>
+			<%= form_for (@new_genre), url: admin_genres_path do |f| %>
+				<%= render "shared/errors", object: @new_genre %>
+				<div>
+					<%= f.label(:name, "ジャンル") %>
+					<%= f.text_field :name %>
+					<%= f.submit "追加" %>
+				</div>
+			<% end %>
+			<% if @genre %>
+				<%= render "shared/errors", object: @genre %>
 			<% end %>
 			<table class="table">
 				<thead>
@@ -19,23 +24,23 @@
 				<% @genres.each do |genre| %>
 				<tbody>
 					<%= form_for (genre),url: admin_genre_path(genre) do |f|  %>
-					<tr>
-						<td>
-							<span class="genre-text"><%= genre.name %></span>
-							<%= f.text_field :name, class: "genre-form none-active" %>
-						</td>
-						<td>
-							<% if genre.is_active == true %>
-								<%= f.submit "無効にする", name: "invalidate", class: "btn-danger" %>
-							<% else %>
-								<%= f.submit "有効にする", name: "validate", class: "btn-primary" %>
-							<% end %>
-						</td>
-						<td>
-							<button class="edit-button btn-primary">編集する</button>
-								<%= f.submit "変更を保存", name: "update_name", class: "submit-button none-active btn-primary" %>
-						</td>
-					</tr>
+						<tr>
+							<td>
+								<span class="genre-text"><%= genre.name %></span>
+								<%= f.text_field :name, class: "genre-form none-active" %>
+							</td>
+							<td>
+								<% if genre.is_active == true %>
+									<%= f.submit "無効にする", name: "invalidate", class: "btn-danger" %>
+								<% else %>
+									<%= f.submit "有効にする", name: "validate", class: "btn-primary" %>
+								<% end %>
+							</td>
+							<td>
+								<button class="edit-button btn-primary">編集する</button>
+									<%= f.submit "変更を保存", name: "update_name", class: "submit-button none-active btn-primary" %>
+							</td>
+						</tr>
 					<% end %>
 				</tbody>
 				<% end %>
