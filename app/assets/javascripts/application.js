@@ -19,24 +19,39 @@
 
 
 $(function(){
-  // ".edit-button"をクリックした時
-	$('.edit-button').on('click',function(){
+    // ".edit-button"をクリックした時
+    $('.edit-button').on('click',function(){
 
     // クリックされた".edit-button"は$(this)で取得できる。
     // $(this).parent()で、クリックされた".edit-button"の親要素の<td>が取得できる。
     // $(this).parent().parent()で、クリックされた".edit-button"の親要素の<td>のさらに親要素の<tr>が取得できる。
     // 取得した<tr>を$parentという変数に代入する。
-		let $parent = $(this).parent().parent();
+    	let $parent = $(this).parent().parent();
 
     // $parent.find('クラス名')で、$parentで指定した<tr>の中にある'クラス名'だけを取得することができる。
     // （これを指定しない場合は、クリックした<tr>以外の列の'クラス名'にまで、影響が及んでしまう）
-    
+
     // それぞれの'クラス名'のボタンなどに、'none-active'クラスを追加したり削除したりすることで、表示・非表示を切り替えることができる。
     // （'none-active'クラスには、cssで{display: none;}を設定している）
-		$parent.find('.edit-button').addClass('none-active');
-		$parent.find('.submit-button').removeClass('none-active');
-		$parent.find('.genre-text').addClass('none-active');
-		$parent.find('.genre-form').removeClass('none-active');
-		return false;
-	});
+    	$parent.find('.edit-button').addClass('none-active');
+    	$parent.find('.submit-button').removeClass('none-active');
+    	$parent.find('.genre-text').addClass('none-active');
+    	$parent.find('.genre-form').removeClass('none-active');
+    	return false;
+    });
 });
+
+// 商品新規登録時に、画像を選択した段階でプレビューが表示されるようにする
+function previewFile() {
+  var preview = document.getElementById('item_image_preview');//どこでプレビューするか指定。'img[name="preview"]'などにすればimg複数あっても指定できます。
+  var file    = document.querySelector('input[type=file]').files[0];//'input[type=file]'で投稿されたファイル要素の0番目を参照します。input[type=file]にmutipleがなくてもこのコードになります。
+  var reader  = new FileReader();
+
+  reader.addEventListener("load", function () {
+    preview.src = reader.result;//めちゃめちゃ長い文字列が引き渡されます。ユーザーのファイルパスに紐付かない画像情報だと思います。
+  }, false);
+
+  if (file) {
+    reader.readAsDataURL(file);//ここでreaderのメソッドに引数としてfileを入れます。ここで、readerのaddEventListenerが発火します。
+  }
+}

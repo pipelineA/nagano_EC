@@ -2,11 +2,11 @@
 <div class="container text-center">
 	<div class="row">
 		<h3>商品新規登録画面</h3>
-			<%= form_for @item, url: admin_items_path(@item) do |f| %>
+		<%= form_for @item, url: admin_items_path(@item) do |f| %>
 			<%= render "shared/errors", object: @item %>
 			<div class="col-lg-4">
-				<%= attachment_image_tag @item, :image %>
-				<%=f.attachment_field :image %>
+				<%= attachment_image_tag @item, :image, id: "item_image_preview", fallback: "no_image.png", size: "200x200" %>
+				<%=f.attachment_field :image, onchange: "previewFile()" %>
 			</div>
 
 			<div class="col-lg-4">
