@@ -1,6 +1,8 @@
+<% content_for(:html_title) { "NaganoEC 管理者 | 会員編集" } %>
 <div class="container">
-  <h2>登録情報編集</h2>
+  <h2>会員編集画面</h2>
     <%= form_for @user, url: admin_user_path do |f| %>
+      <%= render 'shared/errors', object: @user %>
       <table class="table">
         <tr>
           <td>会員ID</td>

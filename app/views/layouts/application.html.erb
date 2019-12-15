@@ -15,7 +15,7 @@
           <h3 class="col-md-6"><%= link_to"LOGO", root_path %></h3>
           <ul class="col-xs-6 nav navbar-nav navbar-right">
             <% if user_signed_in? %>
-              <li><%= link_to "マイページ", user_path(current_user.id) %></li>
+              <li><%= link_to current_user.family_name + " " + current_user.first_name, user_path(current_user.id) %></li>
               <li><%= link_to "about", about_path %></li>
               <li><%= link_to "注文履歴一覧", order_histories_path %></li>
               <li><%= link_to "ログアウト", destroy_user_session_path, method: :delete %></li>
@@ -36,7 +36,11 @@
 
        </diV>
     </header>
-
+    <% flash.each do |message_type, message| %>
+    <div class="alert alert-<%= message_type %>">
+      <%= message %>
+    </div>
+<% end %>
     <%= yield %>
   </body>
 </html>

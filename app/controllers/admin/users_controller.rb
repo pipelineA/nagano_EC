@@ -1,6 +1,10 @@
 class Admin::UsersController < AdminController
   def index
-    @users = User.page(params[:page]).per(15)
+    if @search = params[:search]
+      @users = User.where(['family_name LIKE ? OR first_name LIKE ? OR email LIKE ?', "%#{@search}%", "%#{@search}%", "%#{@search}%"]).page(params[:page]).per(15)
+    else
+      @users = User.page(params[:page]).per(15)
+    end
   end
 
   def show
@@ -21,8 +25,9 @@ class Admin::UsersController < AdminController
       else
         if @user.update(user_params)
           redirect_to admin_user_path(@user.id)
-          flash[:info] = "ユーザー情報を編集しました"
+          flash[:success] = "ユーザー情報を編集しました"
         else
+          @user_address = @user.addresses.find_by(is_main_address: true)
           render :edit
         end
       end

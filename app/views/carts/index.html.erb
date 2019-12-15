@@ -18,11 +18,12 @@
 				<tr>
 					<td><%= link_to item_path(cartitem.item_id) do %><%= attachment_image_tag cartitem.item,:image, size: "50x50" %><% end %>　
 						<%= link_to cartitem.item.name, item_path(cartitem.item_id) %></td>
-					<td><%= cartitem.item.tax_include_price %></td>
+					<td><%= cartitem.item.tax_include_price.to_s(:delimited) %></td>
 					<td><%= form_for cartitem, url: cart_path(cartitem) do |f| %>
 							<%= f.number_field :item_count ,min:0,max:100, class:"count", onchange:"submit(this.form)" %>
 					</td>
-					<td><%= sub_total = cartitem.item.tax_include_price*cartitem.item_count %></td>
+					<% sub_total = cartitem.item.tax_include_price*cartitem.item_count %>
+					<td><%= sub_total.to_s(:delimited) %></td>
 					<% total += sub_total %>
 					<td><%= link_to "削除する", cart_path(cartitem), method: :delete, class:"btn btn-danger pull-right" %></td>
 					<% end %>
@@ -30,17 +31,25 @@
 			</tbody>
 			<% end %>
 		</table>
-		<div class="col-xs-3 pull-right">
-			<table class="table">
-				<tbody>
-					<tr>
-						<th class="active">合計金額</th>
-						<th><%= total.to_s %> 円</th>
-					</tr>
-				</tbody>
-			</table>
+
+
+        <div class="row">
+         	<div class="col-md-3 pull-relt">
+  	        	<%= link_to "買い物を続ける", root_path, class:"btn btn-primary center-block" %>
+	        </div>
+            <div class="col-md-3 pull-right">
+            	<table class="table">
+					<tbody>
+						<tr>
+							<th class="active">合計金額</th>
+							<th><%= total.to_s(:delimited) %> 円</th>
+						</tr>
+					</tbody>
+				</table>
+            </div>
+
 		</div>
-	</div>
+	</div> 
 
 	<br>
 	<%= link_to "情報入力に進む", orders_new_path, class:"btn btn-primary btn-lg center-block" %>
