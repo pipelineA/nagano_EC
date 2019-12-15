@@ -1,7 +1,7 @@
 class Admin::GenresController < AdminController
 
   def index
-    @genres = Genre.all
+    @genres = Genre.page(params[:page]).per(15)
     @new_genre = Genre.new
   end
 
@@ -11,7 +11,7 @@ class Admin::GenresController < AdminController
       flash[:success] = "新しいジャンルを追加しました"
       redirect_to admin_genres_path
     else
-      @genres = Genre.all
+      @genres = Genre.page(params[:page]).per(15)
       render :index
     end
   end
@@ -24,7 +24,7 @@ class Admin::GenresController < AdminController
       @genre.update(is_active: true)
     elsif params[:update_name]
       unless @genre.update(genre_params)
-        @genres = Genre.all
+        @genres = Genre.page(params[:page]).per(15)
         @new_genre = Genre.new
         render :index and return
       end
