@@ -4,10 +4,14 @@ class AddressesController < ApplicationController
     @address = Address.new
   end
   def create
-    @address = current_user.addresses.build(address_params)
-    @address.is_main_address = false
-    @address.save
-    redirect_to addresses_path
+       @address = current_user.addresses.build(address_params)
+       @address.is_main_address = false
+       if @address.save
+          redirect_to addresses_path
+    else
+       @addresses = current_user.addresses.where(is_main_address: false)
+       render :index
+    end
   end
 
   def edit
@@ -16,8 +20,12 @@ class AddressesController < ApplicationController
 
   def update
     @address = Address.find(params[:id])
-    @address.update(address_params)
-    redirect_to addresses_path
+    if @address.update(address_params)
+       redirect_to addresses_path
+    else
+       @addresses = current_user.addresses.where(is_main_address: false)
+       render :edit
+    end
   end
 
   def destroy
