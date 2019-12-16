@@ -48,10 +48,10 @@
 	    <strong>支払方法</strong>
 	       <%= @order.payment_method %><br>
 
-	    <strong>お届け先</strong>
-          <%= @order.ordered_postal_code.insert(3, "-") %>
-          <%= @order.ordered_address %>
-          <%= @order.ordered_receiver_name %>
+	    <strong>お届け先</strong><br>
+          〒<%= @order.ordered_postal_code.insert(3, "-") %><br>
+          <%= @order.ordered_address %><br>
+          <%= @order.ordered_receiver_name %><br>
 
 		<%= form_for @order, url: orders_path do |f| %>
 			<%= f.hidden_field :ordered_address %>
@@ -59,6 +59,7 @@
 			<%= f.hidden_field :ordered_receiver_name %>
 			<%= f.hidden_field :payment_method %>
 			<%= f.hidden_field :billing_amount, :value => total.to_i + @order.fee %>
+			<%= f.hidden_field :address_type %>
 			<% @cart_items.each do |item| %>
 				<%= f.fields_for :order_items, @order.order_items.build do |i| %>
 					<%= i.hidden_field :item_id, :value => item.item_id %>
