@@ -6,4 +6,8 @@ class ApplicationController < ActionController::Base
     		                                              addresses_attributes: [:postal_code, :address, :receiver_name]])
     end
 
+    def after_sign_out_path_for(resource_or_scope)
+    	root_path
+    end
+
 end

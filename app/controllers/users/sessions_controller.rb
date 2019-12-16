@@ -9,9 +9,12 @@ class Users::SessionsController < Devise::SessionsController
   # end
 
   # POST /resource/sign_in
-  # def create
-  #   super
-  # end
+   def create
+     super
+     if current_user.is_unsubscribe == "退会済"
+        puts "退会済確認"
+     end
+   end
 
   # DELETE /resource/sign_out
   # def destroy

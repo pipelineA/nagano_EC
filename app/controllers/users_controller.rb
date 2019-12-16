@@ -12,10 +12,12 @@ class UsersController < ApplicationController
   def update
   	@user = User.find(params[:id])
   		if params[:unsubsuribe]
+        puts "削除ルート通過=================="
   		   @user.is_unsubscribe = true
   		   @user.update(user_params)
-  		   redirect_to about_path
-  		else
+  		   render destroy_user_session_path, method: :delete
+      else
+        puts "更新ルート通過=================="
   			@user.update(user_params)
         address = current_user.addresses.find_by(is_main_address: true)
         address.receiver_name = current_user.family_name + " " +current_user.first_name
