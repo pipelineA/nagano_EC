@@ -1,40 +1,36 @@
-<div class="container","text-center">
-	<div class="row">
-		<h3>商品詳細画面</h3>
-			<div class="col-lg-4">
-				<%= attachment_image_tag @item, :image, :fill, 300, 300 %>
-			</div>
+<% content_for(:html_title) { "NaganoEC 管理者 | 商品詳細" } %>
+	<h3>商品詳細画面</h3>
+		<div class="col-lg-4">
+			<%= attachment_image_tag @item, :image, :fill, 300, 300 %>
+		</div>
 
-			<div class="col-lg-4">
-					<div class="line-height:30px;">
-						<%=  "商品名:" %>
-						<%= @item.name %>
-					</div>
+		<div class="col-lg-4">
+				<div class="line-height:30px;">
+					<%=  "商品名:" %>
+					<%= @item.name %>
+				</div>
 
-					<div>
-						<%= "商品説明:" %>
-						<div class="w-break"><%= @item.description %>
-					</div>
+				<div>
+					<%= "商品説明:" %>
+					<%= @item.description %>
+				</div>
 
-					<div>
-						<%= "ジャンル:"%>
-						<%= @item.genre.name %>
-					</div>
+				<div>
+					<%= "ジャンル:"%>
+					<%= @item.genre.name %>
+				</div>
 
-					<div>
-						<%= "価格(税抜き価格):" %>
-						<%= @item.price %>
-					</div>
-				</tr>
-			</div>
+				<div>
+					<%= "価格(税抜き価格):" %>
+					<%= @item.price %>
+				</div>
+		</div>
 
-			<div class="col-lg-2">
-				<button type="button" class="btn btn-outline-secondary pull-right">
-					<%= link_to "編集画面", edit_admin_item_path(@item) %>
-				</button>
-			</div>
-	</div>
-</div>
+		<div class="col-lg-2">
+			<button type="button" class="btn btn-outline-secondary pull-right">
+				<%= link_to "編集画面", edit_admin_item_path(@item) %>
+			</button>
+		</div>
 
 
 

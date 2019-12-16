@@ -2,12 +2,12 @@ ja:
   helpers:
     page_entries_info:
       more_pages:
-        display_entries: "<b>%{total}</b>中の<b>%{first} - %{last}</b>%{entry_name}を表示しています"
+        display_entries: "<b>%{total}</b>のうち<b>%{first} - %{last}</b>の%{entry_name}を表示しています"
       one_page:
         display_entries:
-          one: "<b>%{count}</b>レコード表示中です %{entry_name}"
-          other: "<b>%{count}</b>レコード表示中です %{entry_name}"
-          zero: "レコードが見つかりませんでした %{entry_name}"
+          one: "<b>%{count}</b> %{entry_name} を表示中です "
+          other: "<b>%{count}</b> %{entry_name} を表示中です "
+          zero: "%{entry_name} が見つかりませんでした "
   views:
     pagination:
       first: "&laquo; 最初"
