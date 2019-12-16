@@ -1,28 +1,34 @@
-<h1>会員一覧画面</h1>
-<div class="container">
-  <div class="row">
-    <div class="col-md-10 col-md-offset-1">
-      <table  class="table table-hover">
-        <thead>
-          <tr>
-            <th>顧客ID</th>
-            <th>氏名</th>
-            <th>メールアドレス</th>
-            <th>ステータス</th>
-          </tr>
-        </thead>
-        <tbody>
-          <% @users.each do |user| %>
-            <tr>
-              <td><%= user.id %></td>
-              <td><%= link_to "#{user.family_name} #{user.first_name}", admin_user_path(user) %></td>
-              <td><%= user.email %></td>
-              <td><%= user.is_unsubscribe %></td>
-            </tr>
-          <% end %>
-        </tbody>
-      </table>
-      <%= paginate @users %>
-    </div>
-  </div>
+<% content_for(:html_title) { "会員一覧" } %>
+
+<h1 class="heading">会員一覧画面</h1>
+<div class="col-md-10 col-md-offset-1">
+  <% if @search %>
+    <p>「<%= @search %>」の検索結果</p>
+  <% end %>
+  <%= form_tag(admin_users_path, method: :get, class: "user-search", enforce_utf8: false) do %>
+    <%= text_field_tag :search %>
+    <%= submit_tag '会員を検索', :name => nil %>
+  <% end %>
+  <table class="table table-hover user-index-table admin-table">
+    <thead>
+      <tr>
+        <th>顧客ID</th>
+        <th>氏名</th>
+        <th>メールアドレス</th>
+        <th>ステータス</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @users.each do |user| %>
+        <tr>
+          <td><%= user.id %></td>
+          <td><%= link_to "#{user.family_name} #{user.first_name}", admin_user_path(user) %></td>
+          <td><%= user.email %></td>
+          <td><%= user.is_unsubscribe %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+  <div class="pagination_info"><%= page_entries_info @users, entry_name: "会員" %></div>
+  <%= paginate @users %>
 </div>

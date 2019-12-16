@@ -4,7 +4,7 @@
 		<h3>登録情報　
 			<%= link_to "編集する", edit_user_path(@user.id), class:"btn btn-primary" %>
 			<!-- パスワード編集機能はdevice使用 -->
-			<%= link_to "パスワードを変更する", edit_user_password_path, class:"btn btn-primary" %>　
+			<%= link_to "パスワードを変更する", edit_user_registration_path, class:"btn btn-primary" %>
 		</h3>
 		<div>
 			<table class="table table-responsive">
@@ -18,15 +18,11 @@
 				</tbody>
 				<tbody>
 					<th class="active">郵便番号</th>
-					<th><%= @main_address.postal_code %></th>
+					<th><%= @main_address.postal_code.insert(3, "-") %></th>
 				</tbody>
 				<tbody>
 					<th class="active">住所</th>
 					<th><%= @main_address.address %></th>
-				</tbody>
-				<tbody>
-					<th class="active">宛名</th>
-					<th><%= @main_address.receiver_name %></th>
 				</tbody>
 				<tbody>
 					<th class="active">電話番号</th>
@@ -35,10 +31,6 @@
 				<tbody>
 					<th class="active">メールアドレス</th>
 					<th><%= @user.email %></th>
-				</tbody>
-				<tbody>
-					<th class="active">unsubscribe</th>
-					<th><%= @user.is_unsubscribe %></th>
 				</tbody>
 			</table>
 		</div>

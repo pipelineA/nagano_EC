@@ -10,7 +10,7 @@
 				<%= attachment_image_tag @item,:image, size: "200x200" %>
 				<h1><%= @item.name %></h1>
 				<h3><%= @item.description %></h3>
-				<h3><%= @item.tax_include_price %>円(税込)</h3>
+				<h3><%= @item.tax_include_price.to_s(:delimited) %>円(税込)</h3>
 		<%= form_for [@cart_item], url: @url do |cart| %>
 			<%= cart.select :item_count, (1..10), :placeholder => "個数選択" %>
 			<%= cart.hidden_field :item_id, :value => @item.id %>　

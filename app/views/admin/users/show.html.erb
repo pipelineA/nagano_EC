@@ -1,9 +1,10 @@
-<h1>会員詳細画面</h1>
-<table  class="table table-hover">
+<% content_for(:html_title) { "会員詳細" } %>
+<h1 class="heading">会員詳細画面</h1>
+<table  class="admin-user-show">
   <tbody>
     <tr>
       <th>顧客ID</th>
-      <td><%= @user.id %> <%= "#{@user.is_unsubscribe}会員" %></td>
+      <td><%= @user.id %><span class="active-or-unsubscribed"><%= "#{@user.is_unsubscribe}会員" %></span></td>
     </tr>
     <tr>
       <th>氏名</th>
@@ -15,7 +16,7 @@
     </tr>
     <tr>
       <th>郵便番号</th>
-      <td><%= @user_address.postal_code %></td>
+      <td><%= "〒" + @user_address.postal_code.insert(3, "-") %></td>
     </tr>
     <tr>
       <th>住所</th>
@@ -31,5 +32,7 @@
     </tr>
   </tbody>
 </table>
-<%= link_to "編集する", edit_admin_user_path(@user), class: "btn btn-primary" %>
-<%= link_to "注文履歴一覧を見る", admin_orders_path(user_id: @user.id), class: "btn btn-primary" %>
+<div class="admin-user-buttons">
+  <%= link_to "編集する", edit_admin_user_path(@user), class: "btn btn-primary admin-user-edit-btn" %>
+  <%= link_to "注文履歴一覧を見る", admin_orders_path(user_id: @user.id), class: "btn btn-primary" %>
+</div>

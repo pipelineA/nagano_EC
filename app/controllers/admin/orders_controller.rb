@@ -1,9 +1,9 @@
 class Admin::OrdersController < AdminController
   def index
     if params[:user_id]
-    @orders = User.find(params[:user_id]).orders.order(created_at: :desc)
+    @orders = User.find(params[:user_id]).orders.page(params[:page]).per(15).order(created_at: :desc)
     else
-    @orders = Order.all.order(created_at: :desc)
+    @orders = Order.page(params[:page]).per(15).order(created_at: :desc)
   end
 
   end

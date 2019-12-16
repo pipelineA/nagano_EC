@@ -1,17 +1,20 @@
 class OrdersController < ApplicationController
   def new
+    @cart_items = current_user.cart_items
+    unless @cart_items.any?
+       flash.now[:danger] = 'カートは空です'
+       render 'carts/index'
+    end
     @order = Order.new
     @user = User.all
-    @address = Address.new
     @main_address = current_user.addresses.find_by(is_main_address: true)
     @addresses = current_user.addresses.where(is_main_address: false)
-
   end
 
   def confirm
-    @cart_items = current_user.cart_items
     @order = current_user.orders.build(order_params)
-    @order.order_items.build
+    @cart_items = current_user.cart_items
+    @main_address = current_user.addresses.find_by(is_main_address: true)
     if params[:order][:address_type] == "address1"
       main_address = current_user.addresses.find_by(is_main_address: true)
       @order.ordered_address = main_address.address
@@ -24,12 +27,23 @@ class OrdersController < ApplicationController
       @order.ordered_receiver_name = selected_address.receiver_name
     elsif params[:order][:address_type] == "address3"
     end
+    unless @order.valid?
+      unless params[:order][:address_type] == "address3"
+        @order.ordered_address = nil
+        @order.ordered_postal_code = nil
+        @order.ordered_receiver_name = nil
+      end
+      @user = User.all
+      @addresses = current_user.addresses.where(is_main_address: false)
+      render :new
+    end
   end
 
   def create
     order = current_user.orders.build(order_params)
     address = current_user.addresses.find_by(postal_code: order.ordered_postal_code, address: order.ordered_address, receiver_name: order.ordered_receiver_name)
     order.save
+
       unless address
          new_address = current_user.addresses.build(postal_code: order.ordered_postal_code, address: order.ordered_address, receiver_name: order.ordered_receiver_name, is_main_address: false )
          new_address.save
@@ -54,12 +68,13 @@ class OrdersController < ApplicationController
   def order_params
     params.require(:order).permit(:user_id, :fee, :payment_method, :tax_rate,
                                   :order_status, :ordered_receiver_name, :ordered_postal_code,
-                                  :ordered_address, :billing_amount,
+                                  :ordered_address, :billing_amount, :address_type, :address_id,
                                   order_items_attributes: [:id, :item_id, :order_id, :item_count, :ordered_price, :ordered_item_name])
-
   end
 
   def address_params
   params.require(:address).permit(:postal_code, :address, :receiver_name)
   end
+
+  
 end

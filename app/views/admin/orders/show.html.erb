@@ -1,5 +1,7 @@
-<h1>注文詳細画面</h1>
-<table class="table">
+<% content_for(:html_title) { "注文詳細" } %>
+
+<h1 class="heading">注文詳細画面</h1>
+<table class="order-show-top">
   <tbody>
     <tr>
       <th>購入者</th>
@@ -16,8 +18,12 @@
       <th>支払方法</th>
       <td><%= @order.payment_method %></td>
     </tr>
+  </tbody>
+</table>
+<table class="order-show-status">
+  <tbody>
     <tr>
-      <th>注文ステータス</th>
+      <th>注文<br>ステータス</th>
       <td>
         <%= form_for @order, url: admin_order_path do |f| %>
           <%= f.select :order_status, [["入金待ち", "入金待ち"], ["発送待ち", "発送待ち"],["発送済み", "発送済み"]], {}, {onchange: "submit(this.form)"} %>
@@ -26,49 +32,53 @@
     </tr>
   </tbody>
 </table>
-
-<table class="table">
-  <thead>
-    <tr>
-      <th>商品名</th>
-      <th>単価（税込）</th>
-      <th>数量</th>
-      <th>小計</th>
-      <th>制作ステータス</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @order_items.each do |order_item| %>
-      <tr>
-        <td><%= order_item.item.name %></td>
-        <td><%= (order_item.item.price * (1 + @order.tax_rate)).floor.to_s(:delimited) %></td>
-        <td><%= order_item.item_count %></td>
-        <td><%= (order_item.item_count * (order_item.item.price * (1 + @order.tax_rate))).floor.to_s(:delimited) %></td>
-        <td>
-          <%= form_for @order, url: admin_order_path do |f| %>
-            <%= f.fields_for :order_items, order_item do |of| %>
-              <%= of.select :making_status, [["製作待ち", "製作待ち"], ["製作中", "製作中"],["製作完了", "製作完了"]], {}, {onchange: "submit(this.form)"} %>
-            <% end %>
-          <% end %>
-        </td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<table class="table">
-  <tbody>
-    <tr>
-      <th>商品合計</th>
-      <td><%= @order.amount.to_s(:delimited) + '円' %></td>
-    </tr>
-    <tr>
-      <th>送料</th>
-      <td><%= @order.fee.to_s(:delimited) + '円' %></td>
-    </tr>
-    <tr>
-      <th>商品合計</th>
-      <td><%= (@order.amount + @order.fee).to_s(:delimited) + '円' %></td>
-    </tr>
-  </tbody>
-</table>
+<div class="order-show-bottom">
+  <div class="order-show-items-container">
+    <table class="table order-show-items">
+      <thead>
+        <tr>
+          <th>商品名</th>
+          <th>単価（税込）</th>
+          <th>数量</th>
+          <th>小計</th>
+          <th>制作ステータス</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @order_items.each do |order_item| %>
+          <tr>
+            <td><%= order_item.item.name %></td>
+            <td><%= (order_item.item.price * (1 + @order.tax_rate)).floor.to_s(:delimited) %></td>
+            <td><%= order_item.item_count %></td>
+            <td><%= (order_item.item_count * (order_item.item.price * (1 + @order.tax_rate))).floor.to_s(:delimited) %></td>
+            <td>
+              <%= form_for @order, url: admin_order_path do |f| %>
+                <%= f.fields_for :order_items, order_item do |of| %>
+                  <%= of.select :making_status, [["製作待ち", "製作待ち"], ["製作中", "製作中"],["製作完了", "製作完了"]], {}, {onchange: "submit(this.form)"} %>
+                <% end %>
+              <% end %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+  <div class="order-show-sum-container">
+    <table class="table order-show-sum">
+      <tbody>
+        <tr>
+          <th>商品合計</th>
+          <td><%= @order.amount.to_s(:delimited) + '円' %></td>
+        </tr>
+        <tr>
+          <th>送料</th>
+          <td><%= @order.fee.to_s(:delimited) + '円' %></td>
+        </tr>
+        <tr>
+          <th>商品合計</th>
+          <td><%= (@order.amount + @order.fee).to_s(:delimited) + '円' %></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

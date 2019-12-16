@@ -2,9 +2,10 @@
 	<div class="row">
 		<div class="col-xs-9">
 			<h3>購入情報</h3>
-
-			<strong>支払い方法</strong>
 			<%= form_with(model: @order, local: true, url: orders_confirm_path) do |f| %>
+			 <%= render 'shared/errors', object: @order %>
+
+			 <strong>支払い方法</strong><br>
 
 			  <%= f.radio_button(:payment_method, :クレジットカード) %>
               <%= f.label(:payment_method, "クレジットカード", value: "クレジットカード") %><br>
@@ -13,10 +14,10 @@
 
 			  <strong>お届け先</strong><br>
 
-			      <%= f.radio_button(:address_type, :address1) %>
+			      <%= f.radio_button(:address_type, :address1) %> 
 			      <%= f.label(:address_type, "ご自身の住所", value: "address1") %><br>
 
-			     <%= @main_address.postal_code %><br>
+			     〒<%= @main_address.postal_code.insert(3, "-") %><br>
 			     <%= @main_address.address %><br>
 			     <%= @main_address.receiver_name %><br>
 

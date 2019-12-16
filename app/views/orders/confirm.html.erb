@@ -16,9 +16,10 @@
 					<tr>
 						<td><%= link_to item_path(cartitem.item_id) do %><%= attachment_image_tag cartitem.item,:image, size: "50x50" %><% end %>　
 							<%= link_to cartitem.item.name, item_path(cartitem.item_id) %></td>
-						<td><%= cartitem.item.tax_include_price %></td>
-						<td><%= cartitem.item_count %></td>
-						<td><%= sub_total = cartitem.item.tax_include_price*cartitem.item_count %></td>
+						<td><%= cartitem.item.tax_include_price.to_s(:delimited) %></td>
+						<td><%= cartitem.item_count.to_s(:delimited) %></td>
+						<td><%= (cartitem.item.tax_include_price*cartitem.item_count).to_s(:delimited) %></td>
+						<% sub_total = cartitem.item.tax_include_price*cartitem.item_count %>
 						<% total += sub_total %>
 					</tr>
 				</tbody>
@@ -30,16 +31,16 @@
 				<tbody>
 					<tr>
 						<th class="active">商品合計</th>
-						<td><%= total.to_s %></td>
+						<td><%= total.to_s(:delimited) %></td>
 					</tr>
 					<tr>
 						<th class="active">送料</th>
-						<td><%= @order.fee %></td>
+						<td><%= @order.fee.to_s(:delimited) %></td>
 						<!-- 仮です -->
 					</tr>
 					<tr>
 						<th class="active">合計金額</th>
-						<td><%= total + @order.fee %></td>
+						<td><%= (total + @order.fee).to_s(:delimited) %></td>
 						<!-- 仮です -->
 					</tr>
 				</tbody>
@@ -48,10 +49,10 @@
 	    <strong>支払方法</strong>
 	       <%= @order.payment_method %><br>
 
-	    <strong>お届け先</strong>
-          <%= @order.ordered_postal_code %>
-          <%= @order.ordered_address %>
-          <%= @order.ordered_receiver_name %>
+	    <strong>お届け先</strong><br>
+          〒<%= @order.ordered_postal_code.insert(3, "-") %><br>
+          <%= @order.ordered_address %><br>
+          <%= @order.ordered_receiver_name %><br>
 
 		<%= form_for @order, url: orders_path do |f| %>
 			<%= f.hidden_field :ordered_address %>
@@ -59,6 +60,7 @@
 			<%= f.hidden_field :ordered_receiver_name %>
 			<%= f.hidden_field :payment_method %>
 			<%= f.hidden_field :billing_amount, :value => total.to_i + @order.fee %>
+			<%= f.hidden_field :address_type %>
 			<% @cart_items.each do |item| %>
 				<%= f.fields_for :order_items, @order.order_items.build do |i| %>
 					<%= i.hidden_field :item_id, :value => item.item_id %>

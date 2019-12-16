@@ -1,3 +1,4 @@
+<% content_for(:html_title) { "注文一覧" } %>
 <div class="container">
 	<div class="row">
 		<div class="col-md-10 col-md-offset-1">
@@ -23,6 +24,8 @@
 				</tbody>
 				<% end %>
 			</table>
+				<%= paginate @orders %>
+				<%= page_entries_info @orders, entry_name: "注文" %>
 		</div>
 	</div>
 </div>

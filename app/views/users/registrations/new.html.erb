@@ -30,7 +30,7 @@
       <%= f.fields_for :addresses, @user.addresses.build do |af| %>
         <div class="field">
           <label>郵便番号</label>
-            <%= af.text_field :postal_code, :placeholder => "0001111"%>
+            <%= af.text_field :postal_code, :placeholder => "0001111"%>ハイフンなし
         </div>
 
       <div class="field">

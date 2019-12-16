@@ -5,7 +5,7 @@
       <div class="col-xs-9">
        <h3>配送先登録/一覧</h3>
        <%= form_for(@address) do |a| %>
-   
+        <%= render 'shared/errors', object: @address %>
         <table class="table table-bordered">
          <tr>
            <th class="active">郵便番号</th>
@@ -42,7 +42,6 @@
           <td><%= a.postal_code %></td>
           <td><%= a.address %></td>
           <td><%= a.receiver_name %></td>
-          <td><%= a.id %></td>
           <td>
             <!-- <%# binding.pry %> -->
       	    <%= link_to"編集する", edit_address_path(a), class: "btn btn-primary" %>
