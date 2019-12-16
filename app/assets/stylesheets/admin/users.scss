@@ -2,20 +2,8 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-.heading {
-  margin-top: 20px;
-  margin-bottom: 35px;
-  margin-left: -15px;
-  font-size: 30px;
-}
-
 .user-index-table {
   margin-top: 25px;
-  border-top: 2px solid #ddd;
-  border-bottom: 2px solid #ddd;
-  thead {
-    background-color: silver;
-  }
 }
 .pagination {
   margin-top: 10px!important;
@@ -34,10 +22,11 @@
     padding: 8px 0;
   }
 }
+.admin-user-buttons {
+
+}
 .admin-user-edit-btn {
   margin-right: 15px;
-  margin-bottom: 30px!important;
-  display: inline-block;
 }
 .active-or-unsubscribed {
   border: 1px solid black;
