@@ -30,6 +30,7 @@ class Admin::UsersController < AdminController
           @user_address = @user.addresses.find_by(is_main_address: true)
           @user_address.address = params[:user][:addresses_attributes]["0"][:address]
           @user_address.postal_code = params[:user][:addresses_attributes]["0"][:postal_code]
+          @user_address.valid?
           render :edit
         end
       end
