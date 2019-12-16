@@ -1,7 +1,7 @@
 <% content_for(:html_title) { "会員一覧" } %>
 
-<h1 class="heading">会員一覧画面</h1>
 <div class="col-md-10 col-md-offset-1">
+  <h1 class="heading">会員一覧画面</h1>
   <% if @search %>
     <p>「<%= @search %>」の検索結果</p>
   <% end %>
@@ -9,7 +9,7 @@
     <%= text_field_tag :search %>
     <%= submit_tag '会員を検索', :name => nil %>
   <% end %>
-  <table class="table table-hover user-index-table">
+  <table class="table table-hover user-index-table admin-table">
     <thead>
       <tr>
         <th>顧客ID</th>

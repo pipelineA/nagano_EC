@@ -7,7 +7,6 @@ class Users::RegistrationsController < Devise::RegistrationsController
   def new
     super
     @user = User.new
-    puts "通ってます＝＝＝＝＝＝＝＝"
     @user.addresses.build
   end
 

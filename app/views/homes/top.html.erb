@@ -15,7 +15,7 @@
 					<% end %>
 					<br>
 					商品名：<%= item.name %><br>
-					価格：<%= (item.price.to_i*BigDecimal("1.1")).floor %>円<br>
+					価格：<%= (item.price.to_i*BigDecimal("1.1")).floor.to_s(:delimited) %>円<br>
 					<br>
 				</div>
 			<% end %>

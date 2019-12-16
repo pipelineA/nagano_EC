@@ -33,15 +33,15 @@
 				<tbody>
 					<tr>
 						<th class="active">商品合計</th>
-						<td><%= @order.tax_include_billing_amount %></td>
+						<td><%= @order.tax_include_billing_amount.to_s(:delimited) %></td>
 					</tr>
 					<tr>
 						<th class="active">配送料</th>
-						<td><%= @order.fee %></td>
+						<td><%= @order.fee.to_s(:delimited) %></td>
 					</tr>
 					<tr>
 						<th class="active">ご請求額</th>
-						<td><%= @order.tax_include_billing_amount + @order.fee %></td>
+						<td><%= (@order.tax_include_billing_amount + @order.fee).to_s(:delimited) %></td>
 					</tr>
 				</tbody>
 			</table>
@@ -60,9 +60,9 @@
 						<% @order.order_items.each do |item| %>
 						<tr>
 							<td><%= item.ordered_item_name %></td>
-							<td><%= item.tax_include_ordered_price %></td>
-							<td><%= item.item_count %></td>
-							<td><%= item.tax_include_ordered_price * item.item_count %></td>
+							<td><%= item.tax_include_ordered_price.to_s(:delimited) %></td>
+							<td><%= item.item_count.to_s(:delimited) %></td>
+							<td><%= (item.tax_include_ordered_price * item.item_count).to_s(:delimited) %></td>
 						</tr>
 					<% end %>
 				</tbody>

@@ -12,6 +12,7 @@ class UsersController < ApplicationController
   def update
   	@user = User.find(params[:id])
   		if params[:unsubsuribe]
+        puts "削除ルート通過=================="
   		   @user.is_unsubscribe = true
   		   @user.update(user_params)
   		   redirect_to about_path
