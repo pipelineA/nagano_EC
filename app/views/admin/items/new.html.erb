@@ -22,6 +22,7 @@
 
 				<div>
 					<%= f.label(:genre, "ジャンル")%>
+
 					<%=  f.collection_select :genre_id, @genres, :id, :name %>
 				</div>
 
