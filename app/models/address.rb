@@ -1,7 +1,7 @@
 class Address < ApplicationRecord
 	belongs_to :user
 
-	validates :postal_code, presence: true, format: { with: /\A[0-9]+\z/ }, length: { is: 7 }
+	validates :postal_code, format: { with: /\A[0-9]+\z/ }, length: { is: 7 }
     validates :address, presence: true
     validates :receiver_name, presence: true
     before_validation :create_receiver_name
