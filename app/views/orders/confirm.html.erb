@@ -49,7 +49,7 @@
 	       <%= @order.payment_method %><br>
 
 	    <strong>お届け先</strong>
-          <%= @order.ordered_postal_code %>
+          <%= @order.ordered_postal_code.insert(3, "-") %>
           <%= @order.ordered_address %>
           <%= @order.ordered_receiver_name %>
 
