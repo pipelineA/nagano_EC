@@ -13,6 +13,8 @@ class OrdersController < ApplicationController
 
   def confirm
     @order = current_user.orders.build(order_params)
+    @cart_items = current_user.cart_items
+    @main_address = current_user.addresses.find_by(is_main_address: true)
     if params[:order][:address_type] == "address1"
       main_address = current_user.addresses.find_by(is_main_address: true)
       @order.ordered_address = main_address.address
@@ -25,8 +27,11 @@ class OrdersController < ApplicationController
       @order.ordered_receiver_name = selected_address.receiver_name
     elsif params[:order][:address_type] == "address3"
     end
-    @cart_items = current_user.cart_items
-    @main_address = current_user.addresses.find_by(is_main_address: true)
+    unless @order.valid?
+      @user = User.all
+      @addresses = current_user.addresses.where(is_main_address: false)
+      render :new
+    end
   end
 
   def create
