@@ -2,7 +2,7 @@ class OrdersController < ApplicationController
   def new
     @cart_items = current_user.cart_items
     unless @cart_items.any?
-       flash[:danger] = 'カートは空です'
+       flash.now[:danger] = 'カートは空です'
        render 'carts/index'
     end
     @order = Order.new
@@ -28,6 +28,11 @@ class OrdersController < ApplicationController
     elsif params[:order][:address_type] == "address3"
     end
     unless @order.valid?
+      unless params[:order][:address_type] == "address3"
+        @order.ordered_address = nil
+        @order.ordered_postal_code = nil
+        @order.ordered_receiver_name = nil
+      end
       @user = User.all
       @addresses = current_user.addresses.where(is_main_address: false)
       render :new
@@ -63,11 +68,13 @@ class OrdersController < ApplicationController
   def order_params
     params.require(:order).permit(:user_id, :fee, :payment_method, :tax_rate,
                                   :order_status, :ordered_receiver_name, :ordered_postal_code,
-                                  :ordered_address, :billing_amount,
+                                  :ordered_address, :billing_amount, :address_type, :address_id,
                                   order_items_attributes: [:id, :item_id, :order_id, :item_count, :ordered_price, :ordered_item_name])
   end
 
   def address_params
   params.require(:address).permit(:postal_code, :address, :receiver_name)
   end
+
+  
 end
