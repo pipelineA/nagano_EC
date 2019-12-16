@@ -24,12 +24,26 @@
 .admin-user-show {
   font-size: 18px;
   width: 100%;
+  margin-bottom: 20px;
   th {
     width: 15%;
-    height: 30px;
+    padding: 8px 0;
   }
   td {
     width: 85%;
-    height: 30px;
+    padding: 8px 0;
   }
+}
+.admin-user-edit-btn {
+  margin-right: 15px;
+  margin-bottom: 30px!important;
+  display: inline-block;
+}
+.active-or-unsubscribed {
+  border: 1px solid black;
+  border-radius: 4px;
+  background-color: #9cf;
+  margin-left: 10px;
+  font-size: 14px;
+  padding: 2px;
 }
