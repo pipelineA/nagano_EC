@@ -37,6 +37,20 @@ clearfix::after {
   clear: both;
 }
 
-.field-with-errors {
-  display: inline;
+.field_with_errors {
+  display: inline-block;
+}
+
+.heading {
+  margin-top: 20px;
+  margin-bottom: 35px;
+  margin-left: -15px;
+  font-size: 30px;
+}
+.admin-table {
+  border-top: 2px solid #ddd;
+  border-bottom: 2px solid #ddd;
+  thead {
+    background-color: silver;
+  }
 }
