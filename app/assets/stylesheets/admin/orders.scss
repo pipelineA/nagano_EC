@@ -1,3 +1,85 @@
 // Place all the styles related to the admin::orders controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.heading {
+  margin-top: 20px;
+  margin-bottom: 35px;
+  margin-left: -15px;
+  font-size: 30px;
+}
+.order-show-top {
+  font-size: 18px;
+  width: 100%;
+  th {
+    vertical-align: top;
+    width: 20%;
+  }
+  td {
+    padding-bottom: 18px;
+    width: 80%;
+  }
+}
+.order-show-status {
+  margin-top: 30px;
+  select {
+    width: 95px;
+    cursor: pointer;
+  }
+  th {
+    text-align: center;
+    padding: 0 15px;
+    font-size: 18px;
+  }
+  td {
+    padding-left: 30px;
+  }
+}
+.order-show-items {
+  margin-top: 30px;
+  border-top: 2px solid #ddd;
+  border-bottom: 2px solid #ddd;
+  select {
+    width: 95px;
+    cursor: pointer;
+  }
+  thead {
+    background-color: silver;
+    th:nth-of-type(1) {
+      width: 28%;
+    }
+    th:nth-of-type(2) {
+      width: 18%;
+    }
+    th:nth-of-type(3) {
+      width: 18%;
+    }
+    th:nth-of-type(4) {
+      width: 18%;
+    }
+    th:nth-of-type(5) {
+      width: 18%;
+    }
+  }
+  td {
+    border-top: none!important;
+  }
+}
+.order-show-bottom {
+  display: flex;
+}
+.order-show-items-container {
+  flex-grow: 7;
+}
+.order-show-sum-container {
+  align-self: flex-end;
+  flex-grow: 2;
+  margin-left: 10%;
+}
+.order-show-sum {
+  font-size: 18px;
+  margin-bottom: 0!important;
+  th, td {
+    border-top: none!important;
+  }
+}
