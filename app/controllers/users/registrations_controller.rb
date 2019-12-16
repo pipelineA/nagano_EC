@@ -14,9 +14,9 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # POST /resource
    def create
      super
-     addresses = current_user.addresses.find_by(is_main_address: true)
-     addresses.receiver_name = current_user.family_name + " " +current_user.first_name
-     addresses.save
+     # addresses = current_user.addresses.find_by(is_main_address: true)
+     # addresses.receiver_name = current_user.family_name + " " +current_user.first_name
+     # addresses.save
    end
 
   # GET /resource/edit
