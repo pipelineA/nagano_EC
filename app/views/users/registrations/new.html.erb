@@ -11,7 +11,7 @@
                         <%= render "devise/shared/error_messages", resource: resource %>
                         <table class="table">
                           <tbody>
-                            <tr>
+                            <tr class="form-group">
                               <th class="active"><%= f.label :family_name, "名前" %></th>
                               <td><%= f.text_field :family_name, autofocus: true, size:10, :placeholder => "姓" %>
                               <%= f.text_field :first_name, autofocus: true, size:10,  :placeholder => "名" %></td>

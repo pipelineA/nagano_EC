@@ -57,3 +57,16 @@ clearfix::after {
     background-color: silver;
   }
 }
+
+.cart-count {
+  font-family: arial black;
+  display: inline-block;
+  width: 30px;
+  height: 30px;
+  padding: 5px;
+  position: absolute;
+  top: 0px;
+  right: -15px;
+  background-color: red;
+  border-radius: 50%;
+}
