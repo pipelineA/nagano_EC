@@ -13,7 +13,7 @@
 				<h3><%= @item.tax_include_price.to_s(:delimited) %>円(税込)</h3>
 		<%= form_for [@cart_item], url: @url do |cart| %>
 			<%= cart.select :item_count, (1..10), {include_blank: '個数選択', selected: ""} %>
-			<%= cart.hidden_field :item_id, :value => @item.id %>　
+			<%= cart.hidden_field :item_id, :value => @item.id %>
 			<%= cart.submit 'カート に追加する',name:"cartupdate", class:"btn btn-primary" %>
 		<% end %>
 		</div>
