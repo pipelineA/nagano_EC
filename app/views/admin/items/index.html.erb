@@ -1,6 +1,14 @@
 <% content_for(:html_title) { "商品一覧" } %>
 <div class="col-md-10 col-md-offset-1">
 	<h1 class="heading">商品一覧画面</h1>
+	<% if @search %>
+    <p>「<%= @search %>」の検索結果</p>
+  <% end %>
+  <%= form_tag(admin_items_path, method: :get, class: "user-search", enforce_utf8: false) do %>
+    <%= text_field_tag :search, params[:search] %>
+    <%= submit_tag '商品を検索', :name => nil, class: "btn btn-primary user_search_button" %>
+  <% end %>
+
 	<button type="button" class="btn btn-outline-secondary pull-right">
 		<%= link_to"新規登録", new_admin_item_path %>
 	</button>
