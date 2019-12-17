@@ -13,7 +13,7 @@
 				<% @orders.each do |order| %>
 					<tr>
 						<td><%= order.created_at.strftime('%Y/%m/%d') %></td>
-						<td><%= order.ordered_postal_code %><br>
+						<td>〒<%= order.ordered_postal_code.insert(3, "-") %><br>
 							<%= order.ordered_address %><br>
 							<%= order.ordered_receiver_name %></td>
 						<td><% order.order_items.each do |item| %>

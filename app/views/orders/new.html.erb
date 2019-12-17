@@ -14,7 +14,7 @@
 
 			  <strong>お届け先</strong><br>
 
-			      <%= f.radio_button(:address_type, :address1) %> 
+			      <%= f.radio_button(:address_type, :address1) %>
 			      <%= f.label(:address_type, "ご自身の住所", value: "address1") %><br>
 
 			     〒<%= @main_address.postal_code.insert(3, "-") %><br>

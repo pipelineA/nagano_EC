@@ -25,8 +25,16 @@ ja:
         password: "パスワード"
         password_confirmation: "確認用パスワード"
         remember_me: "次回から自動的にログイン"
+      admin:
+        current_password: "現在のパスワード"
+        name: 名前
+        email: "メールアドレス"
+        password: "パスワード"
+        password_confirmation: "確認用パスワード"
+        remember_me: "次回から自動的にログイン"
     models:
-      user: "ユーザ"
+      user: "会員"
+      admin: "管理者"
   devise:
     confirmations:
       new:
@@ -83,10 +91,6 @@ ja:
     unlocks:
       new:
         resend_unlock_instructions: "アカウントの凍結解除方法を再送する"
-
-  # Additional translations at https://github.com/plataformatec/devise/wiki/I18n
-
-ja:
   devise:
     confirmations:
       confirmed: 'アカウントを登録しました。'
