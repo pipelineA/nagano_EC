@@ -11,12 +11,9 @@ class Users::RegistrationsController < Devise::RegistrationsController
   end
 
   # POST /resource
-   def create
-     super
-     # addresses = current_user.addresses.find_by(is_main_address: true)
-     # addresses.receiver_name = current_user.family_name + " " +current_user.first_name
-     # addresses.save
-   end
+   # def create
+   #  super
+   # end
 
   # GET /resource/edit
   # def edit
@@ -29,9 +26,12 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # end
 
   # DELETE /resource
-  # def destroy
-  #   super
-  # end
+  def destroy
+    resource.leave
+    Devise.sign_out_all_scopes ? sign_out : sign_out(resource_name)
+    flash[:success] = '退会完了しました。ご利用ありがとうございました！ ながのケーキ従業員一同'
+    redirect_to root_path
+  end
 
   # GET /resource/cancel
   # Forces the session data which is usually expired after sign
