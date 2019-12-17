@@ -23,10 +23,9 @@
 						</div>
 
 						<div class="margin-bottom">
-							<span class="marker-line"><%= "価格(税抜き価格):" %></span>
+							<span class="marker-line"><%= "価格(税抜価格):" %></span>
 							<span>
-								<%= @item.tax_include_price %>
-								(<%= @item.price %>)
+								<%= @item.tax_include_price.to_s(:delimited) %> (<%= @item.price.to_s(:delimited) %>) 円
 							</span>
 						</div>
 				</div>

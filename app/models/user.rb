@@ -20,4 +20,12 @@ class User < ApplicationRecord
     self.update(email:  new_email,is_unsubscribe: true)
   end
 
+  def unsubscribed?
+    if self.is_unsubscribe == "退会済"
+      true
+    else
+      false
+    end
+  end
+
 end
