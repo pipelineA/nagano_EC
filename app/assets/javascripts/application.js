@@ -36,7 +36,7 @@ $(function(){
     	$parent.find('.edit-button').addClass('none-active');
     	$parent.find('.submit-button').removeClass('none-active');
     	$parent.find('.genre-text').addClass('none-active');
-    	$parent.find('.genre-form').removeClass('none-active');
+    	$parent.find('.genre-form').removeClass('none-active').focus();
     	return false;
     });
 });

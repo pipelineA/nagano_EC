@@ -7,7 +7,7 @@
   <% end %>
   <%= form_tag(admin_users_path, method: :get, class: "user-search", enforce_utf8: false) do %>
     <%= text_field_tag :search %>
-    <%= submit_tag '会員を検索', :name => nil %>
+    <%= submit_tag '会員を検索', :name => nil, class: "btn btn-primary user_search_button" %>
   <% end %>
   <table class="table table-hover user-index-table admin-table">
     <thead>
