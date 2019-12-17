@@ -9,17 +9,26 @@ class CartsController < ApplicationController
     else
   	cart_item = current_user.cart_items.build(cart_item_params)
   	cart_item.user_id = current_user.id
-  	cart_item.save
-  	redirect_to carts_path
+      if cart_item.save
+    	   redirect_to carts_path
+      else
+        flash[:danger] = '個数を選択してください'
+        redirect_to item_path(params[:cart_item][:item_id])
+      end
     end
   end
 
   def update
   @cart_item = CartItem.find(params[:id])
     if params[:cartupdate]
+      if params[:cart_item][:item_count] == ""
+         flash[:danger] = '個数を選択してください'
+         redirect_to item_path(params[:cart_item][:item_id])
+      else
       @cart_item.item_count += params[:cart_item][:item_count].to_i
       @cart_item.save
       redirect_to carts_path
+      end
     else
       @cart_item.update(cart_item_params)
       if @cart_item.item_count == 0
