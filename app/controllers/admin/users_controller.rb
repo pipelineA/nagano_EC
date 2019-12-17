@@ -1,6 +1,7 @@
 class Admin::UsersController < AdminController
   def index
-    if @search = params[:search]
+    if params[:search]
+      @search = params[:search]
       @users = User.where(['family_name LIKE ? OR first_name LIKE ? OR email LIKE ?', "%#{@search}%", "%#{@search}%", "%#{@search}%"]).page(params[:page]).per(15)
     else
       @users = User.page(params[:page]).per(15)

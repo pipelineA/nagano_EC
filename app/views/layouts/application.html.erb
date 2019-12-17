@@ -26,11 +26,12 @@
              <li><%= link_to "ログイン", new_user_session_path %></li>
              <li><%= link_to "about", about_path %></li>
             <% end %>
-            <div class="nav navbar-nav navbar-right">
-              <form action="#" method="post">
-                <input type="search" name="search" placeholder="Search">
-              </form>
-            </div>
+            <%= form_tag root_path, :method => 'get', enforce_utf8: false do %>
+  　　　　　　　<p>
+    　　　　　　　<%= text_field_tag :search, params[:search] %>
+    　　　　　　　<%= submit_tag "検索", :name  => nil %>
+  　　　　　　　</p>
+　　　　　　　<% end %>
           </ul>
         
 
