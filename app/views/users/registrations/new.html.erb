@@ -1,64 +1,66 @@
-<div class="container">
-  <div class="row">
-    <h2>Sign up</h2>
-
-    <%= form_for(@user, as: resource_name, url: registration_path(resource_name)) do |f| %>
-      <%= render "devise/shared/error_messages", resource: resource %>
-
-      <div class="field">
-        <label>名字</label>
-        <%= f.text_field :family_name, autofocus: true, size:10,:placeholder => "姓" %>
-        <%= f.text_field :first_name, autofocus: true, size:10, :placeholder => "名" %>
-      </div>
-
-      <div class="field">
-        <label>フリガナ</label>
-        <%= f.text_field :kana_family_name, autofocus: true, size:10, :placeholder => "セイ" %>
-        <%= f.text_field :kana_first_name, autofocus: true, size:10, :placeholder => "メイ" %>
-      </div>
-
-      <div class="field">
-        <label>電話番号</label>
-        <%= f.text_field :phone_number, autofocus: true, :placeholder => "xxx-xxx-xxxx" %>
-      </div>
-
-      <div class="field">
-        <label>メールアドレス</label>
-        <%= f.email_field :email, autofocus: true, :placeholder => "aaa@.test.jp" %>
-      </div>
-
-      <%= f.fields_for :addresses, @user_address do |af| %>
-        <div class="field">
-          <label>郵便番号</label>
-            <%= af.text_field :postal_code, :placeholder => "0001111"%>ハイフンなし
+<section class="slice slice-lg sct-color-1">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 col-md-offset-3">
+                <div class="form-user style-1 rounded has-shadow-1">
+                    <div class="form-header">
+                      <div class="form-header text-center">
+                        <h2 class="form-header-title">新規登録</h2><br>
+                      </div>
+                      <%= form_for(@user, as: resource_name, url: registration_path(resource_name)) do |f| %>
+                        <%= render "devise/shared/error_messages", resource: resource %>
+                        <table class="table">
+                          <tbody>
+                            <tr>
+                              <th class="active"><%= f.label :family_name, "名前" %></th>
+                              <td><%= f.text_field :family_name, autofocus: true, size:10, :placeholder => "姓" %>
+                              <%= f.text_field :first_name, autofocus: true, size:10,  :placeholder => "名" %></td>
+                            </tr>
+                            <tr>
+                              <th class="active"><%= f.label :kana_family_name, "フリガナ" %></th>
+                              <td><%= f.text_field :kana_family_name, autofocus: true, size:10, :placeholder => "セイ" %>
+                                  <%= f.text_field :kana_first_name, autofocus: true, size:10, :placeholder => "メイ" %></td>
+                            </tr>
+                            <tr>
+                              <th class="active"><%= f.label :phone_number %></th>
+                              <td><%= f.text_field :phone_number, autofocus: true, :placeholder => "xxx-xxx-xxxx" %></td>
+                            </tr>
+                            <tr>
+                              <th class="active"><%= f.label :email %></th>
+                              <td><%= f.email_field :email, autofocus: true, :placeholder => "naganocake@test.jp" %></td>
+                            </tr>
+                            <%= f.fields_for :addresses, @user_address do |af| %>
+                              <tr>
+                                <th class="active"><%= af.label :postal_code %></th>
+                                <td><%= af.text_field :postal_code, :placeholder => "0001111"%></td>
+                              </tr>
+                              <tr>
+                                <th class="active"><%= af.label :address %></th>
+                                <td><%= af.text_field :address, size:50, :placeholder => "東京都渋谷区神南１丁目１９−１１　パークウェースクエア２４階" %></td>
+                              </tr>
+                              <tr>
+                              <th class="active"><%= f.label :password %>
+                                <% if @minimum_password_length %>
+                                <em>(<%= @minimum_password_length %>文字以上)</em>
+                                <% end %></th>
+                              <td><%= f.password_field :password, autocomplete: "new-password", :placeholder => "●●●●●●" %></td>
+                              </tr>
+                              <tr>
+                                <th class="active"><%= f.label :password_confirmation %></th>
+                                <td><%= f.password_field :password_confirmation, autocomplete: "new-password", :placeholder => "●●●●●●" %></td>
+                              </tr>
+                            <% end %>
+                          </tbody>
+                        </table>
+                        <div class="actions">
+                          <%= f.submit "新規登録", class:"btn btn-warning btn-lg btn-block" %>
+                        </div>
+                      <% end %>
+                      <br>
+                      <%= link_to "ログイン", new_user_session_path, class:"btn btn-primary btn-lg btn-block"%><br />
+                    </div>
+                </div>
+            </div>
         </div>
-
-      <div class="field">
-        <label>住所</label>
-        <%= af.text_field :address, size:50, :placeholder => "東京都渋谷区神南１丁目１９−１１　パークウェースクエア２４階" %>
-      </div>
-      <% end %>
-
-
-      <div class="field">
-        <label>パスワード</label>
-        <% if @minimum_password_length %>
-        <em>(<%= @minimum_password_length %>文字以上)</em>
-        <% end %>
-
-        <%= f.password_field :password, autocomplete: "new-password" %>
-      </div>
-
-      <div class="field">
-        <label>パスワード確認</label>
-        <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-      </div>
-
-      <div class="actions">
-        <%= f.submit "Sign up", class:"col-xs-3 btn-primary" %>
-      </div>
-    <% end %>
-
-    <%= render "users/shared/links" %>
-  </div>
-</div>
+    </div>
+</section>
