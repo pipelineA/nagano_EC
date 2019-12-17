@@ -1,10 +1,10 @@
 <% content_for(:html_title) { "商品一覧" } %>
 <div class="col-md-10 col-md-offset-1">
-	<h3>商品一覧画面</h3>
+	<h1 class="heading">商品一覧画面</h1>
 	<button type="button" class="btn btn-outline-secondary pull-right">
 		<%= link_to"新規登録", new_admin_item_path %>
 	</button>
-	<table class="table">
+	<table class="table table-hover user-index-table admin-table">
 		<thead>
 			<tr>
 				<th>商品ID</th>

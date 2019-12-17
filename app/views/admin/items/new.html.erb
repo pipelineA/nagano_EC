@@ -1,40 +1,39 @@
 <% content_for(:html_title) { "商品新規登録" } %>
-<div class="container text-center">
-	<div class="row">
+	<div class="col-md-10 col-md-offset-1">
 		<h3>商品新規登録画面</h3>
-		<%= form_for @item, url: admin_items_path(@item) do |f| %>
-			<%= render "shared/errors", object: @item %>
-			<div class="col-lg-4">
-				<%= attachment_image_tag @item, :image, id: "item_image_preview", fallback: "no_image.png", height: "200" %>
-				<%=f.attachment_field :image, onchange: "previewFile()" %>
+			<div class="margin-top">
+				<%= form_for @item, url: admin_items_path(@item) do |f| %>
+					<%= render "shared/errors", object: @item %>
+					<div class="col-lg-4">
+						<%= attachment_image_tag @item, :image, id: "item_image_preview", fallback: "no_image.png", height: "200" %>
+						<%=f.attachment_field :image, onchange: "previewFile()" %>
+					</div>
+
+					<div class="col-lg-4">
+						<div class="margin-bottom">
+							<span><%= f.label(:name, "商品名") %></span>
+							<span><%= f.text_field :name %></span>
+						</div>
+
+						<div  class="margin-bottom">
+							<span><%= f.label(:description, "商品説明") %></span>
+							<span><%= f.text_area :description %></span>
+						</div>
+
+						<div class="margin-bottom">
+							<span><%= f.label(:genre, "ジャンル")%></span>
+							<span><%=  f.collection_select :genre_id, @genres, :id, :name %></span>
+						</div>
+
+						<div class="margin-bottom">
+							<span><%= f.label(:price, "価格(税抜)") %></span>
+							<span><%= f.text_field :price %></span>
+						</div>
+					</div>
+
+					<div class="col-lg-4">
+						<%= f.submit '新規登録' %>
+					</div>
+				<% end %>
 			</div>
-
-			<div class="col-lg-4">
-				<div>
-					<%= f.label(:name, "商品名") %>
-					<%= f.text_field :name %>
-				</div>
-
-				<div>
-					<%= f.label(:description, "商品説明") %>
-					<%= f.text_area :description %>
-				</div>
-
-				<div>
-					<%= f.label(:genre, "ジャンル")%>
-
-					<%=  f.collection_select :genre_id, @genres, :id, :name %>
-				</div>
-
-				<div>
-					<%= f.label(:price, "価格") %>
-					<%= f.text_field :price %>
-				</div>
-			</div>
-
-			<div class="col-lg-4">
-				<%= f.submit '新規登録' %>
-			</div>
-			<% end %>
 	</div>
-</div>

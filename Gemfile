@@ -74,3 +74,4 @@ gem "jquery-rails"
 gem 'bootstrap-sass', '~> 3.4.1'
 gem 'enum_help'
 gem 'pry-rails'
+gem 'fall_snow'

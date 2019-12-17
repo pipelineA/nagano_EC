@@ -1,3 +1,20 @@
 // Place all the styles related to the admin::items controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.margin-top{
+	margin-top: 40px;
+}
+
+.margin-bottom{
+	margin-bottom:15px;
+}
+
+.float-right{
+	float:left;
+}
+
+.marker-line{
+	background: linear-gradient(transparent 60%, #66ffcc 60%);
+	font-size:20px
+}
