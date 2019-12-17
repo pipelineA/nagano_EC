@@ -5,15 +5,20 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # before_action :configure_account_update_params, only: [:update]
 
   def new
-    super
     @user = User.new
-    @user.addresses.build
+    @user_address = @user.addresses.build
+    super
   end
 
   # POST /resource
-   # def create
-   #  super
-   # end
+   def create
+    @user = User.new
+    @user_address = @user.addresses.build
+    @user_address.postal_code = params[:user][:addresses_attributes]["0"][:postal_code]
+    @user_address.address = params[:user][:addresses_attributes]["0"][:address]
+    @user_address.valid?
+    super
+   end
 
   # GET /resource/edit
   # def edit
