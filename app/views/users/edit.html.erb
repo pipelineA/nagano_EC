@@ -3,7 +3,7 @@
 	<h2>登録情報編集</h2>
 		<%= form_for(@user) do |f| %>
           <%= render 'shared/errors', object: @user %>
-			<%= f.submit '退会する', name: "unsubsuribe", class:"btn btn-danger", "data-confirm" => "本当に退会しますか？" %>
+			<%= link_to '退会する', user_registration_path, method: :delete, class:"btn btn-danger", data: { confirm: '本当に退会しますか？' }  %>
 			<table class="table">
 				<tbody>
 					<th>氏名</th>

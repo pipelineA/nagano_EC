@@ -18,7 +18,7 @@
 //= require bootstrap-sprockets
 
 
-$(function(){
+$(document).on('turbolinks:load', function(){
     // ".edit-button"をクリックした時
     $('.edit-button').on('click',function(){
 

@@ -21,29 +21,29 @@
 				<th class="genre-table-edit"></th>
 			</tr>
 		</thead>
-		<% @genres.each do |genre| %>
 		<tbody>
-			<%= form_for (genre),url: admin_genre_path(genre) do |f|  %>
+			<% @genres.each do |genre| %>
 				<tr>
-					<td class="genre-table-name">
-						<span class="genre-text"><%= genre.name %></span>
-						<%= f.text_field :name, class: "genre-form none-active" %>
-					</td>
-					<td class="genre-table-activation">
-						<% if genre.is_active == true %>
-							<%= f.submit "無効にする", name: "invalidate", class: "btn-danger" %>
-						<% else %>
-							<%= f.submit "有効にする", name: "validate", class: "btn-primary" %>
-						<% end %>
-					</td>
-					<td class="genre-table-edit">
-						<button class="edit-button btn-primary">編集する</button>
-							<%= f.submit "変更を保存", name: "update_name", class: "submit-button none-active btn-primary" %>
-					</td>
+					<%= form_for genre, url: admin_genre_path(genre) do |f|  %>
+						<td class="genre-table-name">
+							<span class="genre-text"><%= genre.name %></span>
+							<%= f.text_field :name, class: "genre-form none-active" %>
+						</td>
+						<td class="genre-table-activation">
+							<% if genre.is_active == true %>
+								<%= f.submit "無効にする", name: "invalidate", class: "btn-danger" %>
+							<% else %>
+								<%= f.submit "有効にする", name: "validate", class: "btn-primary" %>
+							<% end %>
+						</td>
+						<td class="genre-table-edit">
+							<button class="edit-button btn-primary">編集する</button>
+								<%= f.submit "変更を保存", name: "update_name", class: "submit-button none-active btn-primary" %>
+						</td>
+					<% end %>
 				</tr>
 			<% end %>
 		</tbody>
-		<% end %>
 	</table>
 	<div class="pagination_info"><%= page_entries_info @genres %></div>
 	<%= paginate @genres %>
