@@ -1,39 +1,54 @@
-<div class="container">
-	<div class="row">
-	<h2>登録情報編集</h2>
-		<%= form_for(@user) do |f| %>
-          <%= render 'shared/errors', object: @user %>
-			<%= link_to '退会する', user_registration_path, method: :delete, class:"btn btn-danger", data: { confirm: '本当に退会しますか？' }  %>
-			<table class="table">
-				<tbody>
-					<th>氏名</th>
-					<th><%= f.text_field :family_name, size:10 %><%= f.text_field :first_name, size:10 %></th>
-				</tbody>
-				<tbody>
-					<th>ふりがな</th>
-					<th><%= f.text_field :kana_family_name, size:10 %><%= f.text_field :kana_first_name, size:10 %></th>
-				</tbody>
-					<%= f.fields_for :addresses, @main_address do |af| %>
-
-						<tbody>
-							<th>郵便番号</th>
-							<th><%= af.text_field :postal_code, size:10 %> ハイフンなし</th>
-						</tbody>
-						<tbody>
-							<th>住所</th>
-							<th><%= af.text_field :address, size:30 %></th>
-						</tbody>
-					<% end %>
-				<tbody>
-					<th>電話番号</th>
-					<th><%= f.text_field :phone_number, size:10 %></th>
-				</tbody>
-				<tbody>
-					<th>メールアドレス</th>
-					<th><%= f.email_field :email %></th>
-				</tbody>
-			</table>
-				<%= f.submit '編集内容を保存する',:class =>"btn btn-primary" %>
-			<% end %>
-		</div>
-	</div>
+<section class="slice slice-lg sct-color-1">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 col-md-offset-3">
+                <div class="form-user style-1 rounded has-shadow-1">
+                    <div class="form-header">
+                      <div class="form-header text-center">
+                        <h2 class="form-header-title">登録情報編集</h2><br>
+                      </div>
+                      <%= form_for(@user) do |f| %>
+                        <%= render 'shared/errors', object: @user %>
+                        <%= link_to '退会する', user_registration_path, method: :delete, class:"btn btn-danger unsubscribe-button", data: { confirm: '本当に退会しますか？' }  %>
+                        <table class="table table-bordered">
+                          <tbody>
+                            <tr class="form-group">
+                              <th class="active"><%= f.label :family_name, "名前" %></th>
+                              <td><%= f.text_field :family_name, autofocus: true, size:10, :placeholder => "姓" %>
+                              <%= f.text_field :first_name, autofocus: true, size:10,  :placeholder => "名" %></td>
+                            </tr>
+                            <tr>
+                              <th class="active"><%= f.label :kana_family_name, "フリガナ" %></th>
+                              <td><%= f.text_field :kana_family_name, autofocus: true, size:10, :placeholder => "セイ" %>
+                                  <%= f.text_field :kana_first_name, autofocus: true, size:10, :placeholder => "メイ" %></td>
+                            </tr>
+                            <tr>
+                              <th class="active"><%= f.label :phone_number %></th>
+                              <td><%= f.text_field :phone_number, autofocus: true, :placeholder => "xxx-xxx-xxxx" %></td>
+                            </tr>
+                            <tr>
+                              <th class="active"><%= f.label :email %></th>
+                              <td><%= f.email_field :email, autofocus: true, :placeholder => "naganocake@test.jp" %></td>
+                            </tr>
+                            <%= f.fields_for :addresses, @main_address do |af| %>
+                              <tr>
+                                <th class="active"><%= af.label :postal_code %></th>
+                                <td><%= af.text_field :postal_code, :placeholder => "0001111"%></td>
+                              </tr>
+                              <tr>
+                                <th class="active"><%= af.label :address %></th>
+                                <td><%= af.text_field :address, size:50, :placeholder => "東京都渋谷区神南１丁目１９−１１　パークウェースクエア２４階" %></td>
+                              </tr>
+                            <% end %>
+                          </tbody>
+                        </table>
+                        <div class="actions">
+                          <%= f.submit '編集内容を保存する', class:"btn btn-primary btn-block" %>
+                        </div>
+                      <% end %>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

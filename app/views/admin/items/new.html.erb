@@ -1,28 +1,28 @@
 <% content_for(:html_title) { "商品新規登録" } %>
-	<div class="col-md-10 col-md-offset-1">
+	<div class="col-md-10 col-md-offset-1 admin-item-new">
 		<h3>商品新規登録画面</h3>
 			<div class="margin-top">
 				<%= form_for @item, url: admin_items_path(@item) do |f| %>
 					<%= render "shared/errors", object: @item %>
 					<div class="col-lg-4">
-						<%= attachment_image_tag @item, :image, id: "item_image_preview", fallback: "no_image.png", height: "200" %>
+						<%= attachment_image_tag @item, :image, id: "item_image_preview", fallback: "no_image.png", height: "300" %>
 						<%=f.attachment_field :image, onchange: "previewFile()" %>
 					</div>
 
-					<div class="col-lg-4">
+					<div class="col-lg-5 admin-item-middle">
 						<div class="margin-bottom">
 							<span><%= f.label(:name, "商品名") %></span>
-							<span><%= f.text_field :name %></span>
+							<span><%= f.text_field :name, class: "item-name-form" %></span>
 						</div>
 
 						<div  class="margin-bottom">
-							<span><%= f.label(:description, "商品説明") %></span>
+							<span><%= f.label :description, "商品説明", class: "description-label" %></span>
 							<span><%= f.text_area :description %></span>
 						</div>
 
 						<div class="margin-bottom">
-							<span><%= f.label(:genre, "ジャンル")%></span>
-							<span><%=  f.collection_select :genre_id, @genres, :id, :name %></span>
+							<span><%= f.label(:genre_id, "ジャンル")%></span>
+							<span><%=  f.collection_select :genre_id, @genres, :id, :name, {include_blank: '選択してください'} %></span>
 						</div>
 
 						<div class="margin-bottom">
@@ -36,8 +36,8 @@
 						</div>
 					</div>
 
-					<div class="col-lg-4">
-						<%= f.submit '新規登録' %>
+					<div class="col-lg-3">
+						<%= f.submit '新規登録', class: "btn btn-primary" %>
 					</div>
 				<% end %>
 			</div>

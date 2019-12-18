@@ -21,3 +21,23 @@
 .item-user-search {
 	margin-bottom: -20px;
 }
+
+.admin-item-new {
+	font-size: 16px;
+	input {
+		font-size: 16px;
+	}
+	.item-name-form {
+		margin-left: 15px;
+	}
+	img {
+		border: 1px solid silver;
+	}
+	.description-label {
+		vertical-align: top;
+	}
+	textarea {
+		width: 280px;
+		height: 80px;
+	}
+}

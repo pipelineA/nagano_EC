@@ -37,6 +37,14 @@ class Order < ApplicationRecord
     (billing_amount * (1 + tax_rate)).round()
   end
 
+  def Order.total_amount
+    sum = 0
+    Order.all.each do |order|
+      sum += order.billing_amount
+    end
+    sum
+  end
+
   private
   def check_address_type?
     self.address_type

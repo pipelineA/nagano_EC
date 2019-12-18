@@ -44,7 +44,7 @@ clearfix::after {
 
 .field_with_errors {
   display: inline-block;
-  input {
+  input, textarea {
     border: 1px solid #d9534f;
   }
   label {
@@ -151,4 +151,13 @@ clearfix::after {
   padding-top: 10px;
 }
 
-
+#error_explanation {
+  color: #d9534f;
+  h2 {
+    font-size: 14px;
+  }
+}
+.alert {
+  width: 80%;
+  margin: 0 auto;
+}

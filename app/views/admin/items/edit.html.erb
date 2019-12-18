@@ -1,29 +1,29 @@
 <% content_for(:html_title) { "商品編集" } %>
-	<div class="col-md-10 col-md-offset-1">
+	<div class="col-md-10 col-md-offset-1  admin-item-new">
 		<h3>商品編集画面</h3>
 			<div class="margin-top">
 				<%= form_for @item, url: admin_item_path(@item) do |f| %>
 					<%= render "shared/errors", object: @item %>
 					<div class="col-lg-4">
 						<div>
-							<%= attachment_image_tag @item, :image, id: "item_image_preview", fallback: "no_image.png", height: "200" %>
+							<%= attachment_image_tag @item, :image, id: "item_image_preview", fallback: "no_image.png", height: "300" %>
 							<%=f.attachment_field :image, onchange: "previewFile()" %>
 						</div>
 					</div>
 
-					<div class="col-lg-4">
+					<div class="col-lg-5 admin-item-middle">
 						<div class="margin-bottom">
 							<%= f.label(:name, "商品名") %>
-							<%= f.text_field :name %>
+							<%= f.text_field :name, class: "item-name-form" %>
 						</div>
 
 						<div class="margin-bottom">
-							<%= f.label(:description, "商品説明") %>
+							<%= f.label :description, "商品説明", class: "description-label" %>
 							<%= f.text_area :description %>
 						</div>
 
 						<div class="margin-bottom">
-							<%= f.label(:genre, "ジャンル") %>
+							<%= f.label(:genre_id, "ジャンル") %>
 							<%=  f.collection_select :genre_id, @genres, :id, :name %>
 						</div>
 
@@ -33,13 +33,13 @@
 						</div>
 
 						<div class="margin-bottom">
-							<%= f.label(:genre, "ジャンル") %>
+							<%= f.label(:item_status, "販売ステータス") %>
 							<%= f.select :item_status,[["販売中", "販売中"],["販売停止中","販売停止中"]] %>
 						</div>
 					</div>
 
-					<div class="col-lg-4">
-						<%= f.submit '変更を保存' %>
+					<div class="col-lg-3">
+						<%= f.submit '変更を保存', class: "btn btn-primary" %>
 					</div>
 				<% end %>
 			</div>

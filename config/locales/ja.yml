@@ -28,7 +28,7 @@ ja:
         postal_code: 郵便番号
         address: 住所
       item:
-        genre_id: ジャンルID
+        genre: ジャンル
         name: 商品名
         description: 商品説明
         image: 商品画像
