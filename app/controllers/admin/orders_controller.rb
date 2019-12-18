@@ -1,11 +1,25 @@
 class Admin::OrdersController < AdminController
   def index
     if params[:user_id]
-    @orders = User.find(params[:user_id]).orders.page(params[:page]).per(15).order(created_at: :desc)
+      @order_user = User.find(params[:user_id])
+      @orders = @order_user.orders.page(params[:page]).per(15).order(created_at: :desc)
+    elsif params[:order_status]
+      @status = params[:order_status]
+      @orders = Order.where(order_status: @status).page(params[:page]).per(15).order(created_at: :desc)
+    elsif params[:making_status]
+      @status = params[:making_status]
+      case @status
+      when "製作待ち"
+        number = 0
+      when "製作中"
+        number = 1
+      when "製作完了"
+        number = 2
+      end
+      @orders = Order.joins(:order_items).where(['order_items.making_status = ?', "#{number}"]).distinct.page(params[:page]).per(15).order(created_at: :desc)
     else
-    @orders = Order.page(params[:page]).per(15).order(created_at: :desc)
-  end
-
+      @orders = Order.page(params[:page]).per(15).order(created_at: :desc)
+    end
   end
 
   def show

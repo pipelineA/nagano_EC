@@ -2,12 +2,26 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+.admin-page {
+  margin-bottom: 20px;
+}
 .user-index-table {
   margin-top: 25px;
 }
 .pagination {
   margin-top: 10px!important;
   font-size: 18px;
+}
+.pagination_info {
+  font-size: 16px;
+}
+
+.user_search_button {
+  background-color: #008CFF!important;
+  font-size: 18px;
+  border-radius: 5px;
+  padding: 5px;
+  margin-left: 10px;
 }
 
 .admin-user-show {

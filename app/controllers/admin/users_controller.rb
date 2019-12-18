@@ -21,7 +21,10 @@ class Admin::UsersController < AdminController
   def update
     @user = User.find(params[:id])
       if params[:unsubscribe]
-        @user.update(is_unsubscribe: true)
+        if @user.is_unsubscribe == "有効"
+          @user.leave
+          flash[:success] = "ID#{@user.id}の会員を退会済にしました"
+        end
         redirect_to admin_user_path(@user)
       else
         if @user.update(user_params)
@@ -31,6 +34,7 @@ class Admin::UsersController < AdminController
           @user_address = @user.addresses.find_by(is_main_address: true)
           @user_address.address = params[:user][:addresses_attributes]["0"][:address]
           @user_address.postal_code = params[:user][:addresses_attributes]["0"][:postal_code]
+          @user_address.valid?
           render :edit
         end
       end

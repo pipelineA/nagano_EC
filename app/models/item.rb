@@ -9,6 +9,7 @@ class Item < ApplicationRecord
   validates :description, presence: true, length: { maximum: 400 }
   validates :image, presence: true
   validates :price, presence: true, numericality: true
+  validates :item_status, presence: true
 
 	def tax_include_price
 		(price * (1 + 0.1)).round()

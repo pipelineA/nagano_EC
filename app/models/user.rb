@@ -15,4 +15,17 @@ class User < ApplicationRecord
   validates :phone_number, presence: true, format: { with: /\A[0-9]+-[0-9]+-[0-9]+\z/ }
   validates :email, presence: true
 
+   def leave
+    new_email = Time.current.to_i.to_s + '_' + self.email.to_s
+    self.update(email: new_email, is_unsubscribe: true)
+  end
+
+  def unsubscribed?
+    if self.is_unsubscribe == "退会済"
+      true
+    else
+      false
+    end
+  end
+
 end

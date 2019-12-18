@@ -1,13 +1,13 @@
 <% content_for(:html_title) { "会員一覧" } %>
 
-<div class="col-md-10 col-md-offset-1">
+<div class="col-md-10 col-md-offset-1 admin-page">
   <h1 class="heading">会員一覧画面</h1>
   <% if @search %>
     <p>「<%= @search %>」の検索結果</p>
   <% end %>
   <%= form_tag(admin_users_path, method: :get, class: "user-search", enforce_utf8: false) do %>
-    <%= text_field_tag :search %>
-    <%= submit_tag '会員を検索', :name => nil %>
+    <%= text_field_tag :search, params[:search] %>
+    <%= submit_tag '会員を検索', :name => nil, class: "btn btn-primary user_search_button" %>
   <% end %>
   <table class="table table-hover user-index-table admin-table">
     <thead>

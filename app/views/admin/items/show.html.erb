@@ -1,37 +1,42 @@
 <% content_for(:html_title) { "商品詳細" } %>
-	<h3>商品詳細画面</h3>
-		<div class="col-lg-4">
-			<%= attachment_image_tag @item, :image, :fill, 300, 300 %>
-		</div>
-
-		<div class="col-lg-4">
-				<div class="line-height:30px;">
-					<%=  "商品名:" %>
-					<%= @item.name %>
+	<div class="col-md-10 col-md-offset-1">
+		<h3>商品詳細画面</h3>
+			<div class="margin-top">
+				<div class="col-lg-4">
+					<%= attachment_image_tag @item, :image, :fill, 300, 300 %>
 				</div>
 
-				<div>
-					<%= "商品説明:" %>
-					<%= @item.description %>
+				<div class="col-lg-4">
+						<div class="margin-bottom">
+							<span class="marker-line"><%=  "商品名:" %></span>
+							<span><%= @item.name %></span>
+						</div>
+
+						<div class="margin-bottom">
+							<span class="marker-line"><%= "商品説明:" %></span>
+							<span class=><%= @item.description %></span>
+						</div>
+
+						<div class="margin-bottom">
+							<span class="marker-line"><%= "ジャンル:"%></span>
+							<span><%= @item.genre.name %></span>
+						</div>
+
+						<div class="margin-bottom">
+							<span class="marker-line"><%= "価格(税抜価格):" %></span>
+							<span>
+								<%= @item.tax_include_price.to_s(:delimited) %> (<%= @item.price.to_s(:delimited) %>) 円
+							</span>
+						</div>
 				</div>
 
-				<div>
-					<%= "ジャンル:"%>
-					<%= @item.genre.name %>
+				<div class="col-lg-2">
+					<button type="button" class="btn btn-outline-secondary pull-right">
+						<%= link_to "編集画面", edit_admin_item_path(@item) %>
+					</button>
 				</div>
-
-				<div>
-					<%= "価格(税抜き価格):" %>
-					<%= @item.price %>
-				</div>
-		</div>
-
-		<div class="col-lg-2">
-			<button type="button" class="btn btn-outline-secondary pull-right">
-				<%= link_to "編集画面", edit_admin_item_path(@item) %>
-			</button>
-		</div>
-
+			</div>
+	</div>
 
 
 
