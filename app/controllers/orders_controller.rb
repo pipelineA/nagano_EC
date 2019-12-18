@@ -21,10 +21,12 @@ class OrdersController < ApplicationController
       @order.ordered_postal_code = main_address.postal_code
       @order.ordered_receiver_name = main_address.receiver_name
     elsif params[:order][:address_type] == "address2"
-      selected_address = Address.find(params[:order][:address_id])
-      @order.ordered_address = selected_address.address
-      @order.ordered_postal_code = selected_address.postal_code
-      @order.ordered_receiver_name = selected_address.receiver_name
+      if params[:order][:address_id]
+        selected_address = Address.find(params[:order][:address_id])
+        @order.ordered_address = selected_address.address
+        @order.ordered_postal_code = selected_address.postal_code
+        @order.ordered_receiver_name = selected_address.receiver_name
+      end
     elsif params[:order][:address_type] == "address3"
     end
     unless @order.valid?

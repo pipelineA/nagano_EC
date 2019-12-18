@@ -26,8 +26,13 @@
 						</div>
 
 						<div class="margin-bottom">
-							<span><%= f.label(:price, "価格(税抜)") %></span>
-							<span><%= f.text_field :price %></span>
+							<span><%= f.label(:price, "税抜価格") %></span>
+							<span><%= f.text_field :price %>円</span>
+						</div>
+
+						<div>
+							<span><%= f.label(:item_status, "販売ステータス") %></span>
+							<span><%= f.select :item_status, [["販売中", "販売中"], ["販売停止中", "販売停止中"]], {include_blank: '選択してください'} %></span>
 						</div>
 					</div>
 

@@ -1,6 +1,20 @@
 <% content_for(:html_title) { "注文一覧" } %>
 	<div class="col-md-10 col-md-offset-1">
 		<h1 class="heading">注文一覧画面</h1>
+		<% if @order_user %>
+	    <p>「<%= "#{@order_user.family_name} #{@order_user.first_name}さん"  %>」の注文一覧</p>
+		<% elsif @status %>
+	    <p>「<%= @status %>」の注文一覧</p>
+	  <% end %>
+		<div class="order-search-tags">
+			<%= link_to "入金待ち", admin_orders_path(order_status: "入金待ち") %>
+			<%= link_to "発送待ち", admin_orders_path(order_status: "発送待ち") %>
+			<%= link_to "発送済み", admin_orders_path(order_status: "発送済み") %>
+			<span>|</span>
+			<%= link_to "製作待ち", admin_orders_path(making_status: "製作待ち") %>
+			<%= link_to "製作中", admin_orders_path(making_status: "製作中") %>
+			<%= link_to "製作完了", admin_orders_path(making_status: "製作完了") %>
+		</div>
 		<table class="table table-hover user-index-table admin-table">
 			<thead>
 				<tr>
@@ -15,7 +29,7 @@
 			<tbody>
 				<tr>
 					<td><%= link_to order.created_at.strftime("%Y-%m-%d %H:%M:%S"), admin_order_path(order.id) %></td>
-					<td><%= "#{order.user.family_name} #{order.user.first_name}" %></td>
+					<td><%= link_to "#{order.user.family_name} #{order.user.first_name}", admin_user_path(order.user) %></td>
 					<td><%= order.count %></td>
 					<td><%= order.order_status %></td>
 				</tr>

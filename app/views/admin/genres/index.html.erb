@@ -23,23 +23,25 @@
 		<tbody>
 			<% @genres.each do |genre| %>
 				<tr>
-					<%= form_for genre, url: admin_genre_path(genre) do |f|  %>
-						<td class="genre-table-name">
+					<td class="genre-table-name">
+						<%= form_for genre, url: admin_genre_path(genre) do |f| %>
 							<span class="genre-text"><%= genre.name %></span>
 							<%= f.text_field :name, class: "genre-form none-active" %>
-						</td>
-						<td class="genre-table-activation">
+						<% end %>
+					</td>
+					<td class="genre-table-activation">
+						<%= form_for genre, url: admin_genre_path(genre) do |f| %>
 							<% if genre.is_active == true %>
 								<%= f.submit "無効にする", name: "invalidate", class: "btn-danger" %>
 							<% else %>
 								<%= f.submit "有効にする", name: "validate", class: "btn-primary" %>
 							<% end %>
-						</td>
-						<td class="genre-table-edit">
-							<button class="edit-button btn-primary">編集する</button>
-								<%= f.submit "変更を保存", name: "update_name", class: "submit-button none-active btn-primary" %>
-						</td>
-					<% end %>
+						<% end %>
+					</td>
+					<td class="genre-table-edit">
+						<button class="edit-button btn-primary">編集する</button>
+						<input type="submit" name="update_name" value="変更を保存" class="submit-button none-active btn-primary" data-disable-with="変更を保存" form="edit_genre_<%= genre.id %>">
+					</td>
 				</tr>
 			<% end %>
 		</tbody>

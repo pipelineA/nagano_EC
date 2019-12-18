@@ -1,6 +1,16 @@
 class Admin::ItemsController < AdminController
   def index
-    @items = Item.page(params[:page]).per(15)
+    if params[:search]
+      @search = params[:search]
+      if genre = Genre.find_by(name: @search)
+        genre_id = genre.id
+      else
+        genre_id = ""
+      end
+      @items = Item.where(['name LIKE ? OR description LIKE ? OR price LIKE ? OR genre_id = ?', "%#{@search}%", "%#{@search}%", "%#{@search}%", "#{genre_id}"]).page(params[:page]).per(15)
+    else
+      @items = Item.page(params[:page]).per(15)
+    end
   end
 
   def new

@@ -5,7 +5,7 @@ class Order < ApplicationRecord
   attr_accessor :address_type
   attr_accessor :address_id
   validates :payment_method, presence: true
-  validates :address_type, presence: true
+  # validates :address_type, presence: true
   validates :ordered_postal_code, format: { with: /\A[0-9]+\z/ }, length: { is: 7 }, if: :check_address_type?
   validates :ordered_address, presence: true, if: :check_address_type?
   validates :ordered_receiver_name, presence: true, if: :check_address_type?

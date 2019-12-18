@@ -20,7 +20,10 @@ class Admin::UsersController < AdminController
   def update
     @user = User.find(params[:id])
       if params[:unsubscribe]
-        @user.update(is_unsubscribe: true)
+        if @user.is_unsubscribe == "有効"
+          @user.leave
+          flash[:success] = "ID#{@user.id}の会員を退会済にしました"
+        end
         redirect_to admin_user_path(@user)
       else
         if @user.update(user_params)

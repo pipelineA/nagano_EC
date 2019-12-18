@@ -36,7 +36,7 @@
       </tr>
     </table>
     <div class="admin-user-buttons">
-      <%= f.submit '退会済にする', name: "unsubscribe", class: "btn btn-danger unsubscribe-button", "data-confirm" => "本当に退会済にしますか？" %>
+      <%= f.submit '退会済にする', name: "unsubscribe", class: "btn btn-danger unsubscribe-button", "data-confirm" => "本当に退会済にしますか？", disabled: @user.unsubscribed? %>
       <%= f.submit '変更を保存する', class: "btn btn-primary" %>
     </div>
   <% end %>
