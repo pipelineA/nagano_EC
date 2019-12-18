@@ -1,7 +1,8 @@
 <div class="container">
-	<div class="row">
+	<div class="row order-confirm-page">
+		<h1 class="heading">注文情報確認</h1>
 		<div class="col-xs-9">
-			<table class="table col-xs-9">
+			<table class="table table-bordered">
 				<tbody>
 					<tr>
 						<th class="active">商品名</th>
@@ -27,7 +28,7 @@
 			</table>
 		</div>
 		<div class="col-xs-3">
-			<table class="table">
+			<table class="table table-bordered">
 				<tbody>
 					<tr>
 						<th class="active">商品合計</th>
@@ -46,31 +47,39 @@
 				</tbody>
 			</table>
 		</div>
-	    <strong>支払方法</strong>
-	       <%= @order.payment_method %><br>
+		<div class="col-xs-12">
+			<li class="payment-method-confirm">
+		    <strong>支払方法</strong><%= @order.payment_method %>
+			</li>
+			<li class="shipped-address">
+		    <strong>お届け先</strong>
+	       	<p>
+	       		〒<%= @order.ordered_postal_code.insert(3, "-") %>  <%= @order.ordered_address %><br>
+	          <%= @order.ordered_receiver_name %>
+	        </p>
+			</li>
 
-	    <strong>お届け先</strong><br>
-          〒<%= @order.ordered_postal_code.insert(3, "-") %><br>
-          <%= @order.ordered_address %><br>
-          <%= @order.ordered_receiver_name %><br>
-
-		<%= form_for @order, url: orders_path do |f| %>
-			<%= f.hidden_field :ordered_address %>
-			<%= f.hidden_field :ordered_postal_code %>
-			<%= f.hidden_field :ordered_receiver_name %>
-			<%= f.hidden_field :payment_method %>
-			<%= f.hidden_field :billing_amount, :value => total.to_i + @order.fee %>
-			<%= f.hidden_field :address_type %>
-			<% @cart_items.each do |item| %>
-				<%= f.fields_for :order_items, @order.order_items.build do |i| %>
-					<%= i.hidden_field :item_id, :value => item.item_id %>
-					<%= i.hidden_field :user_id, :value => current_user.id %>
-					<%= i.hidden_field :item_count, :value => item.item_count %>
-					<%= i.hidden_field :ordered_price, :value => item.item.price %>
-					<%= i.hidden_field :ordered_item_name, :value => item.item.name %>
+			<%= form_for @order, url: orders_path do |f| %>
+				<%= f.hidden_field :ordered_address %>
+				<%= f.hidden_field :ordered_postal_code %>
+				<%= f.hidden_field :ordered_receiver_name %>
+				<%= f.hidden_field :payment_method %>
+				<%= f.hidden_field :billing_amount, :value => total.to_i + @order.fee %>
+				<%= f.hidden_field :address_type %>
+				<% @cart_items.each do |item| %>
+					<%= f.fields_for :order_items, @order.order_items.build do |i| %>
+						<%= i.hidden_field :item_id, :value => item.item_id %>
+						<%= i.hidden_field :user_id, :value => current_user.id %>
+						<%= i.hidden_field :item_count, :value => item.item_count %>
+						<%= i.hidden_field :ordered_price, :value => item.item.price %>
+						<%= i.hidden_field :ordered_item_name, :value => item.item.name %>
+					<% end %>
 				<% end %>
-			<% end %>
-	        <%= f.submit "購入を確定する" ,class:"btn btn-primary btn-xl" %>
-	    <% end %>
+					<div class="submit-btn-box">
+		        <%= f.submit "購入を確定する" ,class:"btn btn-primary btn-xl" %>
+					</div>
+		    <% end %>
+		</div>
+
 	</div>
 </div>

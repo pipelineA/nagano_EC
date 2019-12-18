@@ -6,23 +6,27 @@
 				<%= link_to root_path(genre_id: genre.id) do |name| %><%= genre.name %><% end %><br>
 			<% end %>
 		</div>
-		<div class="col-md-3 item_image">
-				<%= attachment_image_tag @item,:image, size: "250x250" %>
-		</div>
-		<div class="col-md-6">
-				<h1><%= @item.name %></h1>
-				<h4><%= @item.description %></h4>
-				<h2>¥<%= @item.tax_include_price.to_s(:delimited) %><span class="h5"> (税込)</span></h2>
-		<%= form_for [@cart_item], url: @url do |cart| %>
-			<div class="col-xs-4">
-			<%= cart.select :item_count, (1..10), {include_blank: '個数選択', selected: ""},{class:"form-control input-lg"} %>
+		<div class="col-md-9">
+			<div class="col-md-5 item_image">
+					<%= attachment_image_tag @item,:image, size: "250x250" %>
 			</div>
-			<%= cart.hidden_field :item_id, :value => @item.id %>
-			<%= cart.submit 'カートに追加する',name:"cartupdate", class:"btn btn-primary btn-lg" %>
-		<% end %>
+			<div class="col-md-7">
+					<h1><%= @item.name %></h1>
+					<h4><%= @item.description %></h4>
+					<h2>¥<%= @item.tax_include_price.to_s(:delimited) %><span class="h5"> (税込)</span></h2>
+			<%= form_for [@cart_item], url: @url do |cart| %>
+				<div class="col-xs-4">
+				<%= cart.select :item_count, (1..10), {include_blank: '個数選択', selected: ""},{class:"form-control input-lg", disabled: @item_disabled} %>
+				</div>
+				<%= cart.hidden_field :item_id, :value => @item.id %>
+				<%= cart.submit 'カートに追加する',name:"cartupdate", class:"btn btn-primary btn-lg" %>
+			<% end %>
+			</div>
+			<div class="col-md-12">
+				<% if @item.item_status == "販売停止中" %>
+					<p class="not_on_sale">申し訳ございません。この商品はただいま品切れ中です。</p>
+				<% end %>
+			</div>
 		</div>
-		<% if @item.item_status == "販売停止中" %>
-			<p class="not_on_sale">申し訳ございません。この商品はただいま品切れ中です。</p>
-		<% end %>
 	</div>
 </div>

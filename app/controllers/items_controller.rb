@@ -12,5 +12,11 @@ class ItemsController < ApplicationController
   	@cart_item = CartItem.new
   	@url = carts_path
     end
+
+    if @item.item_status == "販売停止中"
+      @item_disabled = true
+    else
+      @item_disabled = false
+    end
   end
 end

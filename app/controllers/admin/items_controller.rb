@@ -42,7 +42,7 @@ class Admin::ItemsController < AdminController
     @item = Item.find(params[:id])
     if @item.update(item_params)
     flash[:success] = "商品情報が変更されました"
-      redirect_to admin_items_path
+      redirect_to admin_item_path @item
     else
       @genres = Genre.all
       render :edit

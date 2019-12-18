@@ -82,3 +82,31 @@
     }
   }
 }
+
+.order-confirm-page {
+  font-size: 16px;
+  .btn-primary {
+    display: inline-block;
+    margin: 0 auto;
+    font-size: 16px!important;
+    padding-right: 20px!important;
+    padding-left: 20px!important;
+  }
+  strong {
+    margin-right: 10px;
+  }
+  .shipped-address {
+    p {
+      display: inline-block;
+    }
+    strong {
+      vertical-align: top;
+    }
+  }
+  .payment-method-confirm {
+    margin-bottom: 10px;
+    strong {
+      margin-right: 14px;
+    }
+  }
+}
