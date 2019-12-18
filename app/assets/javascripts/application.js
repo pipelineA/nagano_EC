@@ -39,6 +39,22 @@ $(document).on('turbolinks:load', function(){
     	$parent.find('.genre-form').removeClass('none-active').focus();
     	return false;
     });
+
+    // 注文情報入力画面でのフォームの制御
+    $('#order_address_type_address1').on('click', function() {
+      $('.new-address').prop("disabled", true);
+      $('#address-list').prop("disabled", true);
+    })
+    $('#order_address_type_address2').on('click', function() {
+      $('.new-address').prop("disabled", true);
+      $('#address-list').prop("disabled", false);
+    })
+    $('#order_address_type_address3').on('click', function() {
+      $('.new-address').prop("disabled", false);
+      $('.new-address-posatal-code').focus();
+      $('#address-list').prop("disabled", true);
+    })
+
 });
 
 // 商品新規登録時に、画像を選択した段階でプレビューが表示されるようにする

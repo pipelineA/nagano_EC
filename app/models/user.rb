@@ -17,7 +17,15 @@ class User < ApplicationRecord
 
    def leave
     new_email = Time.current.to_i.to_s + '_' + self.email.to_s
-    self.update(email:  new_email,is_unsubscribe: true)
+    self.update(email: new_email, is_unsubscribe: true)
+  end
+
+  def unsubscribed?
+    if self.is_unsubscribe == "退会済"
+      true
+    else
+      false
+    end
   end
 
 end

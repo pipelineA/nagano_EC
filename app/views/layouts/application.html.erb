@@ -14,14 +14,19 @@
   <body>
     <header class="navbar navbar-inverse">
        <div class="container-fluid">
-          <h3 class="col-md-6"><%= link_to"LOGO", root_path %></h3>
+          <h3 class="col-md-6"><%= link_to "LOGO", root_path %></h3>
           <ul class="col-xs-6 nav navbar-nav navbar-right">
             <% if user_signed_in? %>
               <li><%= link_to current_user.family_name + " " + current_user.first_name, user_path(current_user.id) %></li>
               <li><%= link_to "about", about_path %></li>
               <li><%= link_to "注文履歴一覧", order_histories_path %></li>
               <li><%= link_to "ログアウト", destroy_user_session_path, method: :delete %></li>
-              <li><%= link_to "カート", carts_path, class:"btn btn-primary btn-md fas fa-shopping-cart" %></li>
+              <li><%= link_to carts_path, class:"btn btn-primary btn-md fas fa-shopping-cart" do |c| %>カート
+                      <% if current_user.cart_items.present? %>
+                      <span class="cart-count"><%= current_user.cart_items.count %></span>
+                      <% end %>
+                    <% end %>
+              </li>
 
             <% else %>
              <li><%= link_to "新規登録", new_user_registration_path %></li>
@@ -34,7 +39,6 @@
               </form>
             </div>
           </ul>
-        
 
        </diV>
     </header>
