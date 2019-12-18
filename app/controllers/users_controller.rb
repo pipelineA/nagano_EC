@@ -20,6 +20,7 @@ class UsersController < ApplicationController
         @main_address = current_user.addresses.find_by(is_main_address: true)
         @main_address.address = params[:user][:addresses_attributes]["0"][:address]
         @main_address.postal_code = params[:user][:addresses_attributes]["0"][:postal_code]
+        @main_address.valid?
         render :edit
       end
   end

@@ -23,7 +23,7 @@
               <li><%= link_to "ログアウト", destroy_user_session_path, method: :delete %></li>
               <li><%= link_to carts_path, class:"btn btn-primary btn-md fas fa-shopping-cart" do |c| %>カート
                       <% if current_user.cart_items.present? %>
-                      <span class="cart-count"><%= current_user.cart_items.count %></span>
+                      <span class="cart-count"><%= current_user.cart_item_count %></span>
                       <% end %>
                     <% end %>
               </li>

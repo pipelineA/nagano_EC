@@ -1,3 +1,39 @@
 // Place all the styles related to the users controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.user-my-page {
+  h3 {
+    font-size: 20px;
+  }
+  .heading {
+    margin-bottom: 10px;
+  }
+  a {
+    font-size: 14px;
+  }
+  table {
+    margin: 15px 0 20px;
+    width: 80%;
+    font-size: 16px;
+    tbody {
+      th:nth-child(2) {
+        width: 78%;
+        font-weight: normal;
+      }
+    }
+  }
+  .btn {
+    padding-top: 5px!important;
+    padding-bottom: 5px!important;
+  }
+  .edit-user-button {
+    margin-left: 20px;
+    margin-right: 10px;
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+  .my-page-address-btn {
+    margin-left: 21px;
+  }
+}

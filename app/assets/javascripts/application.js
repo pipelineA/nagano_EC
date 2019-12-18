@@ -44,16 +44,51 @@ $(document).on('turbolinks:load', function(){
     $('#order_address_type_address1').on('click', function() {
       $('.new-address').prop("disabled", true);
       $('#address-list').prop("disabled", true);
-    })
+      $('.address1-li').removeClass('hidden-area');
+      $('.address2-li, .address3-li').addClass('hidden-area');
+    });
     $('#order_address_type_address2').on('click', function() {
       $('.new-address').prop("disabled", true);
       $('#address-list').prop("disabled", false);
-    })
+      $('.address2-li').removeClass('hidden-area');
+      $('.address1-li, .address3-li').addClass('hidden-area');
+    });
     $('#order_address_type_address3').on('click', function() {
       $('.new-address').prop("disabled", false);
       $('.new-address-posatal-code').focus();
       $('#address-list').prop("disabled", true);
-    })
+      $('.address3-li').removeClass('hidden-area');
+      $('.address1-li, .address2-li').addClass('hidden-area');
+    });
+
+    if ($('#order_address_type_address1').prop("checked")) {
+      $('.address1-li').removeClass('hidden-area');
+    }
+    if ($('#order_address_type_address2').prop("checked")) {
+      $('#address-list').prop("disabled", false);
+      $('.address2-li').removeClass('hidden-area');
+    }
+    if ($('#order_address_type_address3').prop("checked")) {
+      $('.new-address').prop("disabled", false);
+      $('.new-address-posatal-code').focus();
+      $('.address3-li').removeClass('hidden-area');
+    }
+
+    $('.credit-radio').on('click', function() {
+      $('.bank').addClass('hidden-area');
+      $('.credit').removeClass('hidden-area');
+    });
+    $('.bank-radio').on('click', function() {
+      $('.credit').addClass('hidden-area');
+      $('.bank').removeClass('hidden-area');
+    });
+
+    if ($('.credit-radio').prop("checked")) {
+      $('.credit').removeClass('hidden-area');
+    }
+    if ($('.bank-radio').prop("checked")) {
+      $('.bank').removeClass('hidden-area');
+    }
 
 });
 
