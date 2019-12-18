@@ -1,23 +1,23 @@
 <div class="container">
-	<div class="row">
-		<h2>注文履歴一覧</h2>
-		<table class="table">
+	<div class="row order-histories">
+		<h1 class="heading">注文履歴一覧</h1>
+		<table class="table table-bordered">
 			<tbody>
 				<tr>
 					<th class="active">注文日</th>
-					<th class="active">配送先</th>
-					<th class="active">注文商品</th>
+					<th class="active order-history-table-address">配送先</th>
+					<th class="active order-history-table-item">注文商品</th>
 					<th class="active">支払い金額</th>
 					<th class="active">注文詳細</th>
 				</tr>
 				<% @orders.each do |order| %>
 					<tr>
 						<td><%= order.created_at.strftime('%Y/%m/%d') %></td>
-						<td>〒<%= order.ordered_postal_code.insert(3, "-") %><br>
+						<td class="order-history-table-address">〒<%= order.ordered_postal_code.insert(3, "-") %><br>
 							<%= order.ordered_address %><br>
 							<%= order.ordered_receiver_name %></td>
-						<td><% order.order_items.each do |item| %>
-							<%= item.ordered_item_name %><br>
+						<td class="order-history-table-item"><% order.order_items.each do |item| %>
+							<p class="order-history-items"><%= item.ordered_item_name %></p>
 							<% end %>
 						</td>
 						<td><%= order.tax_include_billing_amount.to_s(:delimited) %>円</td>
@@ -26,5 +26,7 @@
 				<% end %>
 			</tbody>
 		</table>
+		<%= paginate @orders %>
+		<%= page_entries_info @orders, entry_name: "注文" %>
 	</div>
 </div>

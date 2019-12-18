@@ -27,7 +27,7 @@
   }
 }
 .hidden-area {
-  color: #ccc;
+  color: #aaa;
 }
 .order-new-submit {
   font-size: 18px!important;
@@ -45,4 +45,27 @@
 }
 #address-list {
   width: 600px;
+}
+
+.order-histories {
+  font-size: 16px;
+  a {
+    font-size: 16px;
+  }
+  .order-history-items {
+    margin: 0;
+    font-size: 14px;
+  }
+  .order-history-table-address {
+    width: 38%;
+  }
+  .order-history-table-item {
+    width: 24%;
+  }
+}
+
+.order-history-items-page {
+  table {
+    font-size: 16px;
+  }
 }
