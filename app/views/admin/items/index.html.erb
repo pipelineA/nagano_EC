@@ -1,9 +1,12 @@
 <% content_for(:html_title) { "商品一覧" } %>
 <div class="col-md-10 col-md-offset-1">
 	<h1 class="heading">商品一覧画面</h1>
-	<button type="button" class="btn btn-outline-secondary pull-right">
-		<%= link_to"新規登録", new_admin_item_path %>
-	</button>
+		<div class="pull-right">
+			<div class="pulse">				
+				<%= link_to"new", new_admin_item_path %>
+			</div>
+		</div>
+
 	<table class="table table-hover user-index-table admin-table">
 		<thead>
 			<tr>
@@ -29,3 +32,4 @@
 	<%= paginate @items %>
 	 <%= page_entries_info @items, entry_name: "商品" %>
 </div>
+
