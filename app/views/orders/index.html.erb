@@ -21,7 +21,7 @@
 							<% end %>
 						</td>
 						<td><%= order.tax_include_billing_amount.to_s(:delimited) %>円</td>
-						<td><%= link_to "表示する", order_histories_show_path(order), class:"btn btn-primary"%></td>
+						<td class="order-history-table-link"><%= link_to "表示する", order_histories_show_path(order), class:"btn btn-primary"%></td>
 					</tr>
 				<% end %>
 			</tbody>

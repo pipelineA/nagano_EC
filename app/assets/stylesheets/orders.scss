@@ -63,9 +63,22 @@
     width: 24%;
   }
 }
+.order-history-table-link {
+  text-align: center;
+  a {
+    margin-top: 14px;
+    display: inline-block;
+  }
+}
 
 .order-history-items-page {
   table {
     font-size: 16px;
+  }
+  .order-history-show-table {
+    th {
+      width: 25%;
+      padding-left: 10px;
+    }
   }
 }
