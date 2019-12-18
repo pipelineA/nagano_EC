@@ -1,20 +1,24 @@
 <div class="container">
 	<div class="row">
-		<div class="col-md-4">
+		<div class="col-md-3">
 			<h2>ジャンル検索</h2>
 			<% @genres.each do |genre| %>
 				<%= link_to root_path(genre_id: genre.id) do |name| %><%= genre.name %><% end %><br>
 			<% end %>
 		</div>
-		<div class="col-md-8">
-				<%= attachment_image_tag @item,:image, size: "200x200" %>
+		<div class="col-md-3 item_image">
+				<%= attachment_image_tag @item,:image, size: "250x250" %>
+		</div>
+		<div class="col-md-6">
 				<h1><%= @item.name %></h1>
-				<h3><%= @item.description %></h3>
-				<h3><%= @item.tax_include_price.to_s(:delimited) %>円(税込)</h3>
+				<h4><%= @item.description %></h4>
+				<h2>¥<%= @item.tax_include_price.to_s(:delimited) %><span class="h5"> (税込)</span></h2>
 		<%= form_for [@cart_item], url: @url do |cart| %>
-			<%= cart.select :item_count, (1..10), {include_blank: '個数選択', selected: ""} %>
+			<div class="col-xs-4">
+			<%= cart.select :item_count, (1..10), {include_blank: '個数選択', selected: ""},{class:"form-control input-lg"} %>
+			</div>
 			<%= cart.hidden_field :item_id, :value => @item.id %>
-			<%= cart.submit 'カート に追加する',name:"cartupdate", class:"btn btn-primary" %>
+			<%= cart.submit 'カートに追加する',name:"cartupdate", class:"btn btn-primary btn-lg" %>
 		<% end %>
 		</div>
 	</div>
