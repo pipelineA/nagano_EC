@@ -2,7 +2,47 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-
-input[type="text"]:disabled {
-  background: #ccc;
+.order-new {
+  input[type="text"]:disabled {
+    background: #ccc;
+  }
+  #address-list:disabled {
+    background: #ccc;
+  }
+  h2 {
+    font-size: 20px;
+  }
+  li {
+    font-size: 18px;
+  }
+  span {
+    margin-left: 10px;
+  }
+  .address-li {
+    margin-left: 25px;
+    margin-bottom: 20px;
+  }
+  .address-li-top {
+    margin-bottom: 10px;
+  }
+}
+.hidden-area {
+  color: #ccc;
+}
+.order-new-submit {
+  font-size: 18px!important;
+}
+.submit-btn-box {
+  width: 100%;
+  text-align: center;
+  margin-bottom: 20px;
+}
+.new-address {
+  margin-left: 51px;
+}
+.new-address-posatal-code {
+  margin-left: 15px;
+}
+#address-list {
+  width: 600px;
 }
