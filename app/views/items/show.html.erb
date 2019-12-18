@@ -21,5 +21,8 @@
 			<%= cart.submit 'カートに追加する',name:"cartupdate", class:"btn btn-primary btn-lg" %>
 		<% end %>
 		</div>
+		<% if @item.item_status == "販売停止中" %>
+			<p class="not_on_sale">申し訳ございません。この商品はただいま品切れ中です。</p>
+		<% end %>
 	</div>
 </div>
