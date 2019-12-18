@@ -1,68 +1,63 @@
 <div class="container">
 	<div class="row">
-		<div class="col-xs-9">
-			<h3>購入情報</h3>
+		<div class="col-xs-10 col-xs-offset-1 order-new">
+			<h1 class="heading">購入情報</h1>
 			<%= form_with(model: @order, local: true, url: orders_confirm_path) do |f| %>
 				<%= render 'shared/errors', object: @order %>
 
-				<strong>支払い方法</strong><br>
-			  <%= f.radio_button(:payment_method, :クレジットカード) %>
-        <%= f.label(:payment_method, "クレジットカード", value: "クレジットカード") %><br>
-			  <%= f.radio_button(:payment_method, :銀行振込) %>
-			  <%= f.label(:payment_method, "銀行振込", value: "銀行振込") %><br>
+				<h2>支払い方法</h2>
+				<ul class="payment-method-box">
+					<li class="hidden-area credit">
+					  <%= f.radio_button(:payment_method, :クレジットカード, class: "credit-radio") %>
+		        <%= f.label(:payment_method, "クレジットカード", value: "クレジットカード") %>
+	        </li>
+	        <li class="hidden-area bank">
+					  <%= f.radio_button(:payment_method, :銀行振込, class: "bank-radio") %>
+					  <%= f.label(:payment_method, "銀行振込", value: "銀行振込") %>
+					</li>
+				 </ul>
 
-			  <strong>お届け先</strong><br>
-	      <%= f.radio_button(:address_type, :address1, checked: "checked") %>
-	      <%= f.label(:address_type, "ご自身の住所", value: "address1") %><br>
+			  <h2>お届け先</h2>
+			  <ul>
+			  	<li class="hidden-area address1-li">
+			      <%= f.radio_button(:address_type, :address1, checked: "checked") %>
+			      <%= f.label(:address_type, "ご自身の住所", value: "address1") %>
+			    </li>
+			    <li class="hidden-area address-li address1-li">
+				    〒<%= @main_address.postal_code.insert(3, "-") %>
+				    <%= @main_address.address %><br>
+				    <%= @main_address.receiver_name %>
+			    </li>
 
-		    〒<%= @main_address.postal_code.insert(3, "-") %><br>
-		    <%= @main_address.address %><br>
-		    <%= @main_address.receiver_name %><br>
+			    <li class="hidden-area address2-li">
+			      <%= f.radio_button(:address_type, :address2) %>
+			      <%= f.label(:address_type, "登録済住所から選択", value: "address2") %>
+			    </li>
+			    <li class="address-li  hidden-area address2-li">
+		      	<%= f.collection_select :address_id, @addresses, :id, :address_select, {}, {id: "address-list", disabled: true} %>
+			    </li>
 
-	      <%= f.radio_button(:address_type, :address2) %>
-	      <%= f.label(:address_type, "登録済住所から選択", value: "address2") %><br>
-
-	      <%= f.collection_select :address_id, @addresses, :id, :address_select, {}, {id: "address-list", disabled: true} %><br>
-
-	      <%= f.radio_button(:address_type, :address3) %>
-	      <%= f.label(:address_type, "新しいお届け先", value: "address3") %><br>
-
-        <%= f.label :ordered_postal_code, "郵便番号" %>
-				<%= f.text_field :ordered_postal_code, class: "new-address new-address-posatal-code", disabled: true %>ハイフンなし<br>
-
-				<%= f.label :ordered_address, "住所" %>
-				<%= f.text_field :ordered_address, class: "new-address", disabled: true %><br>
-
-				<%= f.label :ordered_receiver_name, "宛名" %>
-				<%= f.text_field :ordered_receiver_name, class: "new-address", disabled: true %><br>
-
-			  <%= f.submit "確認画面に進む", class: "btn btn-primary w-25" %>
+			    <li class="hidden-area address3-li">
+			      <%= f.radio_button(:address_type, :address3) %>
+			      <%= f.label(:address_type, "新しいお届け先", value: "address3") %>
+			    </li>
+			    <li class="address-li address-li-top hidden-area address3-li">
+		        <%= f.label :ordered_postal_code, "郵便番号" %>
+						<%= f.text_field :ordered_postal_code, class: "new-address new-address-posatal-code", disabled: true %><span>ハイフンなし</span>
+					</li>
+					<li class="address-li address-li-top hidden-area address3-li">
+						<%= f.label :ordered_address, "住所" %>
+						<%= f.text_field :ordered_address, class: "new-address", disabled: true, size: 70 %>
+					</li>
+					<li class="address-li hidden-area address3-li">
+						<%= f.label :ordered_receiver_name, "宛名" %>
+						<%= f.text_field :ordered_receiver_name, class: "new-address", disabled: true %>
+					</li>
+				</ul>
+				<div class="submit-btn-box">
+			  	<%= f.submit "確認画面に進む", class: "btn btn-primary order-new-submit" %>
+				</div>
 			<% end %>
-
-
-<!-- 			<script>
-			  function addressflg1(ischecked){
-			    if(ischecked == true){
-			      document.getElementById("addressization").disabled = true;
-			    }
-			  }
-
-			  function addressflg2(ischecked){
-			    if(ischecked == true){
-			      document.getElementById("addressization").disabled = true;
-			    } else {
-			      document.getElementById("addressization").disabled = false;
-			    }
-			  }
-
-			  function addressflg3(ischecked){
-			    if(ischecked == true){
-			      document.getElementById("addressization").disabled = false;
-			    } else {
-			      document.getElementById("addressization").disabled = true;
-			    }
-			  }
-			 </script> -->
 		</div>
   </div>
 </div>

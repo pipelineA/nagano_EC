@@ -28,4 +28,12 @@ class User < ApplicationRecord
     end
   end
 
+  def cart_item_count
+    sum = 0
+    self.cart_items.each do |cart_item|
+      sum += cart_item.item_count
+    end
+    sum
+  end
+
 end
