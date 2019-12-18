@@ -28,13 +28,13 @@
 	      <%= f.label(:address_type, "新しいお届け先", value: "address3") %><br>
 
         <%= f.label :ordered_postal_code, "郵便番号" %>
-				<%= f.text_field :ordered_postal_code, class: "new-address", disabled: true %>ハイフンなし
+				<%= f.text_field :ordered_postal_code, class: "new-address new-address-posatal-code", disabled: true %>ハイフンなし<br>
 
 				<%= f.label :ordered_address, "住所" %>
-				<%= f.text_field :ordered_address, class: "new-address", disabled: true %>
+				<%= f.text_field :ordered_address, class: "new-address", disabled: true %><br>
 
 				<%= f.label :ordered_receiver_name, "宛名" %>
-				<%= f.text_field :ordered_receiver_name, class: "new-address", disabled: true %>
+				<%= f.text_field :ordered_receiver_name, class: "new-address", disabled: true %><br>
 
 			  <%= f.submit "確認画面に進む", class: "btn btn-primary w-25" %>
 			<% end %>

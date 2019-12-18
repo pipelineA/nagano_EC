@@ -51,6 +51,7 @@ $(document).on('turbolinks:load', function(){
     })
     $('#order_address_type_address3').on('click', function() {
       $('.new-address').prop("disabled", false);
+      $('.new-address-posatal-code').focus();
       $('#address-list').prop("disabled", true);
     })
 
