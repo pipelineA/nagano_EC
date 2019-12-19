@@ -33,7 +33,7 @@
 				<tbody>
 					<tr>
 						<th class="active">商品合計</th>
-						<td><%= @order.tax_include_billing_amount.to_s(:delimited) %></td>
+						<td><%= @order.billing_amount.to_s(:delimited) %></td>
 					</tr>
 					<tr>
 						<th class="active">配送料</th>
@@ -41,7 +41,7 @@
 					</tr>
 					<tr>
 						<th class="active">ご請求額</th>
-						<td><%= (@order.tax_include_billing_amount + @order.fee).to_s(:delimited) %></td>
+						<td><%= (@order.billing_amount + @order.fee).to_s(:delimited) %></td>
 					</tr>
 				</tbody>
 			</table>
