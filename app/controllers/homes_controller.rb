@@ -6,13 +6,13 @@ class HomesController < ApplicationController
   		@items = @genre.items.where(item_status: "販売中").page(params[:page]).per(8)
   	elsif params[:search]
       @search = params[:search]
-      @items = Item.where(['name LIKE ? OR description LIKE ?', "%#{@search}%", "%#{@search}%"]).where(item_status: "販売中").page(params[:page]).per(8)
+      @items = Item.active_items.where(['name LIKE ? OR description LIKE ?', "%#{@search}%", "%#{@search}%"]).page(params[:page]).per(8)
     elsif params[:price]
       @price0 = params[:price][0].to_i
       @price1 = params[:price][1].to_i
-      @items = Item.where(["price >= ? AND price <= ?", @price0, @price1]).where(item_status: "販売中").page(params[:page]).per(8)
+      @items = Item.active_items.where(["price >= ? AND price <= ?", @price0, @price1]).page(params[:page]).per(8)
     else
-       @items = Item.where(item_status: "販売中").page(params[:page]).per(8)
+       @items = Item.active_items.page(params[:page]).per(8)
     end
 
   end
