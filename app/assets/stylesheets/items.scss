@@ -13,5 +13,14 @@
     line-height: 60px;
     font-size: 15px;
     font-weight: bold;
-    color: #fff;
+    display: inline-block;
+}
+
+.not_on_sale {
+    font-size: 16px;
+    color: #A94441;
+    background-color: #EBCFCF;
+    border-radius: 3px;
+    border: 1px solid #DCA7A7;
+    padding: 8px;
 }

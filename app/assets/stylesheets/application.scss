@@ -44,7 +44,7 @@ clearfix::after {
 
 .field_with_errors {
   display: inline-block;
-  input {
+  input, textarea {
     border: 1px solid #d9534f;
   }
   label {
@@ -226,6 +226,21 @@ color:#888;
   padding-top: 10px;
 }
 
+#error_explanation {
+  color: #d9534f;
+  h2 {
+    font-size: 14px;
+  }
+}
+.alert {
+  width: 80%;
+  margin: 0 auto;
+}
+.alert-notice {
+  background-color: #C3E3F3;
+  border: 1px solid #99CFEA;
+  color: #31708F;
+}
 
 
 .top-background {
