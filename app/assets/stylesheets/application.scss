@@ -84,9 +84,8 @@ clearfix::after {
  .border{
   padding: 0.5em 1em;
     margin: 2em 0;
-    background: -webkit-repeating-linear-gradient(-45deg, #f0f8ff, #f0f8ff 3px,#e9f4ff 3px, #e9f4ff 7px);
-    background: repeating-linear-gradient(-45deg, #f0f8ff, #f0f8ff 3px,#e9f4ff 3px, #e9f4ff 7px);
- }
+    background: #ffce9e;
+}
 
 
 .search-form-box {
@@ -223,13 +222,18 @@ color:orange;
 
 
 .top-marker-line{
-  background: linear-gradient(transparent 60%, #d3d3d3d3 60%);
+  background: linear-gradient(transparent 60%, #ffffff 60%);
   font-size:15px;
   width:80%;
 }
 
 .dott{
   border-bottom:dotted 1px #ffffff;
+  color:#000000;
+}
+
+.dott a{
+  color:#000000;
 }
 
 .padding-top{
@@ -263,7 +267,6 @@ opacity: 0.5;
 z-index: -1;
 width: 80%;
 height: 100%;
-
 }
 
 //画像
@@ -274,4 +277,7 @@ height: 100%;
 
 .image_action:hover {
  opacity: 0.5;
+ }
+.wf-notosansjapanese {
+  font-family: "Noto Sans JP";
  }
