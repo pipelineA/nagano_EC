@@ -1,10 +1,29 @@
+<% content_for(:html_title) { "商品ページ" } %>
 <div class="container">
 	<div class="row">
-		<div class="col-md-3">
-			<h2>ジャンル検索</h2>
-			<% @genres.each do |genre| %>
-				<%= link_to root_path(genre_id: genre.id) do |name| %><%= genre.name %><% end %><br>
-			<% end %>
+		<div class="col-md-2">
+			<div class=" border">
+					<div class="top-marker-line"><span class="glyphicon glyphicon-tag" aria-hidden="true" style="font-size: 10px"></span>ジャンル検索</div>
+					<div class="padding-top">
+						<% @genres.each do |genre| %>
+							<%= link_to root_path(genre_id: genre.id) do |name| %>
+							<div class="dott"><%= genre.name %></div>
+							<% end %><br>
+						<% end %>
+					</div>
+				</div>
+
+				<div class=" border">
+					<div class="top-marker-line"><span class="glyphicon glyphicon-ok" aria-hidden="true" style="font-size: 10px"></span>条件から選ぶ</div>
+					<div class="padding-top">
+						<div class="dott"><%= link_to "500~999円", root_path(price: [500, 999]) %></div><br>
+						<div class="dott"><%= link_to "1000~1999円", root_path(price: [1000, 1999]) %></div><br>
+						<div class="dott"><%= link_to "2000~2999円", root_path(price: [2000, 2999]) %></div><br>
+						<div class="dott"><%= link_to "3000円~", root_path(price: [3000, 100000]) %></div><br>
+					</div>
+				</div>
+			</div>
+		<div class="col-md-1">
 		</div>
 		<div class="col-md-9">
 			<div class="col-md-5 item_image">
