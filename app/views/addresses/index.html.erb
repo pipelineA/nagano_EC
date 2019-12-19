@@ -13,12 +13,12 @@
          </tr>
          <tr>
            <th class="active">住所</th>
-           <td><%= a.text_field :address %></td>
+           <td><%= a.text_field :address, style: "width: 80%"%></td>
          </tr>
          <tr>
            <th class="active">宛名</th>
            <td><%= a.text_field :receiver_name %></td>
-           <td>
+           <td style="border-color: white;">
             <%= a.submit "登録する", class: "btn btn-primary" %>
            </td>
          </tr>
@@ -42,10 +42,12 @@
           <td><%= a.postal_code.insert(3, "-") %></td>
           <td><%= a.address %></td>
           <td><%= a.receiver_name %></td>
-          <td>
-            <!-- <%# binding.pry %> -->
-      	    <%= link_to"編集する", edit_address_path(a), class: "btn btn-primary" %>
-            <%= link_to"削除する", address_path(a), method: :delete, class: "btn btn-danger" %>
+          <td class="btn-toolbar">
+            <div class="button-group">
+              <!-- <%# binding.pry %> -->
+        	    <%= link_to"編集する", edit_address_path(a), class: "btn btn-primary w-50" %>
+              <%= link_to"削除する", address_path(a), method: :delete, class: "btn btn-danger w-50" %>
+            </div>
           </td>
         </tr>
        <% end %>
