@@ -3,7 +3,7 @@ class CreateOrders < ActiveRecord::Migration[5.2]
     create_table :orders do |t|
       t.integer :customer_id, null: false
       t.integer :fee, null: false, default: 800
-      t.integer :payment_method, null: false, default: ""
+      t.integer :payment_method, null: false
       t.float :tax_rate, null: false, default: 0.1
       t.integer :order_status, null: false, default: 0
       t.string :ordered_reveiver_name, null: false, default: ""
