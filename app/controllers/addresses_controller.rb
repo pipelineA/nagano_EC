@@ -1,4 +1,12 @@
 class AddressesController < ApplicationController
+
+before_action :authenticate_user
+  def authenticate_user
+    if current_user == nil
+       redirect_to new_user_session_path
+  end
+end
+
   def index
     @addresses = current_user.addresses.where(is_main_address: false)
     @address = Address.new
