@@ -1,24 +1,20 @@
-# README
+# ナガノケーキ　パイプラインエーが開発したECサイト
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## 開発環境: vagrant
+## Ruby version: 2.5.7
+## Rails: 5.2.4
+## mysql: 5.7.22
 
-Things you may want to cover:
+## gem:
+* devise
+* refile
+* kaminari
+* jquery-rails
+* bootstrap-sass
+* enum_help
+* pry-rails
+* font-awesome-sass
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+## AWS:
+* EC2
+* RDS
