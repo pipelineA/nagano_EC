@@ -1,19 +1,21 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title><%= content_for?(:html_title) ? "ナガノケーキ 管理者 | #{yield(:html_title)}" : "ナガノケーキ 管理者" %></title>
+    <title><%= content_for?(:html_title) ? "ながのケーキ 管理者 | #{yield(:html_title)}" : "ながのケーキ 管理者" %></title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
     <%= favicon_link_tag('favicon.ico') %>
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <link href="https://fonts.googleapis.com/css?family=Noto+Sans+JP" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/earlyaccess/nikukyu.css" rel="stylesheet">
   </head>
 
   <body>
     <header class="admin-header">
       <diV class="container">
-        <h3 class="nav navbar-nav navbar-left admin-logo"><%= link_to"ナガノケーキ　管理者", admin_root_path %></h3>
+        <h3 class="nav navbar-nav navbar-left admin-logo"><%= link_to image_tag("cake.png", height: 75), admin_root_path %></h3>
         <ul class="nav navbar-nav navbar-right">
           <li><%= link_to "商品一覧", admin_items_path %></li>
           <li><%= link_to "会員一覧", admin_users_path %></li>
@@ -33,5 +35,10 @@
         <%= yield %>
       </div>
     </div>
+    <div class="container">
+        <footer>
+          <p><%= link_to "ながのケーキ", admin_root_path %></p>
+        </footer>
+      </div>
   </body>
 </html>

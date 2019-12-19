@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title><%= content_for?(:html_title) ? "ナガノケーキ | #{yield(:html_title)}" : "ナガノケーキ" %></title>
+    <title><%= content_for?(:html_title) ? "ながのケーキ | #{yield(:html_title)}" : "ながのケーキ" %></title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
     <%= favicon_link_tag('favicon.ico') %>
@@ -17,8 +17,8 @@
     <header class="navbar header">
       <div class="container">
         <div class="row">
-          <h3 class="navbar-left">ながのケーキ<br>
-            <%= link_to image_tag("sweets_chocolate_mousse.png", height: 75, width: 75), root_path %>
+          <h3 class="navbar-left">
+            <%= link_to image_tag("cake.png", height: 75), root_path %>
           </h3>
               <div class="nav navbar-nav navbar-right">
                 <% if user_signed_in? %>
@@ -95,5 +95,10 @@
         </div>
       <% end %>
       <%= yield %>
+      <div class="container">
+        <footer>
+          <p><%= link_to "ながのケーキ", root_path %></p>
+        </footer>
+      </div>
     </body>
   </html>
