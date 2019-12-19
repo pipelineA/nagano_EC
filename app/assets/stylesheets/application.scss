@@ -152,14 +152,25 @@ color:#888;
  }
 
 .navbar-left {
-font-size: 15px;
-font-family: "Nikukyu";
-text-align: center;
-margin: 0;
-position: absolute;
-top: 0px;
-left: 50px;
-color:orange;
+  position: absolute;
+  top: -10px;
+  left: 6%;
+}
+footer {
+  a {
+    font-size: 15px;
+    font-family: "Nikukyu";
+    color:orange;
+  }
+  a:hover {
+    border-bottom: none;
+    color: rgb(194, 126, 0);
+  }
+  text-align: right;
+  margin-top: 20px;
+  p {
+    margin: 5px 0!important;
+  }
 }
 
 .header .navbar-right a {
@@ -293,7 +304,7 @@ height: 100%;
      font-size: 24px;
      a {
        display: inline-block;
-       margin-top: 34px;
+       margin-top: 20px;
        font-family: 'Verdana', 'arial';
      }
    }
