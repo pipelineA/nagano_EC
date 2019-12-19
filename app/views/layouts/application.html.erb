@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title><%= content_for?(:html_title) ? "ながのCAKE | #{yield(:html_title)}" : "ながのCAKE" %></title>
+    <title><%= content_for?(:html_title) ? "ナガノケーキ | #{yield(:html_title)}" : "ナガノケーキ" %></title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
     <%= favicon_link_tag('favicon.ico') %>
@@ -9,6 +9,7 @@
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
    <link href="https://fonts.googleapis.com/css?family=Noto+Sans+JP" rel="stylesheet">
+   <link href="https://fonts.googleapis.com/earlyaccess/nikukyu.css" rel="stylesheet">
 
   </head>
 

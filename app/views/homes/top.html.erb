@@ -50,19 +50,6 @@
 							<br>
 						</div>
 					<% end %>
-					<div class="row">
-						<% @items.each do |item| %>
-							<div class="col-xs-3">
-								<%= link_to item_path(item.id) do |i| %>
-									<%= attachment_image_tag item,:image, size: "200x200" %>
-								<% end %>
-								<br>
-								商品名：<%= item.name %><br>
-								価格：<%= (item.price.to_i*BigDecimal("1.1")).floor.to_s(:delimited) %>円<br>
-								<br>
-							</div>
-						<% end %>
-					</div>
 					 <div>
 						<%= page_entries_info @items, entry_name: "商品" %>
 					 </div>
@@ -71,4 +58,4 @@
 			</div>
 		</div>
 	</div>
-</div>
+	</div>
