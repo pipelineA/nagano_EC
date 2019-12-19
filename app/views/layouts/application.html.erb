@@ -10,41 +10,74 @@
   </head>
 
   <body>
-    <header class="navbar navbar-inverse">
-       <div class="container-fluid">
-          <h3 class="col-md-6"><%= link_to "LOGO", root_path %></h3>
-          <ul class="col-xs-6 nav navbar-nav navbar-right">
-            <% if user_signed_in? %>
-              <li><%= link_to current_user.family_name + " " + current_user.first_name, user_path(current_user.id) %></li>
-              <li><%= link_to "about", about_path %></li>
-              <li><%= link_to "注文履歴一覧", order_histories_path %></li>
-              <li><%= link_to "ログアウト", destroy_user_session_path, method: :delete %></li>
-              <li><%= link_to carts_path, class:"btn btn-primary btn-md fas fa-shopping-cart" do |c| %>カート
-                      <% if current_user.cart_items.present? %>
-                      <span class="cart-count"><%= current_user.cart_item_count %></span>
-                      <% end %>
+    <header class="navbar">
+      <div class="container">
+        <div class="row">
+          <h3 class="navbar-left">
+            <%= link_to "LOGO", root_path %>
+          </h3>
+              <div class="nav navbar-nav navbar-right">
+                <% if user_signed_in? %>
+
+                  <li>
+                    <%= link_to user_path(current_user.id) do %>
+                    <i class="far fa-user icon-custom"></i><br>マイページ
                     <% end %>
-              </li>
+                    <span class="user-name">
+                      <%= current_user.family_name + " " + current_user.first_name %>さん
+                    </span>
+                  </li>
 
-            <% else %>
-             <li><%= link_to "新規登録", new_user_registration_path %></li>
-             <li><%= link_to "ログイン", new_user_session_path %></li>
-             <li><%= link_to "about", about_path %></li>
-            <% end %>
-            <div class="nav navbar-nav navbar-right">
-              <form action="#" method="post">
-                <input type="search" name="search" placeholder="Search">
-              </form>
-            </div>
-          </ul>
+                  <li><%= link_to about_path do %>
+                    <i class="fas fa-birthday-cake icon-custom"></i><br>about
+                    <% end %>
+                  </li>
 
-       </diV>
+                  <li>
+                    <%= link_to order_histories_path do %>
+                      <i class="fas fas fa-history icon-custom"></i><br>注文履歴
+                    <% end %>
+                  </li>
+
+                  <li>
+                    <%= link_to destroy_user_session_path, method: :delete do %>
+                      <i class="fas fa-sign-out-alt icon-custom"></i><br>ログアウト
+                    <% end %>
+                  </li>
+
+                  <li>
+                    <%= link_to carts_path do |c| %>
+                      <i class="fas fa-shopping-cart  icon-custom"></i><br>カート
+                        <% if current_user.cart_items.present? %>
+                          <span class="cart-count">
+                            <%= current_user.cart_items.count %>
+                          </span>
+                        <% end %>
+                    <% end %>
+                  </li>
+
+                  <% else %>
+                   <li><%= link_to "新規登録", new_user_registration_path %></li>
+                   <li><%= link_to "ログイン", new_user_session_path %></li>
+                   <li><%= link_to "about", about_path %></li>
+                  <% end %>
+              </div>
+              <div class="search-form-box">
+                <%= form_tag root_path, :method => 'get', enforce_utf8: false, class: "search-form" do %>
+                  <%= text_field_tag :search, params[:search], placeholder: '何をお探しですか？', class: "search-window-size" %>
+                  <%= button_tag :type=> "submit", :name  => nil, class: "sbtn" do %>
+                  <i class="fas fa-search"></i>
+                  <% end %>
+                <% end %>
+              </div>
+        </div>
+      </diV>
     </header>
-    <% flash.each do |message_type, message| %>
-    <div class="alert alert-<%= message_type %>">
-      <%= message %>
-    </div>
-<% end %>
-    <%= yield %>
-  </body>
-</html>
+      <% flash.each do |message_type, message| %>
+        <div class="alert alert-<%= message_type %>">
+          <%= message %>
+        </div>
+      <% end %>
+      <%= yield %>
+    </body>
+  </html>
