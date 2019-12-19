@@ -1,9 +1,10 @@
 # ナガノケーキ　パイプラインエーが開発したECサイト
 
 ## 開発環境: vagrant
-## Ruby version: 2.5.7
-## Rails: 5.2.4
-## mysql: 5.7.22
+## Versions
+* Ruby: 2.5.7
+* Rails: 5.2.4
+* mysql: 5.7.22
 
 ## gem:
 * devise
