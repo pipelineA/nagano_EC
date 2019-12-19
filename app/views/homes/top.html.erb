@@ -2,7 +2,7 @@
 <div class="clearfix" style="background-color: #f3f3f3)">
 	<div class= "container">
 		<div class="row">
-			<div class="col-md-3">
+			<div class="col-md-2">
 				<div class="snow">❄</div>
 				<div class=" border">
 					<div class="top-marker-line"><span class="glyphicon glyphicon-tag" aria-hidden="true" style="font-size: 10px"></span>ジャンル検索</div>
@@ -25,14 +25,14 @@
 					</div>
 				</div>
 			</div>
-			<div class="col-md-9">
+			<div class="col-md-10">
 				<h2>商品一覧</h2>
 				<% if @items.empty?%>
-				  <p>「<%= @search %>」は検索条件に一致しませんでした。</p>
+				  <p>「<%= @search %>」の</p>
 				<% end %>
 				<div class="row">
 					<% @items.each do |item| %>
-						<div class="col-xs-4">
+						<div class="col-xs-3">
 							<%= link_to item_path(item.id) do |i| %>
 								<%= attachment_image_tag item,:image, size: "200x200" %>
 							<% end %>

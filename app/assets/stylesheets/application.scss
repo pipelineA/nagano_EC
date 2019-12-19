@@ -94,7 +94,7 @@ max-width:300px;
 margin-bottom:20px;
 }
 .search-window-size{
-height:30px;
+height:35px;
 padding:0 10px; 
 width: 200px;
 position:absolute; 
@@ -105,12 +105,12 @@ outline:0;
 background:white;
 }
 .sbtn{
-height:30px;
+height:35px;
 width:35px; 
 position:absolute; 
 left:180px; 
 top:0;
-background:#7fbfff;
+background:#db7093;
 color:#fff;
 border:none;
 border-radius:0 25px 25px 0;
@@ -143,6 +143,7 @@ color:#888;
  header {
  height: 100px;
  border-bottom: 1px solid silver;
+ background-color: white;
  
  }
 
@@ -207,8 +208,8 @@ color:#888;
 
 .top-marker-line{
   background: linear-gradient(transparent 60%, #d3d3d3d3 60%);
-  font-size:20px;
-  width:50%;
+  font-size:15px;
+  width:80%;
 }
 
 .dott{
@@ -218,3 +219,19 @@ color:#888;
 .padding-top{
   padding-top: 10px;
 }
+
+
+
+.top-background {
+background-size: cover;
+background-position: top 0 left 0;
+position: fixed;
+top: 10px;
+right: 0;
+opacity: 0.5;
+z-index: -1;
+width: 80%;
+height: 100%;
+
+}
+
