@@ -25,18 +25,12 @@
 					<% sub_total = cartitem.item.tax_include_price*cartitem.item_count %>
 					<td><%= sub_total.to_s(:delimited) %></td>
 					<% total += sub_total %>
-					<td><%= link_to "削除する", cart_path(cartitem), method: :delete, class:"btn btn-danger pull-right" %></td>
+					<td><%= link_to "削除する", cart_path(cartitem), method: :delete, class:"btn btn-danger pull-right center-block" %></td>
 					<% end %>
 				</tr>
 			</tbody>
 			<% end %>
 		</table>
-
-
-        <div class="row">
-         	<div class="col-md-3 pull-relt">
-  	        	<%= link_to "買い物を続ける", root_path, class:"btn btn-primary center-block" %>
-	        </div>
             <div class="col-md-3 pull-right">
             	<table class="table">
 					<tbody>
@@ -47,11 +41,14 @@
 					</tbody>
 				</table>
             </div>
-
+	<div class="clearfix"></div>
+		<div class="row">
+         	<div class="col-md-6 pull-left">
+  	        	<%= link_to "買い物を続ける", root_path, class:"btn btn-warning btn-lg center-block" %>
+	        </div>
+	    	<div class="col-md-6 pull-right">
+				<%= link_to "情報入力に進む", orders_new_path, class:"btn btn-primary btn-lg center-block" %>
+			</div>
 		</div>
-	</div> 
-
-	<br>
-	<%= link_to "情報入力に進む", orders_new_path, class:"btn btn-primary btn-lg center-block" %>
-
+	</div>
 </div>
