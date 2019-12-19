@@ -57,9 +57,21 @@
                   </li>
 
                   <% else %>
-                   <li><%= link_to "新規登録", new_user_registration_path %></li>
-                   <li><%= link_to "ログイン", new_user_session_path %></li>
-                   <li><%= link_to "about", about_path %></li>
+
+                  <li><%= link_to new_user_registration_path do %>
+                    <i class="fas fa-user-plus icon-custom"></i><br>新規登録
+                    <% end %>
+                  </li>
+
+                  <li><%= link_to new_user_session_path do %>
+                    <i class="fas fa-sign-in-alt icon-custom"></i><br>ログイン
+                    <% end %>
+
+                  <li><%= link_to about_path do %>
+                    <i class="fas fa-birthday-cake icon-custom"></i><br>about
+                    <% end %>
+                  </li>
+
                   <% end %>
               </div>
               <div class="search-form-box">
