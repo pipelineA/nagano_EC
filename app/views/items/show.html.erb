@@ -38,7 +38,53 @@
 				<%= cart.select :item_count, (1..10), {include_blank: '個数選択', selected: ""},{class:"form-control input-lg", disabled: @item_disabled} %>
 				</div>
 				<%= cart.hidden_field :item_id, :value => @item.id %>
+				<% if user_signed_in? %>
 				<%= cart.submit 'カートに追加する',name:"cartupdate", class:"btn btn-primary btn-lg" %>
+				<% else %>
+				<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#sampleModal">カートに追加する</button>
+
+                  <div class="modal fade" id="sampleModal" tabindex="-1">
+                    <div class="modal-dialog">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <button type="button" class="close" data-dismiss="modal"><span>×</span></button>
+                          <h4 class="modal-title">商品の購入にはログインが必要です。</h4>
+                        </div>
+                        <div class="modal-body">
+                          <section class="slice slice-lg sct-color-1">
+
+                          <div class="row">
+                              <div class="col-md-8 col-md-offset-2">
+                                  <div class="form-user style-1 rounded has-shadow-1">
+                                      <div class="form-body">
+                                        <%= form_for(@newuser, as: :user, url: session_path(:user)) do |f| %>
+                                        <div class="input-group">
+                                          <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                                          <%= f.email_field :email, autofocus: true, autocomplete: "email", class:"form-control", id:"inputName", placeholder:"メールアドレス" %>
+                                        </div><br>
+
+                                        <div class="input-group">
+                                          <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+                                          <%= f.password_field :password, autocomplete: "current-password", class:"form-control", id:"inputName", placeholder:"パスワード" %>
+                                        </div>
+                                      <br>
+                                      </div>
+                                  </div>
+                              </div>
+                          </div>
+                  </section>
+
+                        </div>
+                        <div class="modal-footer">
+                           <%= link_to "新規登録", new_user_registration_path, class:"btn btn-warning pull-left"  %>
+                           <button type="button" class="btn btn-default" data-dismiss="modal">閉じる</button>
+                           <%= f.submit "ログイン", form:"new_user", class:"btn btn-primary" %>
+                           <% end %>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+				<% end %>
 			<% end %>
 			</div>
 			<div class="col-md-12">

@@ -4,17 +4,15 @@ class Users::SessionsController < Devise::SessionsController
   # before_action :configure_sign_in_params, only: [:create]
 
   # GET /resource/sign_in
-  # def new
-  #   super
-  # end
+   def new
+      @newuser = User.new
+     super
+   end
 
   # POST /resource/sign_in
-   def create
-     super
-     if current_user.is_unsubscribe == "退会済"
-        puts "退会済確認"
-     end
-   end
+  # def create
+  #   super
+  # end
 
   # DELETE /resource/sign_out
   # def destroy
