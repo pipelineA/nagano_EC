@@ -91,7 +91,7 @@ clearfix::after {
 
 .search-form-box {
   position: absolute;
-  bottom: 12px;
+  bottom: 17px;
   right: 250px;
 }
 .search-form{
@@ -116,7 +116,7 @@ width:35px;
 position:absolute; 
 left:180px; 
 top:0;
-background:#db7093;
+background:#5b310f;
 color:#fff;
 border:none;
 border-radius:0 25px 25px 0;
@@ -148,9 +148,20 @@ color:#888;
 
  header {
  height: 100px;
- background-color: white;
+ box-shadow: 0px 2px 5px rgba(0,0,0,0.2);
  
  }
+
+.navbar-left {
+font-size: 15px;
+font-family: "Nikukyu";
+text-align: center;
+margin: 0;
+position: absolute;
+top: 0px;
+left: 30px;
+color:orange;
+}
 
 .header .navbar-right a {
  color: #5b310f;
@@ -255,3 +266,12 @@ height: 100%;
 
 }
 
+//画像
+.image {
+ border-radius: 10px;
+ border: solid 1.5px #deb887;
+}
+
+.image_action:hover {
+ opacity: 0.5;
+ }

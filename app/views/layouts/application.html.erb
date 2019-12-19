@@ -8,14 +8,15 @@
     <script src="https://kit.fontawesome.com/83beaa6ece.js" crossorigin="anonymous"></script>
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <link href="https://fonts.googleapis.com/earlyaccess/nikukyu.css" rel="stylesheet">
   </head>
 
   <body>
     <header class="navbar header">
       <div class="container">
         <div class="row">
-          <h3 class="navbar-left">
-            <%= link_to "LOGO", root_path %>
+          <h3 class="navbar-left">ながのケーキ<br>
+            <%= link_to image_tag("sweets_chocolate_mousse.png", height: 75, width: 75), root_path %>
           </h3>
               <div class="nav navbar-nav navbar-right">
                 <% if user_signed_in? %>
@@ -25,7 +26,9 @@
                     <i class="far fa-user icon-custom"></i><br>マイページ
                     <% end %>
                     <span class="user-name">
-                      <%= current_user.family_name + " " + current_user.first_name %>さん
+                      <strong>
+                        <%= current_user.family_name + " " + current_user.first_name %>さん
+                      </strong>
                     </span>
                   </li>
 

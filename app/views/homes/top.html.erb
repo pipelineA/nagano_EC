@@ -18,7 +18,7 @@
 				<div class=" border">
 					<div class="top-marker-line"><span class="glyphicon glyphicon-ok" aria-hidden="true" style="font-size: 10px"></span>条件から選ぶ</div>
 					<div class="padding-top">
-						<div class="dott"><%= link_to "500~999円", root_path(price: [500, 999]) %></div><br>
+						<div class="dott"><%= link_to "~999円", root_path(price: [0, 999]) %></div><br>
 						<div class="dott"><%= link_to "1000~1999円", root_path(price: [1000, 1999]) %></div><br>
 						<div class="dott"><%= link_to "2000~2999円", root_path(price: [2000, 2999]) %></div><br>
 						<div class="dott"><%= link_to "3000円~", root_path(price: [3000, 100000]) %></div><br>
@@ -40,7 +40,9 @@
 					<% @items.each do |item| %>
 						<div class="col-xs-3">
 							<%= link_to item_path(item.id) do |i| %>
-								<%= attachment_image_tag item,:image, size: "200x200" %>
+							<div class="image_action">
+								<%= attachment_image_tag item,:image, size: "220x220", class: "image" %>
+							</div>
 							<% end %>
 							<br>
 							商品名：<%= item.name %><br>
