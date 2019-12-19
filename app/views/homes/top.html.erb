@@ -15,20 +15,38 @@
 						</div>
 					</div>
 
-					<div class=" border">
-						<div class="top-marker-line"><span class="glyphicon glyphicon-ok" aria-hidden="true" style="font-size: 10px"></span>条件から選ぶ</div>
-						<div cwf-nikukyulass="padding-top">
-							<div class="dott"><%= link_to "500~999円" %></div><br>
-							<div class="dott"><%= link_to "1000~1999円以下" %></div><br>
-							<div class="dott"><%= link_to "2000~2999以下" %></div><br>
-							<div class="dott"><%= link_to "~3000円以下" %></div><br>
-						</div>
+				<div class=" border">
+					<div class="top-marker-line"><span class="glyphicon glyphicon-ok" aria-hidden="true" style="font-size: 10px"></span>条件から選ぶ</div>
+					<div class="padding-top">
+						<div class="dott"><%= link_to "500~999円", root_path(price: [500, 999]) %></div><br>
+						<div class="dott"><%= link_to "1000~1999円", root_path(price: [1000, 1999]) %></div><br>
+						<div class="dott"><%= link_to "2000~2999円", root_path(price: [2000, 2999]) %></div><br>
+						<div class="dott"><%= link_to "3000円~", root_path(price: [3000, 100000]) %></div><br>
 					</div>
 				</div>
-				<div class="col-md-10">
-					<h2>商品一覧</h2>
-					<% if @items.empty?%>
-					  <p>「<%= @search %>」の</p>
+			</div>
+			<div class="col-md-10">
+				<h2>商品一覧</h2>
+				<% if @genre %>
+				  <p>「<%= @genre.name %>」に該当する商品を表示しています。</p>
+				<% elsif @search %>
+				  <p>「<%= @search %>」に該当する商品を表示しています。</p>
+				<% elsif @price0 == 3000 %>
+					<p><%= "#{@price0}〜円の商品を表示しています。" %></p>
+				<% elsif @price0 %>
+					<p><%= "#{@price0}〜#{@price1}円の商品を表示しています。" %></p>
+				<% end %>
+				<div class="row">
+					<% @items.each do |item| %>
+						<div class="col-xs-3">
+							<%= link_to item_path(item.id) do |i| %>
+								<%= attachment_image_tag item,:image, size: "200x200" %>
+							<% end %>
+							<br>
+							商品名：<%= item.name %><br>
+							価格：<%= (item.price.to_i*BigDecimal("1.1")).floor.to_s(:delimited) %>円<br>
+							<br>
+						</div>
 					<% end %>
 					<div class="row">
 						<% @items.each do |item| %>

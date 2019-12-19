@@ -1,10 +1,29 @@
+<% content_for(:html_title) { "商品ページ" } %>
 <div class="container">
 	<div class="row">
-		<div class="col-md-3">
-			<h2>ジャンル検索</h2>
-			<% @genres.each do |genre| %>
-				<%= link_to root_path(genre_id: genre.id) do |name| %><%= genre.name %><% end %><br>
-			<% end %>
+		<div class="col-md-2">
+			<div class=" border">
+					<div class="top-marker-line"><span class="glyphicon glyphicon-tag" aria-hidden="true" style="font-size: 10px"></span>ジャンル検索</div>
+					<div class="padding-top">
+						<% @genres.each do |genre| %>
+							<%= link_to root_path(genre_id: genre.id) do |name| %>
+							<div class="dott"><%= genre.name %></div>
+							<% end %><br>
+						<% end %>
+					</div>
+				</div>
+
+				<div class=" border">
+					<div class="top-marker-line"><span class="glyphicon glyphicon-ok" aria-hidden="true" style="font-size: 10px"></span>条件から選ぶ</div>
+					<div class="padding-top">
+						<div class="dott"><%= link_to "500~999円", root_path(price: [500, 999]) %></div><br>
+						<div class="dott"><%= link_to "1000~1999円", root_path(price: [1000, 1999]) %></div><br>
+						<div class="dott"><%= link_to "2000~2999円", root_path(price: [2000, 2999]) %></div><br>
+						<div class="dott"><%= link_to "3000円~", root_path(price: [3000, 100000]) %></div><br>
+					</div>
+				</div>
+			</div>
+		<div class="col-md-1">
 		</div>
 		<div class="col-md-9">
 			<div class="col-md-5 item_image">
@@ -19,7 +38,53 @@
 				<%= cart.select :item_count, (1..10), {include_blank: '個数選択', selected: ""},{class:"form-control input-lg", disabled: @item_disabled} %>
 				</div>
 				<%= cart.hidden_field :item_id, :value => @item.id %>
+				<% if user_signed_in? %>
 				<%= cart.submit 'カートに追加する',name:"cartupdate", class:"btn btn-primary btn-lg" %>
+				<% else %>
+				<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#sampleModal">カートに追加する</button>
+
+                  <div class="modal fade" id="sampleModal" tabindex="-1">
+                    <div class="modal-dialog">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <button type="button" class="close" data-dismiss="modal"><span>×</span></button>
+                          <h4 class="modal-title">商品の購入にはログインが必要です。</h4>
+                        </div>
+                        <div class="modal-body">
+                          <section class="slice slice-lg sct-color-1">
+
+                          <div class="row">
+                              <div class="col-md-8 col-md-offset-2">
+                                  <div class="form-user style-1 rounded has-shadow-1">
+                                      <div class="form-body">
+                                        <%= form_for(@newuser, as: :user, url: session_path(:user)) do |f| %>
+                                        <div class="input-group">
+                                          <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                                          <%= f.email_field :email, autofocus: true, autocomplete: "email", class:"form-control", id:"inputName", placeholder:"メールアドレス" %>
+                                        </div><br>
+
+                                        <div class="input-group">
+                                          <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+                                          <%= f.password_field :password, autocomplete: "current-password", class:"form-control", id:"inputName", placeholder:"パスワード" %>
+                                        </div>
+                                      <br>
+                                      </div>
+                                  </div>
+                              </div>
+                          </div>
+                  </section>
+
+                        </div>
+                        <div class="modal-footer">
+                           <%= link_to "新規登録", new_user_registration_path, class:"btn btn-warning pull-left"  %>
+                           <button type="button" class="btn btn-default" data-dismiss="modal">閉じる</button>
+                           <%= f.submit "ログイン", form:"new_user", class:"btn btn-primary" %>
+                           <% end %>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+				<% end %>
 			<% end %>
 			</div>
 			<div class="col-md-12">

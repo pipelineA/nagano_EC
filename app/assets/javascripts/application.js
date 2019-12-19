@@ -35,7 +35,7 @@ $(document).on('turbolinks:load', function(){
     // スライドショーの自動再生（falseで自動再生なし）
     autoPlay : true,
     // 自動再生時のスライド切替間隔（ミリ秒）
-    autoPlayDuration : 3000,
+    autoPlayDuration : 2500,
     // キーボードの矢印キーによるスライド送りの設定（trueで有効）
     keyboardOnAlways : true,
     // 1枚目のスライド表示時に戻る矢印を表示するかどうか（falseで非表示）
@@ -51,17 +51,17 @@ $(document).on('turbolinks:load', function(){
     // $(this).parent()で、クリックされた".edit-button"の親要素の<td>が取得できる。
     // $(this).parent().parent()で、クリックされた".edit-button"の親要素の<td>のさらに親要素の<tr>が取得できる。
     // 取得した<tr>を$parentという変数に代入する。
-    	let $parent = $(this).parent().parent();
+    	var parent = $(this).parent().parent();
 
     // $parent.find('クラス名')で、$parentで指定した<tr>の中にある'クラス名'だけを取得することができる。
     // （これを指定しない場合は、クリックした<tr>以外の列の'クラス名'にまで、影響が及んでしまう）
 
     // それぞれの'クラス名'のボタンなどに、'none-active'クラスを追加したり削除したりすることで、表示・非表示を切り替えることができる。
     // （'none-active'クラスには、cssで{display: none;}を設定している）
-    	$parent.find('.edit-button').addClass('none-active');
-    	$parent.find('.submit-button').removeClass('none-active');
-    	$parent.find('.genre-text').addClass('none-active');
-    	$parent.find('.genre-form').removeClass('none-active').focus();
+    	parent.find('.edit-button').addClass('none-active');
+    	parent.find('.submit-button').removeClass('none-active');
+    	parent.find('.genre-text').addClass('none-active');
+    	parent.find('.genre-form').removeClass('none-active').focus();
     	return false;
     });
 

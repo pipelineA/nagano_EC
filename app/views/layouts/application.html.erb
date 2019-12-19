@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>NaganoEc</title>
+    <title><%= content_for?(:html_title) ? "ながのCAKE | #{yield(:html_title)}" : "ながのCAKE" %></title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
+    <%= favicon_link_tag('favicon.ico') %>
     <script src="https://kit.fontawesome.com/83beaa6ece.js" crossorigin="anonymous"></script>
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
@@ -14,7 +15,7 @@
   </head>
 
   <body class="wf-notosansjapanese">
-    <header class="navbar">
+    <header class="navbar header">
       <div class="container">
         <div class="row">
           <h3 class="navbar-left">
@@ -61,9 +62,19 @@
                   </li>
 
                   <% else %>
-                   <li><%= link_to "新規登録", new_user_registration_path %></li>
-                   <li><%= link_to "ログイン", new_user_session_path %></li>
-                   <li><%= link_to "about", about_path %></li>
+
+                  <li><%= link_to new_user_registration_path do %>
+                    <i class="fas fa-user-plus icon-custom"></i><br>新規登録
+                    <% end %>
+                  </li>
+                  <li><%= link_to about_path do %>
+                    <i class="fas fa-birthday-cake icon-custom"></i><br>about
+                    <% end %>
+                  </li>
+                  <!-- ポップアップ中身 -->
+                  <li><%= link_to new_user_session_path do %>
+                    <i class="fas fa-sign-in-alt icon-custom"></i><br>ログイン</li>
+                    <% end %>
                   <% end %>
               </div>
               <div class="search-form-box">
