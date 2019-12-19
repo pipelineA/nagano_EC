@@ -9,7 +9,7 @@
         <table class="table table-bordered">
          <tr>
            <th class="active">郵便番号</th>
-　　　      <td><%= a.text_field :postal_code %></td>
+　　　      <td><%= a.text_field :postal_code %> ハイフンなし</td>
          </tr>
          <tr>
            <th class="active">住所</th>
@@ -39,7 +39,7 @@
         </tr>
        <% @addresses.each do |a| %>
         <tr>
-          <td><%= a.postal_code %></td>
+          <td><%= a.postal_code.insert(3, "-") %></td>
           <td><%= a.address %></td>
           <td><%= a.receiver_name %></td>
           <td>
