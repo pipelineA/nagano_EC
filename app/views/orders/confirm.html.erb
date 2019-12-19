@@ -1,7 +1,7 @@
 <div class="container">
 	<div class="row">
-		<div class="col-xs-9">
-			<table class="table col-xs-9">
+		<div class="col-xs-8">
+			<table class="table table-bordered table-hover">
 				<tbody>
 					<tr>
 						<th class="active">商品名</th>
@@ -26,8 +26,8 @@
 				<% end %>
 			</table>
 		</div>
-		<div class="col-xs-3">
-			<table class="table">
+		<div class="col-xs-4">
+			<table class="table table-bordered">
 				<tbody>
 					<tr>
 						<th class="active">商品合計</th>
@@ -36,30 +36,36 @@
 					<tr>
 						<th class="active">送料</th>
 						<td><%= @order.fee.to_s(:delimited) %></td>
-						<!-- 仮です -->
 					</tr>
 					<tr>
 						<th class="active">合計金額</th>
 						<td><%= (total + @order.fee).to_s(:delimited) %></td>
-						<!-- 仮です -->
+					</tr>
+				</tbody>
+			</table>
+		    <table class="table table-bordered">
+		    	<tbody>
+		    		<tr>
+		    			<th class="active">支払方法</th>
+		    			<td><%= @order.payment_method %></td>
+		    		</tr>
+		    		<tr>
+		    			<th class="active">お届け先</th>
+			    		<td>
+					        〒<%= @order.ordered_postal_code.insert(3, "-") %><br>
+					        <%= @order.ordered_address %><br>
+					        <%= @order.ordered_receiver_name %>
+						</td>
 					</tr>
 				</tbody>
 			</table>
 		</div>
-	    <strong>支払方法</strong>
-	       <%= @order.payment_method %><br>
-
-	    <strong>お届け先</strong><br>
-          〒<%= @order.ordered_postal_code.insert(3, "-") %><br>
-          <%= @order.ordered_address %><br>
-          <%= @order.ordered_receiver_name %><br>
-
 		<%= form_for @order, url: orders_path do |f| %>
 			<%= f.hidden_field :ordered_address %>
 			<%= f.hidden_field :ordered_postal_code %>
 			<%= f.hidden_field :ordered_receiver_name %>
 			<%= f.hidden_field :payment_method %>
-			<%= f.hidden_field :billing_amount, :value => total.to_i + @order.fee %>
+			<%= f.hidden_field :billing_amount, :value => total.to_i %>
 			<%= f.hidden_field :address_type %>
 			<% @cart_items.each do |item| %>
 				<%= f.fields_for :order_items, @order.order_items.build do |i| %>
@@ -70,7 +76,8 @@
 					<%= i.hidden_field :ordered_item_name, :value => item.item.name %>
 				<% end %>
 			<% end %>
-	        <%= f.submit "購入を確定する" ,class:"btn btn-primary btn-xl" %>
+		    <div class="clearfix"></div>
+	        <%= f.submit "　　　　　購入を確定する　　　　　" ,class:"btn btn-primary btn-lg center-block" %>
 	    <% end %>
 	</div>
 </div>

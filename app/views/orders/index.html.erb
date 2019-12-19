@@ -20,7 +20,7 @@
 							<p class="order-history-items"><%= item.ordered_item_name %></p>
 							<% end %>
 						</td>
-						<td><%= order.tax_include_billing_amount.to_s(:delimited) %>円</td>
+						<td><%= (order.billing_amount + order.fee).to_s(:delimited) %>円</td>
 						<td class="order-history-table-link"><%= link_to "表示する", order_histories_show_path(order), class:"btn btn-primary"%></td>
 					</tr>
 				<% end %>
