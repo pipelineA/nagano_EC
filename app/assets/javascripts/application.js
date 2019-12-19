@@ -51,7 +51,7 @@ $(document).on('turbolinks:load', function(){
     // $(this).parent()で、クリックされた".edit-button"の親要素の<td>が取得できる。
     // $(this).parent().parent()で、クリックされた".edit-button"の親要素の<td>のさらに親要素の<tr>が取得できる。
     // 取得した<tr>を$parentという変数に代入する。
-    	let parent = $(this).parent().parent();
+    	var parent = $(this).parent().parent();
 
     // $parent.find('クラス名')で、$parentで指定した<tr>の中にある'クラス名'だけを取得することができる。
     // （これを指定しない場合は、クリックした<tr>以外の列の'クラス名'にまで、影響が及んでしまう）
