@@ -1,7 +1,7 @@
 <% content_for(:html_title) { "カート" } %>
 <div class="container">
 	<div class="row">
-		<table class="table">
+		<table class="table table-bordered">
 			<%= link_to "カートを空にする", destroy_all_path, method: :post, class:"btn btn-danger pull-right"%><br>
 			<br>
 			<tbody>

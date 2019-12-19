@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title><%= content_for?(:html_title) ? "ながのCAKE 管理者 | #{yield(:html_title)}" : "ながのCAKE 管理者" %></title>
+    <title><%= content_for?(:html_title) ? "ナガノケーキ 管理者 | #{yield(:html_title)}" : "ナガノケーキ 管理者" %></title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
     <%= favicon_link_tag('favicon.ico') %>
@@ -11,9 +11,9 @@
   </head>
 
   <body>
-    <header class="navbar navbar-inverse">
+    <header class="admin-header">
       <diV class="container">
-        <h3><%= link_to"管理者", admin_root_path %></h3>
+        <h3 class="nav navbar-nav navbar-left admin-logo"><%= link_to"ナガノケーキ　管理者", admin_root_path %></h3>
         <ul class="nav navbar-nav navbar-right">
           <li><%= link_to "商品一覧", admin_items_path %></li>
           <li><%= link_to "会員一覧", admin_users_path %></li>
@@ -21,11 +21,6 @@
           <li><%= link_to "ジャンル一覧", admin_genres_path %></li>
           <li><%= link_to "ログアウト", destroy_admin_session_path, method: :delete %></li>
          </ul>
-<!--         <div class="nav navbar-nav navbar-right">
-          <form action="#" method="post">
-            <input type="search" name="search" placeholder="Seach">
-          </form>
-        </div> -->
       </diV>
     </header>
     <% flash.each do |message_type, message| %>
