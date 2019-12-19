@@ -22,7 +22,7 @@ class Admin::ItemsController < AdminController
     @item = Item.new(item_params)
     if @item.save
       flash[:success] = "新規商品が追加されました"
-      redirect_to admin_items_path
+      redirect_to admin_item_path(@item)
     else
       @genres = Genre.all
       render :new
