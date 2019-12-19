@@ -18,17 +18,23 @@
 				<div class=" border">
 					<div class="top-marker-line"><span class="glyphicon glyphicon-ok" aria-hidden="true" style="font-size: 10px"></span>条件から選ぶ</div>
 					<div class="padding-top">
-						<div class="dott"><%= link_to "500~999円" %></div><br>
-						<div class="dott"><%= link_to "1000~1999円以下" %></div><br>
-						<div class="dott"><%= link_to "2000~2999以下" %></div><br>
-						<div class="dott"><%= link_to "3000~以下" %></div><br>
+						<div class="dott"><%= link_to "500~999円", root_path(price: [500, 999]) %></div><br>
+						<div class="dott"><%= link_to "1000~1999円", root_path(price: [1000, 1999]) %></div><br>
+						<div class="dott"><%= link_to "2000~2999円", root_path(price: [2000, 2999]) %></div><br>
+						<div class="dott"><%= link_to "3000円~", root_path(price: [3000, 100000]) %></div><br>
 					</div>
 				</div>
 			</div>
 			<div class="col-md-10">
 				<h2>商品一覧</h2>
-				<% if @items.empty?%>
-				  <p>「<%= @search %>」の</p>
+				<% if @genre %>
+				  <p>「<%= @genre.name %>」に該当する商品を表示しています。</p>
+				<% elsif @search %>
+				  <p>「<%= @search %>」に該当する商品を表示しています。</p>
+				<% elsif @price0 == 3000 %>
+					<p><%= "#{@price0}〜円の商品を表示しています。" %></p>
+				<% elsif @price0 %>
+					<p><%= "#{@price0}〜#{@price1}円の商品を表示しています。" %></p>
 				<% end %>
 				<div class="row">
 					<% @items.each do |item| %>

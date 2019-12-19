@@ -148,16 +148,15 @@ color:#888;
 
  header {
  height: 100px;
- border-bottom: 1px solid silver;
  background-color: white;
  
  }
 
-.navbar-right a {
+.header .navbar-right a {
  color: #5b310f;
 }
 
- .navbar-right a:hover {
+ .header .navbar-right a:hover {
  background-color: white!important;
  color: orange;
  }
