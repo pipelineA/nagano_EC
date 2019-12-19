@@ -1,7 +1,7 @@
 class ItemsController < ApplicationController
   def show
     @newuser = User.new
-  	@genres = Genre.all
+  	@genres = Genre.where(is_active: true)
   	@item = Item.find(params[:id])
     if current_user == nil
        @cart_item = CartItem.new

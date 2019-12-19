@@ -1,16 +1,17 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>NaganoEc</title>
+    <title><%= content_for?(:html_title) ? "ながのCAKE | #{yield(:html_title)}" : "ながのCAKE" %></title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
+    <%= favicon_link_tag('favicon.ico') %>
     <script src="https://kit.fontawesome.com/83beaa6ece.js" crossorigin="anonymous"></script>
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
-    <header class="navbar">
+    <header class="navbar header">
       <div class="container">
         <div class="row">
           <h3 class="navbar-left">
