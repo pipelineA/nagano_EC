@@ -39,7 +39,7 @@
         </tr>
        <% @addresses.each do |a| %>
         <tr>
-          <td><%= a.postal_code %></td>
+          <td><%= a.postal_code.insert(3, "-") %></td>
           <td><%= a.address %></td>
           <td><%= a.receiver_name %></td>
           <td>
