@@ -1,4 +1,12 @@
 class CartsController < ApplicationController
+
+before_action :authenticate_user
+  def authenticate_user
+    if current_user == nil
+       redirect_to new_user_session_path
+  end
+end
+
   def index
   	@cart_items = current_user.cart_items
   end

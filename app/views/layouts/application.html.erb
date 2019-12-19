@@ -66,16 +66,14 @@
                     <i class="fas fa-user-plus icon-custom"></i><br>新規登録
                     <% end %>
                   </li>
-
-                  <li><%= link_to new_user_session_path do %>
-                    <i class="fas fa-sign-in-alt icon-custom"></i><br>ログイン
-                    <% end %>
-
                   <li><%= link_to about_path do %>
                     <i class="fas fa-birthday-cake icon-custom"></i><br>about
                     <% end %>
                   </li>
-
+                  <!-- ポップアップ中身 -->
+                  <li><%= link_to new_user_session_path do %>
+                    <i class="fas fa-sign-in-alt icon-custom"></i><br>ログイン</li>
+                    <% end %>
                   <% end %>
               </div>
               <div class="search-form-box">
